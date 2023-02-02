@@ -1,25 +1,35 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "班級資訊平台",
+  "name": "班級資訊平台 5.0 Beta",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "https://johnlin10.github.io/classdata/school.001.png",
+      "type": "/image/png",
+      "sizes": "1080x1080",
+      "purpose": "any"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "id": "ClassData",
+  "start_url": "https://johnlin10.github.io/classdata/mobile.html?page=home",
+  "background_color": "#1c1c1c",
+  "purpose": "any",
+  "display": "fullscreen",
+  "scope": "https://johnlin10.github.io/classdata/",
+  "orientation": "portrait",
+  "theme_color": "#1c1c1c",
+  "description": "班級、學校的即時資訊",
+  "screenshots": [
+    {
+      "src": "/classdata/assets/classdata_mobile.html(iPhone SE).png",
+      "type": "image/png",
+      "sizes": "750x1334",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/classdata/assets/classdata_mobile.html(iPhone 12 Pro).png",
+      "type": "image/png",
+      "sizes": "1170x2532",
+      "form_factor": "narrow"
+    }
+  ]
 }
