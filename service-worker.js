@@ -1,48 +1,48 @@
 // 檢查餅刪除舊快取
 const deleteCache = async (key) => {
-  await caches.delete(key);
-};
+  await caches.delete(key)
+}
 const deleteOldCaches = async () => {
-  const cacheKeepList = ["v5.0.0.15"];
-  const keyList = await caches.keys();
-  const cachesToDelete = keyList.filter((key) => !cacheKeepList.includes(key));
-  await Promise.all(cachesToDelete.map(deleteCache));
-};
+  const cacheKeepList = ["v5.0.0.2"]
+  const keyList = await caches.keys()
+  const cachesToDelete = keyList.filter((key) => !cacheKeepList.includes(key))
+  await Promise.all(cachesToDelete.map(deleteCache))
+}
 // 通過版本控制更新
 const addResourcesToCache = async (resources) => {
-  const cache = await caches.open("v5.0.0.15");
-  await cache.addAll(resources);
-};
+  const cache = await caches.open("v5.0.0.2")
+  await cache.addAll(resources)
+}
 const putInCache = async (request, response) => {
-  const cache = await caches.open("v5.0.0.15");
-  await cache.put(request, response);
-};
+  const cache = await caches.open("v5.0.0.2")
+  await cache.put(request, response)
+}
 // 啟動 Service Worker
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   // First try to get the resource from the cache
-  const responseFromCache = await caches.match(request);
+  const responseFromCache = await caches.match(request)
   if (responseFromCache) {
-    return responseFromCache;
+    return responseFromCache
   }
   // Next try to use (and cache) the preloaded response, if it's there
-  const preloadResponse = await preloadResponsePromise;
+  const preloadResponse = await preloadResponsePromise
   if (preloadResponse) {
-    console.info("使用預載響應", preloadResponse);
-    putInCache(request, preloadResponse.clone());
-    return preloadResponse;
+    console.info("使用預載響應", preloadResponse)
+    putInCache(request, preloadResponse.clone())
+    return preloadResponse
   }
   // Next try to get the resource from the network
   try {
-    const responseFromNetwork = await fetch(request);
+    const responseFromNetwork = await fetch(request)
     // response may be used only once
     // we need to save clone to put one copy in cache
     // and serve second one
-    putInCache(request, responseFromNetwork.clone());
-    return responseFromNetwork;
+    putInCache(request, responseFromNetwork.clone())
+    return responseFromNetwork
   } catch (error) {
-    const fallbackResponse = await caches.match(fallbackUrl);
+    const fallbackResponse = await caches.match(fallbackUrl)
     if (fallbackResponse) {
-      return fallbackResponse;
+      return fallbackResponse
     }
     // when even the fallback response is not available,
     // there is nothing we can do, but we must always
@@ -50,25 +50,25 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
     return new Response("發生網絡錯誤", {
       status: 408,
       headers: { "Content-Type": "text/plain" },
-    });
+    })
   }
-};
+}
 // 預載
 const enableNavigationPreload = async () => {
   if (self.registration.navigationPreload) {
-    await self.registration.navigationPreload.enable();
+    await self.registration.navigationPreload.enable()
   }
-};
+}
 self.addEventListener("activate", (event) => {
-  event.waitUntil(enableNavigationPreload());
-});
+  event.waitUntil(enableNavigationPreload())
+})
 // 刪除舊快取
 self.addEventListener("activate", (event) => {
-  event.waitUntil(deleteOldCaches());
-});
+  event.waitUntil(deleteOldCaches())
+})
 // 安裝資源
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
+  self.skipWaiting()
   event.waitUntil(
     addResourcesToCache([
       "/classdata/classdata.html",
@@ -81,8 +81,8 @@ self.addEventListener("install", (event) => {
       "/classdata/css/development-style.css",
       "/classdata/css/CourseSchedule-style.css",
     ])
-  );
-});
+  )
+})
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     cacheFirst({
@@ -90,22 +90,22 @@ self.addEventListener("fetch", (event) => {
       preloadResponsePromise: event.preloadResponse,
       fallbackUrl: "/classdata/school.png",
     }).then((response) => {
-      return response;
+      return response
     })
-  );
-});
+  )
+})
 
 // 定時檢查更新
 setInterval(() => {
-  deleteOldCaches();
+  deleteOldCaches()
   fetch('/cache.json')
-  .then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-  })
-  .then(json => {
-    addResourcesToCache(json.resources);
-  });
-  self.skipWaiting();
-}, 30000); 
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+    .then(json => {
+      addResourcesToCache(json.resources)
+    })
+  self.skipWaiting()
+}, 30000) 
