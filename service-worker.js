@@ -3,18 +3,18 @@ const deleteCache = async (key) => {
   await caches.delete(key)
 }
 const deleteOldCaches = async () => {
-  const cacheKeepList = ["v5.0.0.3"]
+  const cacheKeepList = ["v5.0.0.4"]
   const keyList = await caches.keys()
   const cachesToDelete = keyList.filter((key) => !cacheKeepList.includes(key))
   await Promise.all(cachesToDelete.map(deleteCache))
 }
 // 通過版本控制更新
 const addResourcesToCache = async (resources) => {
-  const cache = await caches.open("v5.0.0.3")
+  const cache = await caches.open("v5.0.0.4")
   await cache.addAll(resources)
 }
 const putInCache = async (request, response) => {
-  const cache = await caches.open("v5.0.0.3")
+  const cache = await caches.open("v5.0.0.4")
   await cache.put(request, response)
 }
 // 啟動 Service Worker
