@@ -31,5 +31,6 @@
   "scope": "https://johnlin10.github.io/classdata-app/",
   "orientation": "portrait",
   "theme_color": "#1c1c1c",
-  "description": "班級、學校的即時資訊"
+  "description": "班級、學校的即時資訊",
+  "gcm_sender_id": "219989250207"
 }

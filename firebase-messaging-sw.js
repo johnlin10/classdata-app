@@ -1,12 +1,7 @@
-// This a service worker file for receiving push notifitications.
-// See `Access registration token section` @ https://firebase.google.com/docs/cloud-messaging/js/client#retrieve-the-current-registration-token
+/* eslint-disable no-undef */
+importScripts('https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js')
+importScripts('https://www.gstatic.com/firebasejs/8.6.8/firebase-messaging.js')
 
-// Scripts for firebase and firebase messaging
-importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
-
-
-// Initialize the Firebase app in the service worker by passing the generated config
 const firebaseConfig = {
   apiKey: "AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg",
   authDomain: "classdata-app.firebaseapp.com",
@@ -17,21 +12,24 @@ const firebaseConfig = {
   measurementId: "G-WQQCBC6G9C"
 };
 
+firebase.initializeApp(firebaseConfig)
 
-firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging()
 
-// Retrieve firebase messaging
-const messaging = firebase.messaging();
-
-// Handle incoming messages while the app is not in focus (i.e in the background, hidden behind other tabs, or completely closed).
-messaging.onBackgroundMessage(function(payload) {
-  console.log('Received background message ', payload);
-
-  const notificationTitle = payload.notification.title;
+messaging.onBackgroundMessage((payload) => {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload)
+  const notificationTitle = payload.notification.title
   const notificationOptions = {
     body: payload.notification.body,
-  };
+    icon: payload.notification.icon || payload.notification.image,
+  }
 
-  self.registration.showNotification(notificationTitle,
-    notificationOptions);
-});
+  self.registration.showNotification(notificationTitle, notificationOptions)
+})
+
+self.addEventListener('notificationclick', (event) => {
+  if (event.action) {
+    clients.openWindow(event.action)
+  }
+  event.notification.close()
+})
