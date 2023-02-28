@@ -1,5 +1,5 @@
 # 班級資訊平台 5.0 (Beta)
-# Class Information Platform. 5.0 (Beta)
+# Class Information Platform 5.0 (Beta)
 <hr>
 這是一個服務於臺灣臺中市光華高工二年甲班的網站。<br>
 This is a website that serves the 2nd year class A of Kuanghua High School in Taichung City, Taiwan.<br>
