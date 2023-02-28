@@ -7,3 +7,6 @@ This is a website that serves the 2nd year class A of Kuanghua High School in Ta
 你可以透過這個網址訪問：<br>
 You can access it through this URL:<br>
 <a href="https://johnlin10.github.io/classdata-app/" target="_blank">https://johnlin10.github.io/classdata-app/</a>
+<hr><br>
+相較於 4.0 版本，改進了網頁架構，降低了開發成本，且提高擴展性。<br>
+Compared to version 4.0, the website structure has been improved, development costs have been reduced, and scalability has been enhanced.
