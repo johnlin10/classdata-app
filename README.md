@@ -4,10 +4,10 @@
 
 <hr>
 這是一個服務於臺灣臺中市光華高工二年甲班的網站。<br>
-This is a website that serves the 2nd year class A of Guanghua High School in Taichung City, Taiwan.<br>
+This is a website that serves the 2nd year class A of Kuanghua High School in Taichung City, Taiwan.<br>
 <br>
-你可以透過這個網址訪問：<br>
-You can access it through this URL:<br>
+你可以透過這個網址訪問 (Ctrl/cmd + 點擊 = 新視窗開啟連結)：<br>
+You can access it through this URL (Ctrl/cmd + click = open link in a new window):<br>
 <a href="https://johnlin10.github.io/classdata-app/" target="_blank">https://johnlin10.github.io/classdata-app/</a>
 <hr><br>
 相較於 4.0 版本，改進了網頁架構，降低了開發成本，且提高擴展性。<br>
