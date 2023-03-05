@@ -1,11 +1,11 @@
 {
   "short_name": "班級資訊平台",
-  "name": "班級資訊平台 5.0 Beta",
+  "name": "班級資訊平台 5.0",
   "splash_pages": [
     {
       "url": "/",
       "name": "班級資訊平台",
-      "description": "班級資訊平台 5.0 Beta",
+      "description": "班級資訊平台 5.0",
       "icons": [
         {
           "src": "https://johnlin10.github.io/classdata-app/school.001.png",
