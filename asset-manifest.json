@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/classdata-app/static/css/main.6373c258.css",
-    "main.js": "/classdata-app/static/js/main.0edecb15.js",
+    "main.js": "/classdata-app/static/js/main.ba604a32.js",
     "service-worker.js": "/classdata-app/service-worker.js",
     "index.html": "/classdata-app/index.html",
     "main.6373c258.css.map": "/classdata-app/static/css/main.6373c258.css.map",
-    "main.0edecb15.js.map": "/classdata-app/static/js/main.0edecb15.js.map"
+    "main.ba604a32.js.map": "/classdata-app/static/js/main.ba604a32.js.map"
   },
   "entrypoints": [
     "static/css/main.6373c258.css",
-    "static/js/main.0edecb15.js"
+    "static/js/main.ba604a32.js"
   ]
 }
