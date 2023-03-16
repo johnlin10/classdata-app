@@ -12,3 +12,5 @@ You can access it through this URL (Ctrl/cmd + click = open link in a new window
 <hr>
 相較於 <a href="https://github.com/johnlin10/classdata" target="_blank">4.0 版本</a>，改進了網頁架構，降低了開發成本，且提高擴展性。<br>
 Compared to <a href="https://github.com/johnlin10/classdata" target="_blank">Version 4.0</a>, the website structure has been improved, development costs have been reduced, and scalability has been enhanced.<br>
+<hr>
+### 最新版本：5.3.1
