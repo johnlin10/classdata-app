@@ -1,16 +1,6 @@
 importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js')
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg",
-//   authDomain: "classdata-app.firebaseapp.com",
-//   databaseURL: "https://classdata-app-default-rtdb.asia-southeast1.firebasedatabase.app",
-//   projectId: "classdata-app",
-//   storageBucket: "classdata-app.appspot.com",
-//   messagingSenderId: "219989250207",
-//   appId: "1:219989250207:web:5cef212dc7e1496c6952aa",
-//   measurementId: "G-M7221VNR6W"
-// }
 const firebaseConfig = {
   apiKey: 'AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg',
   authDomain: 'classdata-app.firebaseapp.com',
@@ -22,8 +12,16 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig)
 const messaging = firebase.messaging(app)
 
-messaging.setBackgroundMessageHandler((payload) => {
-  // do something with payload
-  console.log('Background message received:', payload)
-});
-// BIY9Dq4ACOsylekh3P3pfereOP0O3Bb-LLBrlV8yBE1huNq672CDDDE8rtVMweLVZi8lAFXUTMdcDBmgkUIzrn4
+messaging.onBackgroundMessage(messaging, (payload) => {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload)
+  // 获取通知标题和内容
+  const notificationTitle = payload.notification.title
+  const notificationBody = payload.notification.body
+  // 自定义通知
+  const notificationOptions = {
+    body: notificationBody,
+    icon: '/firebase-logo.png'
+  }
+
+  self.registration.showNotification(notificationTitle, notificationOptions)
+})
