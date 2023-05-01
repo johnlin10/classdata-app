@@ -14,4 +14,4 @@ You can access it through this URL (Ctrl/cmd + click = open link in a new window
 Compared to <a href="https://github.com/johnlin10/classdata" target="_blank">Version 4.0</a>, the website structure has been improved, development costs have been reduced, and scalability has been enhanced.<br>
 <hr>
 
-<h1>最新版本：5.4</h1>
+<h1>最新版本：5.6.2</h1>
