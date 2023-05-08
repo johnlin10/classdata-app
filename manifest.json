@@ -97,7 +97,7 @@
     }
   ],
   "id": "/classdata5",
-  "start_url": "/classdata-app?page=home",
+  "start_url": "https://johnlin10.github.io/classdata-app/?page=home",
   "background_color": "#1c1c1c",
   "purpose": "any",
   "display": "standalone",
