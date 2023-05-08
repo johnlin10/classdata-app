@@ -8,18 +8,91 @@
       "description": "學校、班級的最新資訊",
       "icons": [
         {
-          "src": "https://johnlin10.github.io/classdata-app/school.001.png",
+          "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-1080x1080.png",
           "type": "/image/png",
-          "sizes": "1080x1080"
+          "sizes": "1080x1080",
+          "purpose": "any"
+        },
+        {
+          "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-512x512.png",
+          "type": "/image/png",
+          "sizes": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-256x256.png",
+          "type": "/image/png",
+          "sizes": "256x256",
+          "purpose": "any"
+        },
+        {
+          "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-128x128.png",
+          "type": "/image/png",
+          "sizes": "128x128",
+          "purpose": "any"
+        },
+        {
+          "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-96x96.png",
+          "type": "/image/png",
+          "sizes": "96x96",
+          "purpose": "any"
+        },
+        {
+          "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-72x72.png",
+          "type": "/image/png",
+          "sizes": "72x72",
+          "purpose": "any"
+        },
+        {
+          "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-64x64.png",
+          "type": "/image/png",
+          "sizes": "64x64",
+          "purpose": "any"
         }
       ]
     }
   ],
   "icons": [
     {
-      "src": "https://johnlin10.github.io/classdata-app/school.001.png",
+      "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-1080x1080.png",
       "type": "/image/png",
       "sizes": "1080x1080",
+      "purpose": "any"
+    },
+    {
+      "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-512x512.png",
+      "type": "/image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-256x256.png",
+      "type": "/image/png",
+      "sizes": "256x256",
+      "purpose": "any"
+    },
+    {
+      "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-128x128.png",
+      "type": "/image/png",
+      "sizes": "128x128",
+      "purpose": "any"
+    },
+    {
+      "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-96x96.png",
+      "type": "/image/png",
+      "sizes": "96x96",
+      "purpose": "any"
+    },
+    {
+      "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-72x72.png",
+      "type": "/image/png",
+      "sizes": "72x72",
+      "purpose": "any"
+    },
+    {
+      "src": "https://johnlin10.github.io/classdata-app/icon/general-icon/general-icon-64x64.png",
+      "type": "/image/png",
+      "sizes": "64x64",
       "purpose": "any"
     }
   ],
