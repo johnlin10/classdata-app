@@ -1,6 +1,18 @@
 {
   "short_name": "班級資訊平台",
   "name": "班級資訊平台 5.0",
+  "id": "/classdata5",
+  "start_url": "https://johnlin10.github.io/classdata-app/",
+  // "start_url": "https://classdata-app.web.app/",
+  "background_color": "#1c1c1c",
+  "purpose": "any",
+  "display": "standalone",
+  "scope": "https://johnlin10.github.io/classdata-app/",
+  // "scope": "https://classdata-app.web.app/",
+  "orientation": "portrait",
+  "theme_color": "#1c1c1c",
+  "description": "班級、學校的即時資訊",
+  "gcm_sender_id": "219989250207",
   "splash_pages": [
     {
       "url": "/",
@@ -95,17 +107,5 @@
       "sizes": "64x64",
       "purpose": "any"
     }
-  ],
-  "id": "/classdata5",
-  "start_url": "https://johnlin10.github.io/classdata-app/",
-  // "start_url": "https://classdata-app.web.app/",
-  "background_color": "#1c1c1c",
-  "purpose": "any",
-  "display": "standalone",
-  "scope": "https://johnlin10.github.io/classdata-app/",
-  // "scope": "https://classdata-app.web.app/",
-  "orientation": "portrait",
-  "theme_color": "#1c1c1c",
-  "description": "班級、學校的即時資訊",
-  "gcm_sender_id": "219989250207"
+  ]
 }
