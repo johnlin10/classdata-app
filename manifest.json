@@ -4,8 +4,6 @@
   "id": "/classdata5",
   "start_url": "https://johnlin10.github.io/classdata-app/",
   "scope": "https://johnlin10.github.io/classdata-app/",
-  // "start_url": "https://classdata-app.web.app/",
-  // "scope": "https://classdata-app.web.app/",
   "background_color": "#1c1c1c",
   "purpose": "any",
   "display": "standalone",
