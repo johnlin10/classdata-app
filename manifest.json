@@ -3,10 +3,10 @@
   "name": "班級資訊平台 5.0",
   "id": "/classdata5",
   "start_url": "https://johnlin10.github.io/classdata-app/",
+  "scope": "https://johnlin10.github.io/classdata-app/",
   "background_color": "#1c1c1c",
   "purpose": "any",
   "display": "standalone",
-  "scope": "https://johnlin10.github.io/classdata-app/",
   "orientation": "portrait",
   "theme_color": "#1c1c1c",
   "description": "班級、學校的即時資訊",
@@ -107,5 +107,3 @@
     }
   ]
 }
-// "start_url": "https://classdata-app.web.app/",
-// "scope": "https://classdata-app.web.app/",
