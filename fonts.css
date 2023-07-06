@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'SetFont';
+  src: local('NotoSansTC-Regular');
+  unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+  font-family: 'SetFont';
+  src: local('Inter');
+  unicode-range: U+00-024F;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url('./fonts/Inter-VariableFont_slnt,wght.ttf');
+}
+
+@font-face {
+  font-family: MartianMono;
+  src: url('./fonts/MartianMono-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+  font-family: NotoSansTC-Black;
+  src: url('./fonts/NotoSansTC/NotoSansTC-Black.otf');
+}
+@font-face {
+  font-family: NotoSansTC-Bold;
+  src: url('./fonts/NotoSansTC/NotoSansTC-Bold.otf');
+}
+@font-face {
+  font-family: NotoSansTC-Medium;
+  src: url('./fonts/NotoSansTC/NotoSansTC-Medium.otf');
+}
+@font-face {
+  font-family: NotoSansTC-Regular;
+  src: url('./fonts/NotoSansTC/NotoSansTC-Regular.otf');
+}
+@font-face {
+  font-family: NotoSansTC-Light;
+  src: url('./fonts/NotoSansTC/NotoSansTC-Light.otf');
+}
+@font-face {
+  font-family: NotoSansTC-Thin;
+  src: url('./fonts/NotoSansTC/NotoSansTC-Thin.otf');
+}
