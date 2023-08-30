@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'SetFont';
+  font-family: SetFont;
   src: local('NotoSansTC-Regular');
   unicode-range: U+4E00-9FFF;
 }
 
 @font-face {
-  font-family: 'SetFont';
+  font-family: SetFont;
   src: local('Inter');
   unicode-range: U+00-024F;
 }
@@ -44,3 +44,4 @@
   font-family: NotoSansTC-Thin;
   src: url('./fonts/NotoSansTC/NotoSansTC-Thin.otf');
 }
+
