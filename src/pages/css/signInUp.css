@@ -1,8 +1,10 @@
 #meContent {
   padding: 24px 0;
 }
-#User {
-  padding-top: 54px;
+#meView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .user .userInfo {
   display: flex;

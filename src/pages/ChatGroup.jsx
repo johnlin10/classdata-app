@@ -60,12 +60,15 @@ function ChatGroup(props) {
   const adminUsers = [process.env.REACT_APP_ADMIN, process.env.REACT_APP_SYSEM]
   const otherUsers = [process.env.REACT_APP_CHAT_01]
 
+  // 用戶登入資訊
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user)
     })
     return unsubscribe
   }, [])
+
+  // 根據登入狀態提示聊天室狀態
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
@@ -154,6 +157,7 @@ function ChatGroup(props) {
       handleToTop()
     }
   }
+
   // 發送按鈕動畫
   const [animate, setAnimate] = useState(false)
   useEffect(() => {
@@ -166,12 +170,14 @@ function ChatGroup(props) {
     }
   }, [animate])
 
+  // 回到底部
   const handleToTop = () => {
     setTimeout(() => {
       document.querySelector('.message').scrollIntoView({ behavior: 'smooth' })
     }, 150)
   }
 
+  // 觸發回覆暫存回覆內容
   const reployToMessage = (userName, message, time) => {
     // const chatMsgBlockRef =
     setReployUserName(userName)
@@ -180,6 +186,7 @@ function ChatGroup(props) {
     console.log(reployTime)
   }
 
+  // 獲取聊天
   const [getChatMessage, setChatMessage] = useState()
   useEffect(() => {
     // 獲取資料
@@ -217,18 +224,6 @@ function ChatGroup(props) {
       )
     }
   }, [getChatMessage])
-
-  const chatGroupTextarea = useRef(null)
-  useEffect(() => {
-    const current = chatGroupTextarea.current
-    if (current) {
-      autoHeight(current)
-    }
-  }, [chatText])
-  function autoHeight(element) {
-    element.style.height = '40px'
-    element.style.height = element.scrollHeight + 'px'
-  }
 
   // 資料處理 \n 自動換行
   const formatContent = (content) => {
@@ -337,6 +332,7 @@ function ChatGroup(props) {
   //
   const [file, setFile] = useState()
   const [imgData, setImgData] = useState(null)
+  const [isUploading, setIsUploading] = useState(false)
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0])
@@ -346,6 +342,7 @@ function ChatGroup(props) {
   const handleUpload = async () => {
     if (!file) return
 
+    setIsUploading(true)
     const imgStorageRef = ref(storage, `images/${file.name}`)
     await uploadBytes(imgStorageRef, file)
     const URL = await getDownloadURL(imgStorageRef)
@@ -353,6 +350,8 @@ function ChatGroup(props) {
     setImgData(null)
     setFile(null)
     document.querySelector('#mediaImg').value = null
+    setIsUploading(false)
+
     return URL
   }
   const [dropActive, setDropActive] = useState(false)
@@ -380,6 +379,26 @@ function ChatGroup(props) {
         <FontAwesomeIcon icon="fa-solid fa-file-image" />
       )
     }
+  }
+
+  const chatGroupTextarea = useRef(null)
+  const [chatViewMargin, setChatViewMargin] = useState('0')
+  useEffect(() => {
+    const current = chatGroupTextarea.current
+    if (current) {
+      autoHeight(current)
+    }
+  }, [chatText, imgData])
+  function autoHeight(element) {
+    element.style.height = '40px'
+    element.style.height = element.scrollHeight + 'px'
+    let isImgData = imgData ? 87 : 0
+    if (element.scrollHeight < 240) {
+      setChatViewMargin(`${element.scrollHeight - 44 + isImgData}` + 'px')
+    } else {
+      setChatViewMargin(240 - 44 + isImgData + 'px')
+    }
+    console.log(chatViewMargin)
   }
 
   const originalMessage = (orgMsgID) => {
@@ -440,6 +459,106 @@ function ChatGroup(props) {
   const reportActvChange = () => {
     setReportViewActv(!reportViewActv)
   }
+
+  // test
+  const MAX_TIME_DIFF = 180 // 最大时间差，单位秒
+
+  const renderMessages = () => {
+    const groupedMessages = []
+
+    for (let i = 0; i < getChatMessage.length; i++) {
+      const currentMsg = getChatMessage[i]
+      const prevMsg = groupedMessages[groupedMessages.length - 1]?.[0]
+
+      if (
+        prevMsg &&
+        currentMsg.userUID === prevMsg.userUID &&
+        currentMsg.time.seconds - prevMsg.time.seconds <= MAX_TIME_DIFF
+      ) {
+        groupedMessages[groupedMessages.length - 1].push(currentMsg)
+      } else {
+        groupedMessages.push([currentMsg])
+      }
+    }
+
+    return groupedMessages.reverse().map((group, groupIndex) => (
+      <div key={groupIndex} className="messageGroup">
+        {group.map((item, index) => (
+          <div
+            id="messageBlock"
+            className={`messageBlock${
+              userUID === item.userUID &&
+              item.userUID != process.env.REACT_APP_CHATGROUP_SYSTEM_USER
+                ? ' myMessage'
+                : ''
+            }${
+              item.userUID === process.env.REACT_APP_CHATGROUP_SYSTEM_USER
+                ? ' system'
+                : ''
+            }`}>
+            <div
+              id={`reployID${item.time ? item.time.seconds : ''}`}
+              className={`message ${
+                item.reployMessage && item.reployUserName ? 'reployMsg' : ''
+              }`}
+              onClick={() =>
+                item.reployTime ? originalMessage(item.reployTime.seconds) : {}
+              }>
+              <div
+                className="reployToBtn"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  reployToMessage(item.user, item.content, item.time)
+                }}>
+                <FontAwesomeIcon icon="fa-solid fa-reply" />
+              </div>
+              <img
+                src={item.userPhoto}
+                className="userPhoto"
+                alt={item.user}></img>
+              <p className="userName">
+                {item.userUID === process.env.REACT_APP_CHATGROUP_SYSTEM_USER
+                  ? '平台通知'
+                  : item.user}
+              </p>
+              <span
+                className="messageTime"
+                onClick={(event) => event.stopPropagation()}>
+                {setDate(new Date(item.time.seconds * 1000))}
+              </span>
+              {item.reployMessage && item.reployUserName && (
+                <div
+                  className="replyTo"
+                  onClick={() =>
+                    item.reployTime
+                      ? originalMessage(item.reployTime.seconds)
+                      : {}
+                  }>
+                  <span className="reployMessage" href={`#${reployTime}`}>
+                    {formatContent(item.reployMessage)}
+                  </span>
+                  <span className="reployUserName">
+                    回覆 {item.reployUserName}
+                  </span>
+                </div>
+              )}
+              {item.imageUrl && (
+                <img
+                  className={`messageImg${item.content ? '' : ' noContent'}`}
+                  src={item.imageUrl}
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    props.setPhotoPreviewUrl(item.imageUrl)
+                  }}></img>
+              )}
+              {formatContent(item.content)}
+            </div>
+          </div>
+        ))}
+      </div>
+    ))
+  }
+
   return (
     <main
       id="chatGroup"
@@ -455,14 +574,14 @@ function ChatGroup(props) {
                 onClick={() => {
                   usersListActv
                     ? [setUsersListActv(false), setReportViewActv(false)]
-                    : props.navigateClick('/')
+                    : props.navigateClick('/chats')
                 }}>
                 <div>
                   <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
                 </div>
               </div>
               <div className="chatGroupName">
-                <p>討論區 (Beta)</p>
+                <p>公共討論區</p>
               </div>
             </div>
             <div>
@@ -475,101 +594,108 @@ function ChatGroup(props) {
               </div>
             </div>
           </div>
-          <div className="chatGroupContiniut">
+          <div
+            className="chatGroupContiniut"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            style={{ paddingBottom: chatViewMargin }}>
             <div
               id="chatGroupView"
               className={`${imgData ? 'image' : ''}${
                 imgData && reployMessage && reployUserName ? ' ' : ''
-              }${reployMessage && reployUserName ? 'reploy' : ''}`}>
+              }${reployMessage && reployUserName ? 'reploy' : ''}`}
+              s>
               {toTopBtn && (
                 <div className="toTopBtn" onClick={handleToTop}>
                   <FontAwesomeIcon icon="fa-solid fa-arrow-down" />
                 </div>
               )}
               {Array.isArray(getChatMessage) ? (
-                [...getChatMessage].reverse().map((item, index) => (
-                  <div
-                    id="messageBlock"
-                    className={`messageBlock${
-                      userUID === item.userUID &&
-                      item.userUID !=
-                        process.env.REACT_APP_CHATGROUP_SYSTEM_USER
-                        ? ' myMessage'
-                        : ''
-                    }${
-                      item.userUID ===
-                      process.env.REACT_APP_CHATGROUP_SYSTEM_USER
-                        ? ' system'
-                        : ''
-                    }`}>
-                    <div
-                      id={`reployID${item.time ? item.time.seconds : ''}`}
-                      className={`message ${
-                        item.reployMessage && item.reployUserName
-                          ? 'reployMsg'
-                          : ''
-                      }`}
-                      onClick={() =>
-                        item.reployTime
-                          ? originalMessage(item.reployTime.seconds)
-                          : {}
-                      }>
-                      <div
-                        className="reployToBtn"
-                        onClick={(event) => {
-                          event.stopPropagation()
-                          reployToMessage(item.user, item.content, item.time)
-                        }}>
-                        <FontAwesomeIcon icon="fa-solid fa-reply" />
-                      </div>
-                      <img
-                        src={item.userPhoto}
-                        className="userPhoto"
-                        alt={item.user}></img>
-                      <p className="userName">
-                        {item.userUID ===
-                        process.env.REACT_APP_CHATGROUP_SYSTEM_USER
-                          ? '平台通知'
-                          : item.user}
-                      </p>
-                      <span
-                        className="messageTime"
-                        onClick={(event) => event.stopPropagation()}>
-                        {setDate(new Date(item.time.seconds * 1000))}
-                      </span>
-                      {item.reployMessage && item.reployUserName && (
-                        <div
-                          className="replyTo"
-                          onClick={() =>
-                            item.reployTime
-                              ? originalMessage(item.reployTime.seconds)
-                              : {}
-                          }>
-                          <span
-                            className="reployMessage"
-                            href={`#${reployTime}`}>
-                            {formatContent(item.reployMessage)}
-                          </span>
-                          <span className="reployUserName">
-                            回覆 {item.reployUserName}
-                          </span>
-                        </div>
-                      )}
-                      {item.imageUrl && (
-                        <img
-                          className={`messageImg${
-                            item.content ? '' : ' noContent'
-                          }`}
-                          src={item.imageUrl}
-                          onClick={(event) => {
-                            event.stopPropagation()
-                            props.setPhotoPreviewUrl(item.imageUrl)
-                          }}></img>
-                      )}
-                      {formatContent(item.content)}
-                    </div>
-                  </div>
-                ))
+                // [...getChatMessage].reverse().map((item, index) => (
+                //   <div
+                //     id="messageBlock"
+                //     className={`messageBlock${
+                //       userUID === item.userUID &&
+                //       item.userUID !=
+                //         process.env.REACT_APP_CHATGROUP_SYSTEM_USER
+                //         ? ' myMessage'
+                //         : ''
+                //     }${
+                //       item.userUID ===
+                //       process.env.REACT_APP_CHATGROUP_SYSTEM_USER
+                //         ? ' system'
+                //         : ''
+                //     }`}>
+                //     <div
+                //       id={`reployID${item.time ? item.time.seconds : ''}`}
+                //       className={`message ${
+                //         item.reployMessage && item.reployUserName
+                //           ? 'reployMsg'
+                //           : ''
+                //       }`}
+                //       onClick={() =>
+                //         item.reployTime
+                //           ? originalMessage(item.reployTime.seconds)
+                //           : {}
+                //       }>
+                //       <div
+                //         className="reployToBtn"
+                //         onClick={(event) => {
+                //           event.stopPropagation()
+                //           reployToMessage(item.user, item.content, item.time)
+                //         }}>
+                //         <FontAwesomeIcon icon="fa-solid fa-reply" />
+                //       </div>
+                //       <img
+                //         src={item.userPhoto}
+                //         className="userPhoto"
+                //         alt={item.user}></img>
+                //       <p className="userName">
+                //         {item.userUID ===
+                //         process.env.REACT_APP_CHATGROUP_SYSTEM_USER
+                //           ? '平台通知'
+                //           : item.user}
+                //       </p>
+                //       <span
+                //         className="messageTime"
+                //         onClick={(event) => event.stopPropagation()}>
+                //         {setDate(new Date(item.time.seconds * 1000))}
+                //       </span>
+                //       {item.reployMessage && item.reployUserName && (
+                //         <div
+                //           className="replyTo"
+                //           onClick={() =>
+                //             item.reployTime
+                //               ? originalMessage(item.reployTime.seconds)
+                //               : {}
+                //           }>
+                //           <span
+                //             className="reployMessage"
+                //             href={`#${reployTime}`}>
+                //             {formatContent(item.reployMessage)}
+                //           </span>
+                //           <span className="reployUserName">
+                //             回覆 {item.reployUserName}
+                //           </span>
+                //         </div>
+                //       )}
+                //       {item.imageUrl && (
+                //         <img
+                //           className={`messageImg${
+                //             item.content ? '' : ' noContent'
+                //           }`}
+                //           src={item.imageUrl}
+                //           onClick={(event) => {
+                //             event.stopPropagation()
+                //             props.setPhotoPreviewUrl(item.imageUrl)
+                //           }}></img>
+                //       )}
+                //       {formatContent(item.content)}
+                //     </div>
+                //   </div>
+                // ))
+                renderMessages()
               ) : (
                 <Loader />
               )}
@@ -579,12 +705,23 @@ function ChatGroup(props) {
             id="chatGroupInput"
             className={`${imgData ? 'image' : ''}${
               reployMessage && reployUserName ? ' reploy' : ''
-            }`}
+            }${isUploading ? ' loading' : ''}`}
             style={
               {
                 // maxHeight: reployMessage && reployUserName ? '159px' : '',
               }
-            }>
+            }
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}>
+            <div className={`load${isUploading ? ' loading' : ''}`}>
+              <FontAwesomeIcon
+                icon="fa-solid fa-arrow-up"
+                style={{ marginRight: '6px' }}
+                beatFade
+              />{' '}
+              <span>上傳中</span>
+            </div>
             {reployMessage && reployUserName && (
               <div className="reployDisplay">
                 <div className="reployDisplayBlock">
@@ -628,10 +765,7 @@ function ChatGroup(props) {
             )}
             <div
               ref={chatGroupInput}
-              className={`chatGroupForm${dropActive ? ' onDrop' : ''}`}
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}>
+              className={`chatGroupForm${dropActive ? ' onDrop' : ''}`}>
               <div className={`dropMask`}>放開載入圖片</div>
               <div className="mediaImports">
                 <div className="mediaImportBtn">
@@ -739,7 +873,7 @@ function ChatGroup(props) {
           )}
           <p>{unloginTip}</p>
           {unloginTipBtn && (
-            <button onClick={() => [props.pagelink('me')]}>
+            <button onClick={() => [props.navigateClick('/user')]}>
               {unloginTipBtn}
             </button>
           )}

@@ -1,10 +1,15 @@
 import { useRef, useEffect, useState } from 'react'
 import { HomePostData } from '../AppData/AppData'
 import './css/Articles.css'
+import { Helmet } from 'react-helmet'
+
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function Articles(props) {
+// 自定義函式庫
+import useUrlParams from '../js/UpdateUrlParams'
+
+export default function Articles(props) {
   // 頁面動畫
   const [pageTitleAni, setPageTitleAni] = useState(true)
   useEffect(() => {
@@ -16,6 +21,8 @@ function Articles(props) {
     return content.split('\n').map((line, index) => <p key={index}>{line}</p>)
   }
   const [postData, setPostData] = useState([])
+  const [postTitle, setPostTitle] = useState('標題')
+  const [postDescription, setPostDescription] = useState('描述')
   useEffect(() => {
     // 假設要找postlink值為'v5update'的postData
     const postlinkToFind = props.readArticle
@@ -27,20 +34,31 @@ function Articles(props) {
 
     // 將找到的資料設為postData的狀態
     setPostData(foundPostsData)
+    // console.log(foundPostsData[0])
   }, [props.openPost, props.readArticle])
 
+  useEffect(() => {
+    const postlinkToFind = props.readArticle
+    const foundPostsData = HomePostData.filter(
+      (item) => item.postlink === postlinkToFind
+    ).map((item) => item)
+    if (foundPostsData[0]) {
+      setPostTitle(foundPostsData[0].postTitle)
+      setPostDescription(foundPostsData[0].content)
+    }
+  }, [postData])
+
   // 關閉文章頁面
+  const { urlParams, removeUrlParam, addUrlParams } = useUrlParams()
   function closePost() {
     setPageTitleAni(true)
+    props.setReadArticle('')
+
     setTimeout(() => {
-      props.setReadArticle('')
-      // 網址參數清除
-      const params = new URLSearchParams(window.location.search)
-      params.delete('post')
-      const newUrl = window.location.pathname + '?' + params.toString()
-      window.history.pushState({}, '', newUrl)
-    }, 500)
-    setTimeout(() => {
+      const updatedParams = { ...urlParams }
+      delete updatedParams.post
+
+      removeUrlParam('post')
       props.setPostActive(false)
     }, 500)
   }
@@ -67,6 +85,16 @@ function Articles(props) {
 
   return (
     <div ref={scrollTop} id="Article" className={`${props.theme}`}>
+      <Helmet>
+        <title>{postTitle}｜班級資訊平台</title>
+        <meta name="description" content={postTitle} />
+        <meta
+          property="og:title"
+          content={`${postDescription}｜班級資訊平台`}
+        />
+        <meta property="og:description" content={postDescription} />
+      </Helmet>
+
       <div
         id="articles"
         className={`${pageTitleAni ? '' : 'open'}${
@@ -142,5 +170,3 @@ function Articles(props) {
     </div>
   )
 }
-
-export default Articles

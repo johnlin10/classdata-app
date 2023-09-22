@@ -1,5 +1,5 @@
 export const WebVersion = [
-  { version: '5.11.5' }
+  { version: '6.0' }
 ]
 
 // 菜單欄服務區塊
@@ -113,48 +113,63 @@ export const MenuFastLinkData = [
 ]
 
 export const HomePostData = [
-  // 網站更新頁面
-  {
-    postTitle: "全新網站更新體驗",
-    content: "加強版本間的區隔，原生軟體般的更新體驗。",
-    stylebackground: "https://firebasestorage.googleapis.com/v0/b/classdata-app.appspot.com/o/resources%2F%E2%80%8EplatformBtmUpdate.%E2%80%8E001.jpeg?alt=media&token=702e958b-99b5-4400-8942-0ee0b4926d7e",
-    classbackground: "home-post",
-    divHight: "50px",
-    postlink: 'platformBtmUpdate',
-    postTime: '2023.7.13',
-    postData: [
-      {
-        postUltraTitle: '全新網站更新體驗',
-      },
-      {
-        postTime: '2023.7.13',
-      },
-      {
-        postImage: [{
-          alt: 'UI/UX 設計概念圖',
-          src: 'https://firebasestorage.googleapis.com/v0/b/classdata-app.appspot.com/o/resources%2F%E2%80%8EplatformBtmUpdate.%E2%80%8E001.jpeg?alt=media&token=702e958b-99b5-4400-8942-0ee0b4926d7e'
-        }]
-      },
-      {
-        postLargeTitle: '規範化',
-      },
-      {
-        postContent: [{
-          content: '　　班級資訊平台建立以來，已經超過五個月了，藉由建立、維護這個平台，我的能力也大幅提升了，這是一個邊學邊做的作品，雖然已經達到可用的狀態，但是也有非常多沒有規範的程式，可能會影響程式的閱讀，甚至會影響網站的運行效能。新的功能會更規範化，舊有的功能也正在逐步改良。',
-          type: ''
-        }]
-      },
-      {
-        postLargeTitle: '微動效',
-      },
-      {
-        postContent: [{
-          content: '　　平面的網站，有時候多少有些無聊，再說，這個網站沒這麼豐富。「動效」是能努力的方向，可以增加用戶與平台的互動，豐富細膩且克制的微動效，甚至會讓人會心一笑。',
-          type: ''
-        }]
-      },
-    ]
-  },
+  // 更多元的訊息
+  // {
+  //   postTitle: "聊天室開發有新突破",
+  //   content: "加強訊息私密性，更安全的傳訊環境。",
+  //   stylebackground: "https://firebasestorage.googleapis.com/v0/b/classdata-app.appspot.com/o/resources%2F%E2%80%8EplatformBtmUpdate.%E2%80%8E001.jpeg?alt=media&token=702e958b-99b5-4400-8942-0ee0b4926d7e",
+  //   classbackground: "home-post",
+  //   divHight: "50px",
+  //   postlink: 'platformBtmUpdate',
+  //   postTime: '2023.8.14',
+  //   postData: [
+  //     {
+  //       postUltraTitle: '聊天室開發有新突破',
+  //     },
+  //     {
+  //       postTime: '2023.8.14',
+  //     },
+  //     {
+  //       postLargeTitle: '',
+  //     },
+  //     {
+  //       postContent: [{
+  //         content: '　　這個好消息久等啦！終於要可以正大光明的聊天了（說錯了，是討論校務啦！）',
+  //         type: ''
+  //       }]
+  //     },
+  //     {
+  //       postContent: [{
+  //         content: '咳咳！總之，這個個人的獨立訊息環境，不管是傳小組共編連結、分享資料、討論事情，都可以更快速的即時傳輸，比 Email 更加方便！',
+  //         type: ''
+  //       }]
+  //     },
+  //     {
+  //       postLargeTitle: '訊息隱私性',
+  //     },
+  //     {
+  //       postContent: [{
+  //         content: '　　全新的「訊息」服務將採用端到端加密（公共討論區將不支持），即便黑客竊取了訊息，也無法得知訊息內容。',
+  //         type: ''
+  //       }]
+  //     },
+  //     {
+  //       postLargeTitle: '結語',
+  //     },
+  //     {
+  //       postContent: [{
+  //         content: '　　新的功能將更加規範化，舊有的功能也正在逐步改良。我們希望通過這次更新，為您提供更好、更快、更方便的服務。敬請期待！',
+  //         type: ''
+  //       }]
+  //     },
+  //     {
+  //       postContent: [{
+  //         content: '希望您滿意新的版本！',
+  //         type: ''
+  //       }]
+  //     },
+  //   ]
+  // },
   // 底層改革
   {
     postTitle: "平台底層革新",
@@ -182,7 +197,13 @@ export const HomePostData = [
       },
       {
         postContent: [{
-          content: '　　班級資訊平台建立以來，已經超過五個月了，藉由建立、維護這個平台，我的能力也大幅提升了，這是一個邊學邊做的作品，雖然已經達到可用的狀態，但是也有非常多沒有規範的程式，可能會影響程式的閱讀，甚至會影響網站的運行效能。新的功能會更規範化，舊有的功能也正在逐步改良。',
+          content: '　　我們很高興地宣布，我們的班級資訊平台正在進行一次重大更新。自從平台建立以來，已經超過五個月了。在建立和維護這個平台的過程中，我們不斷學習和成長，並且不斷提升我們的能力。',
+          type: ''
+        }]
+      },
+      {
+        postContent: [{
+          content: '　　雖然平台已經達到可用的狀態，但是我們意識到仍然存在一些沒有規範的程式碼。這些程式碼可能會影響程式的閱讀，甚至會影響網站的運行效能。因此，我們正在努力進行規範化改革，以提高網站的性能和易用性。',
           type: ''
         }]
       },
@@ -191,7 +212,22 @@ export const HomePostData = [
       },
       {
         postContent: [{
-          content: '　　平面的網站，有時候多少有些無聊，再說，這個網站沒這麼豐富。「動效」是能努力的方向，可以增加用戶與平台的互動，豐富細膩且克制的微動效，甚至會讓人會心一笑。',
+          content: '　　除了規範化改革外，我們還在努力增加微動效，使平面的網站更加生動有趣。這樣，您在使用我們的平台時，不僅能夠快速找到所需信息，還能享受更加愉悅的體驗。',
+          type: ''
+        }]
+      },
+      {
+        postLargeTitle: '結語',
+      },
+      {
+        postContent: [{
+          content: '　　新的功能將更加規範化，舊有的功能也正在逐步改良。我們希望通過這次更新，為您提供更好、更快、更方便的服務。敬請期待！',
+          type: ''
+        }]
+      },
+      {
+        postContent: [{
+          content: '希望您滿意新的版本！',
           type: ''
         }]
       },
@@ -215,7 +251,7 @@ export const HomePostData = [
       },
       {
         postContent: [{
-          content: '　　班級資訊平台已經搬過多次網址了，從最早之前的 Notion 筆記軟體建立的網頁，到上一個 4.0 版本，網址總是會帶有我的代號，換句話說，並不是專屬於班級資訊平台的網域。',
+          content: '　　我們的班級資訊平台將於 2023 年 7 月 1 日正式啟用新網址。自從平台建立以來，我們已經多次更換網址，從最早使用 Notion 筆記軟體建立的網頁，到上一個 4.0 版本，網址總是帶有作者的代號，並不是專屬於班級資訊平台的網域。',
           type: ''
         }]
       },
@@ -224,13 +260,13 @@ export const HomePostData = [
       },
       {
         postContent: [{
-          content: '　　自從開始使用 Google Firebase 服務，平台終於擁有了更多的互動性，從靜態跨入到了動態網站。',
+          content: '　　但是現在，我們終於擁有了專屬的網域。自從開始使用 Google Firebase 服務，平台終於擁有了更多的互動性，從靜態跨入到了動態網站。這次帶來的新網域，也是由 Google Firebase Hosting 網站託管服務免費提供的。部署速度非常快且穩定，網站的訪問速度也有所提升。',
           type: ''
         }]
       },
       {
         postContent: [{
-          content: '　　這次帶來的新網域，也是由 Google Firebase Hosting 網站託管服務免費提供的，非常的佛心，部署速度非常的快且穩定，網站的訪問速度也有提升。一時轉換使用的平台不容易，所以目前兩個平台網站我都會持續更新，以下是新網址：',
+          content: '　　雖然一時轉換使用的平台不容易，但是我們會持續更新兩個平台網站，以確保您能夠隨時隨地訪問我們的班級資訊平台。新網址如下：',
           type: ''
         }]
       },
@@ -1827,6 +1863,3 @@ export const examLeftTitle = [
     LeftTitle: "7"
   },
 ]
-
-// export default HomePostData
-

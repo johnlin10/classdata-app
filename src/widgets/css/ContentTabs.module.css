@@ -1,51 +1,65 @@
 .contentTabs {
   display: flex;
   justify-content: space-around;
-  padding: 6px;
-  margin-top: 12px;
-  margin-left: 50%;
-  background: #0000001f;
+  padding: 4px;
+  margin-left: 48px;
+  background: #0000000f;
   width: 100%;
   min-width: max-content;
   max-width: 720px;
   height: 42px;
-  border-radius: 21px;
-  -webkit-border-radius: 21px;
-  -moz-border-radius: 21px;
-  -ms-border-radius: 21px;
-  -o-border-radius: 21px;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
+  border-radius: 13px 13px 13px 13px;
+  -webkit-border-radius: 13px 13px 13px 13px;
+  -moz-border-radius: 13px 13px 13px 13px;
+  -ms-border-radius: 13px 13px 13px 13px;
+  -o-border-radius: 13px 13px 13px 13px;
 }
-.contentTabs:global(.dark) {
-  background: #0000001f;
+.contentTabs.dark {
+  background: #ffffff0f;
+}
+
+@media (max-width: 823px) {
+  .contentTabs {
+    position: fixed;
+    margin-left: 0;
+    padding: 0 6px 6px 6px;
+    top: 54px;
+    left: 0;
+    max-width: none;
+    background: var(--theme-light);
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+  }
+  .contentTabs.dark {
+    background: var(--theme-dark);
+  }
 }
 
 .contentTabsOptn {
   padding: 0 9px;
   width: 100%;
   min-width: max-content;
-  font-size: 0.9rem;
+  font-size: 1rem;
   background: #ffffff00;
-  color: #ffffffa1;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  color: #0000005f;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
 }
 .contentTabsOptn:global(.selected) {
   background: #ffffffdf;
-  color: #000000d1;
+  color: #000000e5;
 }
-.contentTabs:global(.dark) .contentTabsOptn {
+.contentTabs.dark .contentTabsOptn {
   background: #0f0f0f00;
-  color: #0000006f;
+  color: #ffffff5f;
 }
-.contentTabs:global(.dark) .contentTabsOptn:global(.selected) {
+.contentTabs.dark .contentTabsOptn:global(.selected) {
   background: #0000004f;
-  color: #ffffffd1;
+  color: #ffffffe5;
 }

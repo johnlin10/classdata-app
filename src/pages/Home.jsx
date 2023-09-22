@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 // CSS
 import '../App.css'
 // DataBase
@@ -9,6 +10,7 @@ import WorldScenery from '../tools/worldScenery'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Spline from '@splinetool/react-spline'
+// import forestPath from '../images/Illustrations/ForestPath.png'
 
 // 滾動視差
 import Rellax from 'rellax'
@@ -39,6 +41,12 @@ function Home(props) {
       //   }${props.theme}.png`,
       // }}
     >
+      <Helmet>
+        <title>班級資訊平台｜首頁</title>
+        <meta name="description" content="學校、班級的最新資訊" />
+        <meta property="og:title" content="班級資訊平台" />
+        <meta property="og:description" content="學校、班級的最新資訊" />
+      </Helmet>
       <div id="home-view">
         <div className="homeTopSpc">
           <h1 className="homeTopTitle" data-rellax-speed="-4">
@@ -56,9 +64,11 @@ function Home(props) {
             className="moreBtn"
             data-rellax-speed="-2"
             onClick={() =>
-              document
-                .querySelector('#home-view-content')
-                .scrollIntoView({ behavior: 'smooth', block: 'start' })
+              document.querySelector('#home-view-content').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                marginTop: '54px',
+              })
             }>
             <p>
               <FontAwesomeIcon
@@ -110,7 +120,21 @@ function Home(props) {
           />
         </div>
         <div id="webIntroduction"></div>
+        {/* <div className="homeTopSpc"></div> */}
         <div id="home-view-content">
+          {/* <div className="topBg">
+            <picture>
+              <source
+                media="(min-width: 823px)"
+                srcset="https://firebasestorage.googleapis.com/v0/b/classdata-app.appspot.com/o/resources%2Fbg%2F%E2%80%8E%E2%80%8E%E2%80%8E%E2%80%8EForestPath_2400x1200.png?alt=media&token=2e9aff87-4a6e-4969-ab5a-420483aee57d"
+              />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/classdata-app.appspot.com/o/resources%2Fbg%2F%E2%80%8E%E2%80%8EForestPath_2100x1500.png?alt=media&token=dc369143-a984-40ba-81c0-24df67743f0e"
+                alt="image"
+              />
+            </picture>
+            <img src="" alt="" />
+          </div> */}
           {/* <WorldScenery />
           <GreetBanner isTop={props.isTop} /> */}
           <h1 className="homeTitle firstTitle">平台公告</h1>

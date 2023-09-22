@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // firestore
@@ -49,7 +50,7 @@ export default function WebUpdate(props) {
         b.version.localeCompare(a.version, undefined, { numeric: true })
       )
       setWebVersionData(data)
-      console.log(data)
+      // console.log(data)
     })
     return () => unsubscribe()
   }, [])
@@ -76,17 +77,20 @@ export default function WebUpdate(props) {
   }, [webVersionData])
   return (
     <>
+      <Helmet>
+        <title>班級資訊平台｜網站更新・{WebVersion[0].version}</title>
+        <meta name="description" content="在此獲得本網站的更新資訊" />
+        <meta
+          property="og:title"
+          content={`班級資訊平台｜網站更新・${WebVersion[0].version}`}
+        />
+        <meta property="og:description" content="在此獲得本網站的更新資訊" />
+      </Helmet>
       <main
         id="webUpdate"
         className={`${css.webUpdate} ${props.theme}${
           props.theme && props.settingPage ? ' ' : ''
         }${props.settingPage ? 'settingOpen' : ''}`}>
-        <PageTitle
-          theme={props.theme}
-          themeColor={themeColor}
-          title="網站更新(Beta)"
-          backTo={() => props.navigateClick('/')}
-        />
         <div className={`view ${css.view}${pageTitleAni ? ' PTAni' : ''}`}>
           <div>
             <div

@@ -1,7 +1,7 @@
 :global(.view).view {
   flex-direction: column;
   align-items: start;
-  /* padding-top: 24px !important; */
+  padding-top: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
@@ -31,7 +31,7 @@
 .view div.newVersion_view:global(.newV) {
   z-index: 10;
   position: sticky;
-  padding: 12px 0 0 0;
+  padding: 0;
   top: 0;
   width: 100%;
   margin: 0;
@@ -176,7 +176,8 @@
 .lastVersion_block > h1 {
   color: var(--font-theme-light);
   position: sticky;
-  top: 6px;
+  top: 0;
+  padding-top: 6px;
   background: var(--main-light);
   box-shadow: 0 18px 24px 0 var(--main-light);
 }
@@ -228,10 +229,13 @@
     max-width: 480px;
   }
 
+  .lastVersion_block > h1 {
+    padding-top: 18px;
+  }
   .view > div > div.newVersion_view:global(.newV) {
     z-index: 10;
     position: sticky;
-    padding: 12px 12px 0 12px;
+    padding: 0;
     top: 0;
     width: 100%;
     margin: 0;
@@ -239,11 +243,11 @@
 
   .newVersion_block {
     padding: 24px;
-    border-radius: 17px;
-    -webkit-border-radius: 17px;
-    -moz-border-radius: 17px;
-    -ms-border-radius: 17px;
-    -o-border-radius: 17px;
+    border-radius: 13px 0 13px 0;
+    -webkit-border-radius: 13px 0 13px 0;
+    -moz-border-radius: 13px 0 13px 0;
+    -ms-border-radius: 13px 0 13px 0;
+    -o-border-radius: 13px 0 13px 0;
   }
 
   .newVersionCheck {
@@ -252,10 +256,17 @@
 
   .view div.currentVersion_view:global(.newV) {
     width: 100%;
-    padding: 0 29px 12px 29px;
+    padding: 0 13px 12px 0;
     margin: 0;
   }
   .lastVersion_block > h1 {
     top: 0;
+  }
+
+  .view div.newVersion_view {
+    padding: 0;
+  }
+  .view div.currentVersion_view {
+    padding: 0;
   }
 }

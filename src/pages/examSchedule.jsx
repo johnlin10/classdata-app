@@ -1,5 +1,6 @@
 // React
 import React, { useRef, useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 // DataBase
 import { examSchedule, examLeftTitle } from '../AppData/AppData'
 // Icon Library
@@ -680,21 +681,21 @@ function exSch(props) {
   }
   return (
     <>
+      <Helmet>
+        <title>班級資訊平台｜考程表</title>
+        <meta name="description" content="班級的即時考程表" />
+        <meta property="og:title" content="班級資訊平台｜考程表" />
+        <meta property="og:description" content="班級的即時考程表" />
+      </Helmet>
       <main
         id="exSch"
         className={`${props.theme}${props.settingPage ? ' settingOpen' : ''}${
           pageTitleAni ? ' PTAni' : ''
         }`}>
-        <PageTitle
-          theme={props.theme}
-          themeColor={themeColor}
-          title="考程表"
-          backTo={closePage}
-        />
+        <div id="todtyDate" onClick={() => setBackToday(true)}>
+          <span title={`今天是 ${todayDate}`}>{todayDate}</span>
+        </div>
         <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
-          <div id="todtyDate" onClick={() => setBackToday(true)}>
-            <span title={`今天是 ${todayDate}`}>{todayDate}</span>
-          </div>
           {examSchData[0].fullDate ? (
             examSchData.map((exSch, index) => (
               <section id="exSchView" key={index}>

@@ -14,11 +14,7 @@
   height: 42px;
   width: 80px;
   padding: 21px;
-  background: #ffffff9f;
-  border-top: 1px solid #ffffffaf;
-  border-left: 1px solid #ffffffaf;
-  border-right: 1px solid #ffffff4f;
-  border-bottom: 1px solid #ffffff4f;
+  background: var(--main-light);
   opacity: 0;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -35,6 +31,10 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+:global(.dark).editerView {
+  background: var(--main-dark);
+}
+
 .editerView::-webkit-scrollbar {
   display: none;
 }
@@ -42,13 +42,6 @@
   opacity: 1;
   height: calc(100% - 80px - 54px - 24px);
   width: calc(100% - 24px);
-}
-:global(.dark).editerView {
-  background: #0000007f;
-  border-top: 1px solid #ffffff3f;
-  border-left: 1px solid #ffffff3f;
-  border-right: 1px solid #ffffff1f;
-  border-bottom: 1px solid #ffffff1f;
 }
 .editerView > .topTitleView {
   display: flex;

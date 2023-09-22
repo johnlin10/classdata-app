@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, Navigate, Route, Routes, Outlet } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 // CSS
 import '../App.css'
+// 自定義函式庫
+import useUrlParams from '../js/UpdateUrlParams'
 // DataBase
 import { ServiceData, ToolsData, DocsData } from '../AppData/AppData.js'
 // Icon Library
@@ -13,6 +16,7 @@ function Service(props) {
   useEffect(() => {
     setPageTitleAni(false)
   }, [])
+  const { urlParams, removeUrlParam, addUrlParams } = useUrlParams()
   return (
     <>
       <main
@@ -20,6 +24,12 @@ function Service(props) {
         className={`${props.theme}${
           props.theme && props.settingPage ? ' ' : ''
         }${props.settingPage ? 'settingOpen' : ''}`}>
+        <Helmet>
+          <title>班級資訊平台｜服務</title>
+          <meta name="description" content="學校、班級的最新資訊" />
+          <meta property="og:title" content="班級資訊平台" />
+          <meta property="og:description" content="學校、班級的最新資訊" />
+        </Helmet>
         <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
           <div id="folder-view">
             <div id="folder-view-content">
@@ -115,7 +125,7 @@ function Service(props) {
                     className={DocsData.class}
                     style={{ backgroundImage: DocsData.stylebackground }}
                     key={index}
-                    onClick={() => [props.openDocUrl(DocsData.url)]}>
+                    onClick={() => [props.openDoc(DocsData.url)]}>
                     <div
                       className={`target ${
                         DocsData.class.includes('target') ? 'active' : ''

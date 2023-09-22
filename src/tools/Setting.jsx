@@ -38,9 +38,7 @@ function Setting(props) {
   return (
     <div
       id="Setting"
-      className={`${props.theme}${props.theme && props.settingPage ? ' ' : ''}${
-        props.settingPage ? 'open' : ''
-      }`}>
+      className={`${props.theme}${props.settingPage ? ' open' : ''}`}>
       <div
         id="closeSetting"
         className={`${props.settingPage ? 'open' : ''}`}

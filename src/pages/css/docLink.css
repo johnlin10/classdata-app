@@ -38,7 +38,7 @@
   overflow-x: hidden;
   overflow-y: scroll;
   opacity: 1;
-  padding: 48px 0 80px 0;
+  padding: 60px 0 80px 0;
   transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
   -webkit-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
   -moz-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
@@ -100,7 +100,7 @@
 
 @media (min-width: 823px) {
   #docView {
-    padding: 48px 24px;
+    padding: 84px 24px 24px 24px;
   }
 
   #docView .docContent {

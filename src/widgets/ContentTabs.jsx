@@ -6,14 +6,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import css from './css/ContentTabs.module.css'
 
 export default function ContentTabs({
-  theme,
+  isDark,
   onTop,
   options,
   onChange,
   selected,
 }) {
   return (
-    <div className={`${css.contentTabs} ${theme}${onTop ? ' top' : ''}`}>
+    <div
+      className={`${css.contentTabs} ${isDark && css.dark}${
+        onTop ? ' top' : ''
+      }`}>
       {options.map((option) => (
         <button
           key={option}

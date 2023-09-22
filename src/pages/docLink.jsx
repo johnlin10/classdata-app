@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './css/docLink.css'
+
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+// 自定義函式庫
+import useUrlParams from '../js/UpdateUrlParams'
 
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
@@ -11,12 +15,14 @@ import rehypeRaw from 'rehype-raw'
 
 function DocLink(props) {
   const [markdown, setMarkdown] = useState('')
+  const { urlParams, removeUrlParam, addUrlParams } = useUrlParams()
 
   useEffect(() => {
     if (props.docUrl) {
-      fetch(`${process.env.PUBLIC_URL}/docs/${props.docUrl}.md`)
+      fetch(`/docs/${props.docUrl}.md`)
         .then((res) => res.text())
         .then((text) => setMarkdown(text))
+      console.log(props.docUrl)
     }
   }, [props.docUrl])
 
@@ -29,8 +35,9 @@ function DocLink(props) {
   const closeDoc = () => {
     setPageTitleAni(true)
     setTimeout(() => {
+      removeUrlParam('doc')
       props.navigateClick('/service')
-    }, 250)
+    }, 500)
   }
 
   return (

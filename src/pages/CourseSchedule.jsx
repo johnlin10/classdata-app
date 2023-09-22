@@ -23,6 +23,7 @@ import Loader from '../widgets/Loader.jsx'
 import EditBtn from '../widgets/editBtn'
 import Editer from '../widgets/editer'
 import ContentTabs from '../widgets/ContentTabs'
+import { Helmet } from 'react-helmet'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
@@ -1400,20 +1401,19 @@ function CourseSchedule(props) {
   //   return () => courSchDataOutput()
   // }, [])
 
-  const [courSchType, setCourSchType] = useState()
   // const [courSchDisplay, setCourSchDisplay] = useState()
   const courSchTypeChange = (type) => {
-    setCourSchType(type)
+    props.setCourSchType(type)
     localStorage.setItem('courSchType', type)
   }
   useEffect(() => {
     const storedValue = localStorage.getItem('courSchType')
     if (storedValue) {
-      setCourSchType(storedValue)
+      props.setCourSchType(storedValue)
     } else {
       localStorage.setItem('courSchType', '資訊科')
     }
-  }, [courSchType, courSchData])
+  }, [props.courSchType, courSchData])
 
   const [expDays, setExpDays] = useState(false)
   useEffect(() => {
@@ -1426,16 +1426,18 @@ function CourseSchedule(props) {
         console.log('test')
       }, 250)
     }
-  }, [courSchType, courSchData])
+  }, [props.courSchType, courSchData])
 
   const tableDivRef = useRef()
   const [csViewWidth, setCsViewWidth] = useState('600')
   useEffect(() => {
-    if (tableDivRef.current) {
-      const width = tableDivRef.current.scrollWidth
-      setCsViewWidth(width + 24)
-    }
-  }, [courSchData, courSchType])
+    setTimeout(() => {
+      if (tableDivRef.current) {
+        const width = tableDivRef.current.scrollWidth
+        setCsViewWidth(width + 24)
+      }
+    }, 150)
+  }, [courSchData, props.courSchType, courseScheduleDataInfoActive])
 
   // 頁面動畫
   const [pageTitleAni, setPageTitleAni] = useState(true)
@@ -1451,26 +1453,17 @@ function CourseSchedule(props) {
   }
   return (
     <>
+      <Helmet>
+        <title>班級資訊平台｜課程表</title>
+        <meta name="description" content="班級的即時課程表" />
+        <meta property="og:title" content="班級資訊平台｜課程表" />
+        <meta property="og:description" content="班級的即時課程表" />
+      </Helmet>
       <main
         id="courseSchedule"
         className={`${props.theme}${props.settingPage ? ' settingOpen' : ''}${
           pageTitleAni ? ' PTAni' : ''
         }`}>
-        <PageTitle
-          theme={props.theme}
-          themeColor={themeColor}
-          title="課程表"
-          backTo={closePage}
-          tabs={
-            <ContentTabs
-              theme={props.theme}
-              onTop={true}
-              options={['資訊科', '電子科', '電機科']}
-              onChange={(value) => courSchTypeChange(value)}
-              selected={courSchType}
-            />
-          }
-        />
         <div
           id="ctrlCourseScheduleInfo"
           className={`${courseScheduleDataInfoActive ? 'open' : ''}`}
@@ -1514,7 +1507,7 @@ function CourseSchedule(props) {
                     ))}
                   </div>
                   {courSchData
-                    .filter((subject) => subject.type === courSchType)
+                    .filter((subject) => subject.type === props.courSchType)
                     .map((subject) =>
                       subject.data.map((item) => (
                         <div

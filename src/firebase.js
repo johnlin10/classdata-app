@@ -1,4 +1,4 @@
-
+import React, { useEffect, useState } from 'react'
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import { getFirestore } from 'firebase/firestore'
@@ -23,29 +23,34 @@ const firebaseConfig = {
 }
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
+export const auth = getAuth()
 
-export default function AdminUserAuth (props) {
-  const [user, setUser] = useState(null)
-  const [updateVersion, setUserPrmsn] = useState(false)
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user)
-    })
-    return unsubscribe
-  }, [])
+export function AllowUserAuth (allowedUsers, localAdres, certificationType) {
+  const [userPermit, setUserPermit] = useState(false)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log(`User signed in with uid: ${userUID}`)
-        if (user.uid === process.env.REACT_APP_ADMIN_ACCOUNT) {
-          setUserPrmsn(true)
+        console.log(`已登入。`)
+        const emailParts = user.email.split('@')
+        const emailStart = emailParts[0]
+        const emailDomain = emailParts[1]
+        // console.log(allowedUsers.some(allowedUsers => emailStart.startsWith(allowedUsers)))
+        // console.log(localAdres.includes(emailDomain))
+        if ((emailStart === (process.env.REACT_APP_ADMIN || REACT_APP_SYSEM) && emailDomain === process.env.REACT_APP_ADMIN_ADRES) || allowedUsers.some(allowedUsers => emailStart.startsWith(allowedUsers)) && localAdres.includes(emailDomain)) {
+          setUserPermit(true)
+          console.log(`【${certificationType}】\n` + `此為認證帳號 [${user.email}]\n\n` + `> 管理員認證：${(emailStart === (process.env.REACT_APP_ADMIN || REACT_APP_SYSEM) && emailDomain === process.env.REACT_APP_ADMIN_ADRES) ? '已認證' : '未認證'}\n` + `> Email網域認證：${localAdres.includes(emailDomain) ? '已認證' : '未認證'}`)
+        } else {
+          console.log(`未認證帳號: ${user.email}`)
+          if (!localAdres.includes(emailDomain)) {
+            console.log('已授權的電子郵件網域' + emailDomain)
+          }
         }
       } else {
-        console.log('User signed out')
-        setUserPrmsn(false)
+        console.log('未登入')
+        setUserPermit(false)
       }
     })
     return unsubscribe
-  }, [user])
-  return updateVersion
+  }, [])
+  return userPermit
 }

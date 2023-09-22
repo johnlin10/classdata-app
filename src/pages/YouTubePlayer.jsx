@@ -569,12 +569,6 @@ function VideoForm(props) {
         className={`${props.theme}${props.settingPage ? ' settingOpen' : ''}${
           videoId ? ' playing' : ''
         }${pageTitleAni ? ' PTAni' : ''}`}>
-        <PageTitle
-          theme={props.theme}
-          themeColor={themeColor}
-          title="YouTube 播放器"
-          backTo={closePage}
-        />
         <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
           <div id="youTubePlayerView">
             {/* <h1 className={videoId ? 'playing' : ''}>YouTube 影片播放器</h1> */}

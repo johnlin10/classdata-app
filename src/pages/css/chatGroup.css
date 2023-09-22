@@ -32,9 +32,10 @@
 }
 
 #chatGroup {
+  z-index: 10;
   display: block;
   justify-content: center;
-  padding: 54px 0 68px 0;
+  padding: 60px 0 68px 0;
   overflow: hidden;
 }
 
@@ -141,7 +142,13 @@
   -moz-border-radius: 13px;
   -ms-border-radius: 13px;
   -o-border-radius: 13px;
+  transition: 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transition: 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  -moz-transition: 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  -ms-transition: 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }
+
 #chatGroupView {
   display: flex;
   flex-direction: column-reverse;
@@ -253,12 +260,12 @@
   margin-left: 24px;
   font-size: 0.9rem;
   background: var(--main-light-L2);
-  box-shadow: 0 3px 15px #d1d1d115, 0 6px 30px #d1d1d115;
-  border-radius: 0 17px 17px 17px;
-  -webkit-border-radius: 0 17px 17px 17px;
-  -moz-border-radius: 0 17px 17px 17px;
-  -ms-border-radius: 0 17px 17px 17px;
-  -o-border-radius: 0 17px 17px 17px;
+  /* box-shadow: 0 3px 15px #d1d1d115, 0 6px 30px #d1d1d115; */
+  border-radius: 6px 17px 17px 17px;
+  -webkit-border-radius: 6px 17px 17px 17px;
+  -moz-border-radius: 6px 17px 17px 17px;
+  -ms-border-radius: 6px 17px 17px 17px;
+  -o-border-radius: 6px 17px 17px 17px;
   transition: 0.25s;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -270,6 +277,141 @@
   background: var(--main-dark-L2);
 }
 
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.system):first-child:not(:last-child)
+  .message.reployMsg {
+  border-radius: 6px 17px 17px 6px;
+  -webkit-border-radius: 6px 17px 17px 6px;
+  -moz-border-radius: 6px 17px 17px 6px;
+  -ms-border-radius: 6px 17px 17px 6px;
+  -o-border-radius: 6px 17px 17px 6px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.system):not(:first-child):not(:last-child)
+  .message.reployMsg {
+  border-radius: 6px 17px 17px 6px;
+  -webkit-border-radius: 6px 17px 17px 6px;
+  -moz-border-radius: 6px 17px 17px 6px;
+  -ms-border-radius: 6px 17px 17px 6px;
+  -o-border-radius: 6px 17px 17px 6px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.system):first-child:not(:last-child)
+  .message:not(.reployMsg) {
+  border-radius: 6px 17px 17px 6px;
+  -webkit-border-radius: 6px 17px 17px 6px;
+  -moz-border-radius: 6px 17px 17px 6px;
+  -ms-border-radius: 6px 17px 17px 6px;
+  -o-border-radius: 6px 17px 17px 6px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:first-child:not(:last-child)
+  .message.reployMsg {
+  border-radius: 17px 17px 17px 6px;
+  -webkit-border-radius: 17px 17px 17px 6px;
+  -moz-border-radius: 17px 17px 17px 6px;
+  -ms-border-radius: 17px 17px 17px 6px;
+  -o-border-radius: 17px 17px 17px 6px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(:first-child):not(:last-child)
+  .message:not(.reployMsg) {
+  margin-top: 3px;
+  border-radius: 6px 17px 17px 6px;
+  -webkit-border-radius: 6px 17px 17px 6px;
+  -moz-border-radius: 6px 17px 17px 6px;
+  -ms-border-radius: 6px 17px 17px 6px;
+  -o-border-radius: 6px 17px 17px 6px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.system):not(:first-child):last-child
+  .message:not(.reployMsg) {
+  margin-top: 3px;
+  border-radius: 6px 17px 17px 17px;
+  -webkit-border-radius: 6px 17px 17px 17px;
+  -moz-border-radius: 6px 17px 17px 17px;
+  -ms-border-radius: 6px 17px 17px 17px;
+  -o-border-radius: 6px 17px 17px 17px;
+}
+
+/**/
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(:first-child)
+  .message:not(.reployMsg) {
+  margin-top: 3px;
+  border-radius: 17px 6px 6px 17px;
+  -webkit-border-radius: 17px 6px 6px 17px;
+  -moz-border-radius: 17px 6px 6px 17px;
+  -ms-border-radius: 17px 6px 6px 17px;
+  -o-border-radius: 17px 6px 6px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):first-child
+  .message:not(.reployMsg) {
+  border-radius: 17px 17px 6px 17px;
+  -webkit-border-radius: 17px 17px 6px 17px;
+  -moz-border-radius: 17px 17px 6px 17px;
+  -ms-border-radius: 17px 17px 6px 17px;
+  -o-border-radius: 17px 17px 6px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):last-child
+  .message:not(.reployMsg) {
+  border-radius: 17px 6px 17px 17px;
+  -webkit-border-radius: 17px 6px 17px 17px;
+  -moz-border-radius: 17px 6px 17px 17px;
+  -ms-border-radius: 17px 6px 17px 17px;
+  -o-border-radius: 17px 6px 17px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:first-child:last-child
+  .message:not(.reployMsg) {
+  border-radius: 17px 17px 17px 17px;
+  -webkit-border-radius: 17px 17px 17px 17px;
+  -moz-border-radius: 17px 17px 17px 17px;
+  -ms-border-radius: 17px 17px 17px 17px;
+  -o-border-radius: 17px 17px 17px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:first-child:not(:last-child)
+  .message.reployMsg {
+  border-radius: 17px 17px 6px 17px;
+  -webkit-border-radius: 17px 17px 6px 17px;
+  -moz-border-radius: 17px 17px 6px 17px;
+  -ms-border-radius: 17px 17px 6px 17px;
+  -o-border-radius: 17px 17px 6px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(:first-child):not(:last-child)
+  .message.reployMsg {
+  border-radius: 17px 6px 6px 17px;
+  -webkit-border-radius: 17px 6px 6px 17px;
+  -moz-border-radius: 17px 6px 6px 17px;
+  -ms-border-radius: 17px 6px 6px 17px;
+  -o-border-radius: 17px 6px 6px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(:first-child):not(:last-child)
+  .message.reployMsg {
+  border-radius: 17px 17px 6px 17px;
+  -webkit-border-radius: 17px 17px 6px 17px;
+  -moz-border-radius: 17px 17px 6px 17px;
+  -ms-border-radius: 17px 17px 6px 17px;
+  -o-border-radius: 17px 17px 6px 17px;
+}
 .messageBlock .message a {
   color: #5a8cbc;
 }
@@ -287,6 +429,8 @@
 #chatGroupView .messageBlock.system .message {
   word-break: break-all;
   padding-bottom: 32px;
+  /* margin-top: 12px; */
+  /* margin-bottom: 12px; */
   margin-left: 0;
   min-width: 100%;
   box-shadow: none;
@@ -326,11 +470,11 @@
   max-height: 540px;
   width: auto;
   max-width: 100%;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -343,11 +487,11 @@
   margin-top: 12px;
   background: var(--theme-color);
   color: #fff;
-  border-radius: 17px 17px 0 17px;
-  -webkit-border-radius: 17px 17px 0 17px;
-  -moz-border-radius: 17px 17px 0 17px;
-  -ms-border-radius: 17px 17px 0 17px;
-  -o-border-radius: 17px 17px 0 17px;
+  border-radius: 17px 17px 17px 17px;
+  -webkit-border-radius: 17px 17px 17px 17px;
+  -moz-border-radius: 17px 17px 17px 17px;
+  -ms-border-radius: 17px 17px 17px 17px;
+  -o-border-radius: 17px 17px 17px 17px;
 }
 .dark #chatGroupView .messageBlock .message {
   /* background: #3f3f3f; */
@@ -429,6 +573,7 @@
   color: #a1a1a1;
   width: max-content;
 }
+
 #chatGroupView .messageBlock .message .userPhoto {
   position: absolute;
   margin-top: -24px;
@@ -445,6 +590,14 @@
   display: none;
 }
 
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(:first-child)
+  .message:not(.reployMsg)
+  .userPhoto {
+  display: none;
+}
+
 #chatGroupView .message .userName {
   position: relative;
   top: -5px;
@@ -455,6 +608,15 @@
 #chatGroupView .messageBlock.myMessage .message .userName {
   display: none;
 }
+
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(:first-child)
+  .message:not(.reployMsg)
+  .userName {
+  display: none;
+}
+
 #chatGroupView .messageBlock .message .messageTime {
   position: absolute;
   bottom: 3px;
@@ -481,11 +643,11 @@
 #chatGroupView .messageBlock .message .messageImg {
   margin: 0 0 3px -12px;
   width: calc(100% + 24px);
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
+  border-radius: 17px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  -ms-border-radius: 17px;
+  -o-border-radius: 17px;
 }
 #chatGroupView .messageBlock .message .messageImg.noContent {
   margin: 0 0 -15px -12px;
@@ -506,11 +668,183 @@
 }
 #chatGroupView .messageBlock.myMessage .message .messageImg.noContent {
   margin: -9px 0 -15px -12px;
-  border-radius: 17px 17px 0 17px;
-  -webkit-border-radius: 17px 17px 0 17px;
-  -moz-border-radius: 17px 17px 0 17px;
-  -ms-border-radius: 17px 17px 0 17px;
-  -o-border-radius: 17px 17px 0 17px;
+  border-radius: 17px 17px 17px 17px;
+  -webkit-border-radius: 17px 17px 17px 17px;
+  -moz-border-radius: 17px 17px 17px 17px;
+  -ms-border-radius: 17px 17px 17px 17px;
+  -o-border-radius: 17px 17px 17px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):first-child:last-child
+  .message:not(.reployMsg)
+  .messageImg {
+  border-radius: 17px 17px 0 0;
+  -webkit-border-radius: 17px 17px 0 0;
+  -moz-border-radius: 17px 17px 0 0;
+  -ms-border-radius: 17px 17px 0 0;
+  -o-border-radius: 17px 17px 0 0;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):first-child:last-child
+  .message:not(.reployMsg)
+  .messageImg.noContent {
+  border-radius: 17px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  -ms-border-radius: 17px;
+  -o-border-radius: 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):not(:first-child):not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg {
+  border-radius: 17px 6px 0 0;
+  -webkit-border-radius: 17px 6px 0 0;
+  -moz-border-radius: 17px 6px 0 0;
+  -ms-border-radius: 17px 6px 0 0;
+  -o-border-radius: 17px 6px 0 0;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):not(:first-child):not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg.noContent {
+  border-radius: 17px 6px 6px 17px;
+  -webkit-border-radius: 17px 6px 6px 17px;
+  -moz-border-radius: 17px 6px 6px 17px;
+  -ms-border-radius: 17px 6px 6px 17px;
+  -o-border-radius: 17px 6px 6px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):first-child:not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg {
+  border-radius: 17px 17px 0 0;
+  -webkit-border-radius: 17px 17px 0 0;
+  -moz-border-radius: 17px 17px 0 0;
+  -ms-border-radius: 17px 17px 0 0;
+  -o-border-radius: 17px 17px 0 0;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):first-child:not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg.noContent {
+  border-radius: 17px 17px 6px 0;
+  -webkit-border-radius: 17px 17px 6px 0;
+  -moz-border-radius: 17px 17px 6px 0;
+  -ms-border-radius: 17px 17px 6px 0;
+  -o-border-radius: 17px 17px 6px 0;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):not(:first-child):last-child
+  .message:not(.reployMsg)
+  .messageImg {
+  border-radius: 17px 6px 0 0;
+  -webkit-border-radius: 17px 6px 0 0;
+  -moz-border-radius: 17px 6px 0 0;
+  -ms-border-radius: 17px 6px 0 0;
+  -o-border-radius: 17px 6px 0 0;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):not(:first-child)
+  .message:not(.reployMsg)
+  .messageImg {
+  margin-top: -9px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock.myMessage:not(.system):last-child
+  .message:not(.reployMsg)
+  .messageImg.noContent {
+  border-radius: 17px 6px 17px 17px;
+  -webkit-border-radius: 17px 6px 17px 17px;
+  -moz-border-radius: 17px 6px 17px 17px;
+  -ms-border-radius: 17px 6px 17px 17px;
+  -o-border-radius: 17px 6px 17px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):first-child:last-child
+  .message:not(.reployMsg)
+  .messageImg:not(.noContent) {
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):first-child:last-child
+  .message:not(.reployMsg)
+  .messageImg.noContent {
+  border-radius: 0px 0px 17px 17px;
+  -webkit-border-radius: 0px 0px 17px 17px;
+  -moz-border-radius: 0px 0px 17px 17px;
+  -ms-border-radius: 0px 0px 17px 17px;
+  -o-border-radius: 0px 0px 17px 17px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):first-child:not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg:not(.noContent) {
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):first-child:not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg.noContent {
+  border-radius: 0px 0px 17px 6px;
+  -webkit-border-radius: 0px 0px 17px 6px;
+  -moz-border-radius: 0px 0px 17px 6px;
+  -ms-border-radius: 0px 0px 17px 6px;
+  -o-border-radius: 0px 0px 17px 6px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):first-child:not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg:not(.noContent) {
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):first-child:not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg.noContent {
+  border-radius: 0px 0px 17px 6px;
+  -webkit-border-radius: 0px 0px 17px 6px;
+  -moz-border-radius: 0px 0px 17px 6px;
+  -ms-border-radius: 0px 0px 17px 6px;
+  -o-border-radius: 0px 0px 17px 6px;
+}
+#chatGroupView
+  .messageGroup
+  .messageBlock:not(.myMessage):not(.system):not(:first-child):not(:last-child)
+  .message:not(.reployMsg)
+  .messageImg:not(.noContent) {
+  border-radius: 6px 17px 0 0;
+  -webkit-border-radius: 6px 17px 0 0;
+  -moz-border-radius: 6px 17px 0 0;
+  -ms-border-radius: 6px 17px 0 0;
+  -o-border-radius: 6px 17px 0 0;
 }
 
 #chatGroupView .messageBlock p {
@@ -523,7 +857,7 @@
   bottom: 0;
   right: 0;
   min-height: 60px;
-  max-height: 124px;
+  max-height: 264px;
   height: auto;
   width: 100%;
   max-width: 100%;
@@ -541,11 +875,55 @@
   max-height: calc(124px + 35px);
 }
 #chatGroupInput.image {
-  max-height: calc(124px + 87px);
+  max-height: calc(264px + 87px);
 }
 #chatGroupInput.image.reploy {
   max-height: calc(124px + 87px + 35px);
 }
+#chatGroupInput.loading {
+  pointer-events: none;
+}
+#chatGroupInput .load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--theme-light-op7);
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+}
+.dark #chatGroupInput .load {
+  background: var(--theme-dark-op7);
+  color: #ffffffaf;
+}
+#chatGroupInput.loading .load.loading {
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  pointer-events: all;
+  cursor: progress;
+  opacity: 1;
+}
+
+#chatGroupInput .load * {
+  margin-bottom: 54px;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+}
+#chatGroupInput .load.loading * {
+  margin-bottom: 0;
+}
+
 #chatGroupInput .sendImageDisplay {
   display: flex;
   width: 100%;
@@ -638,7 +1016,7 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: #ffffff50;
+  background: var(--theme-light-op7);
   color: #000000af;
   font-weight: 700;
   opacity: 0;
@@ -653,7 +1031,7 @@
   opacity: 1;
 }
 .dark .chatGroupForm .dropMask {
-  background: #2f2f2f50;
+  background: var(--theme-dark-op7);
   color: #ffffffaf;
 }
 
@@ -661,7 +1039,6 @@
   display: flex;
   align-items: center;
   height: 68px;
-  padding: 0 0 0 12px;
 }
 .chatGroupForm .mediaImports .mediaImportBtn {
   display: flex;
@@ -748,7 +1125,7 @@
   max-width: 100%;
   height: 44px;
   min-height: 44px;
-  max-height: 100px;
+  max-height: 240px;
   padding: 10px 14px;
   font-size: 0.9rem;
   line-height: 1.5rem;
@@ -774,7 +1151,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 12px 0 0;
   transition: 1s;
   -webkit-transition: 1s;
   -moz-transition: 1s;
@@ -1142,7 +1518,7 @@
 
 @media (min-width: 823px) {
   #chatGroup {
-    padding: 54px 0 68px 72px;
+    padding: 60px 0 68px 0;
   }
   #chatGroupTitle {
     background: var(--theme-light);
@@ -1152,10 +1528,12 @@
     background: var(--theme-dark);
   }
   #chatGroupInput {
-    width: calc(100% - 72px);
+    width: calc(100% - 24px);
+    margin: 0 12px;
   }
   .chatGroupContiniut {
-    width: calc(100% - 12px);
+    width: calc(100% - 24px);
+    margin: 0 12px;
   }
   #chatGroupView {
     padding: 24px 24px;
@@ -1191,13 +1569,14 @@
 }
 @media (min-width: 991px) {
   #chatGroup {
-    padding: 54px 0 68px 124px;
+    padding: 60px 0 68px 0;
   }
   #chatGroupTitle {
     width: calc(100% - 124px);
   }
   #chatGroupInput {
-    width: calc(100% - 124px);
+    width: calc(100% - 24px);
+    margin: 0 12px;
   }
   #chatGroupView .messageBlock .message {
     max-width: 540px;

@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from 'react'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 // css
 import css from './css/PageTitle.module.css'
+import ContentTabs from './ContentTabs'
 
 export default function PageTitle(props) {
   const [pageTitleAni, setPageTitleAni] = useState(true)
@@ -11,30 +13,26 @@ export default function PageTitle(props) {
     setPageTitleAni(false)
   }, [])
   return (
-    <div
-      className={`${css.view} ${props.theme} ${pageTitleAni ? 'PTAni' : ''}`}
-      style={{
-        background:
-          props.theme === 'dark' ? props.themeColor[2] : props.themeColor[0],
-      }}>
-      <div className={css.view_content}>
-        <div className={css.content_title}>
-          <button className={css.title_backBtn} onClick={props.backTo}>
-            <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
+    <>
+      <li className={`${css.pageli}${` ${props.isDark && css.dark}`}`}>
+        <div className={`${css.block}`}>
+          <button onClick={() => window.history.back()}>
+            <FontAwesomeIcon icon={faArrowLeft} />
           </button>
-          <p
-            className={css.title_pageTitle}
-            style={{
-              color:
-                props.theme === 'dark'
-                  ? props.themeColor[3]
-                  : props.themeColor[1],
-            }}>
-            {props.title}
-          </p>
         </div>
-      </div>
-      {props.tabs && props.tabs}
-    </div>
+        <div className={`${css.block} ${css.title}`}>
+          <p>{props.checkPageName(props.location.pathname)}</p>
+        </div>
+      </li>
+      {props.tabs && (
+        <ContentTabs
+          isDark={props.isDark}
+          onTop={props.tabs.onTop}
+          options={props.tabs.options}
+          onChange={props.tabs.onChange}
+          selected={props.tabs.selected}
+        />
+      )}
+    </>
   )
 }

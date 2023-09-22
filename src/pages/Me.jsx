@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import firebase from 'firebase/app'
@@ -34,33 +35,40 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-const auth = getAuth(app)
 const db = getFirestore(app)
+const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
 // const user = auth.currentUser
 
 function Me(props) {
+  const [pageTitleAni, setPageTitleAni] = useState(true)
   const [user, setUser] = useState(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
 
+  // 頁面動畫
+  useEffect(() => {
+    setPageTitleAni(false)
+  }, [])
+
   const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
+      // 用戶唯一值
       const uid = user.uid
+      // 用戶名
       const displayName = user.displayName
+      // Email
       const email = user.email
+      // 用戶頭像
       const photoURL = user.photoURL
-      const emailVerified = user.emailVerified
-    } else {
-      // User is signed out
-      // ...
     }
   })
 
+  // 監聽器
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      // 暫存用戶資料
       setUser(user)
     })
     return unsubscribe
@@ -72,7 +80,7 @@ function Me(props) {
         const credential = GoogleAuthProvider.credentialFromResult(result)
         const token = credential.accessToken
         const user = result.user
-        // 將用戶資料寫入 Firestore 中，並使用 'merge' 選項避免覆蓋
+        // 將用戶資料寫入 Firestore 中
         setDoc(
           doc(db, 'user', user.email),
           {
@@ -83,6 +91,7 @@ function Me(props) {
           },
           { merge: true }
         )
+        // 暫存用戶資料
         setUser(user)
       })
       .catch((error) => {
@@ -90,7 +99,6 @@ function Me(props) {
         const errorMessage = error.message
         const email = error.email
         const credential = GoogleAuthProvider.credentialFromError(error)
-        // ...
       })
   }
 
@@ -156,9 +164,7 @@ function Me(props) {
     try {
       await signOut(auth)
       setUser(null)
-      // alert('登出成功')
     } catch (error) {
-      // Handle error
       console.log(error)
     }
   }
@@ -169,79 +175,47 @@ function Me(props) {
       className={`${props.theme}${props.theme && props.settingPage ? ' ' : ''}${
         props.settingPage ? 'settingOpen' : ''
       }`}>
-      <div id="meView">
-        <div id="meContent">
-          {error && <p>{error}</p>}
-          {/* <h2>登入</h2>
-          <form onSubmit={handleSignIn}>
-            <label>
-              電子郵件地址：
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              密碼：
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </label>
-            <br />
-            <button type="submit">登入</button>
-          </form>
-          <h2>註冊新帳戶</h2>
-          <form onSubmit={handleSignUp}>
-            <label>
-              電子郵件地址：
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </label>
-            <br />
-            <label>
-              密碼：
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </label>
-            <br />
-            <button type="submit">註冊</button>
-          </form> */}
-          <div className="user">
-            {user ? (
-              <>
-                <div className="userInfo">
-                  <img className="userIMG" src={user.photoURL}></img>
-                  <p className="userName">{user.displayName}</p>
-                  <p className="userEmail">{user.email}</p>
-                </div>
-                <button id="SignOutBtn" onClick={handleSignOut}>
-                  登出
-                </button>
-              </>
-            ) : (
-              <>
-                <div className="userInfo">
-                  <img
-                    className="userIMG"
-                    src={`${process.env.PUBLIC_URL}/images/icons/user.png`}></img>
-                  <p className="userName not">尚未登入</p>
-                </div>
-                <button id="googleSignBtn" onClick={handleGoogleSignIn}>
-                  <FontAwesomeIcon icon="fa-brands fa-google" />
-                  使用 Google 登入
-                </button>
-              </>
-            )}
+      <Helmet>
+        <title>班級資訊平台｜用戶{user ? `・${user.displayName}` : ''}</title>
+        <meta name="description" content="本網站的用戶管理頁面" />
+        <meta
+          property="og:title"
+          content={`班級資訊平台｜用戶${user ? `・${user.displayName}` : ''}`}
+        />
+        <meta property="og:description" content="本網站的用戶管理頁面" />
+      </Helmet>
+
+      <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+        <div id="meView">
+          <div id="meContent">
+            {error && <p>{error}</p>}
+            <div className="user">
+              {user ? (
+                <>
+                  <div className="userInfo">
+                    <img className="userIMG" src={user.photoURL}></img>
+                    <p className="userName">{user.displayName}</p>
+                    <p className="userEmail">{user.email}</p>
+                  </div>
+                  <button id="SignOutBtn" onClick={handleSignOut}>
+                    登出
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="userInfo">
+                    <img
+                      className="userIMG"
+                      src={`${process.env.PUBLIC_URL}/images/icons/user.png`}></img>
+                    <p className="userName not">尚未登入</p>
+                  </div>
+                  <button id="googleSignBtn" onClick={handleGoogleSignIn}>
+                    <FontAwesomeIcon icon="fa-brands fa-google" />
+                    使用 Google 登入
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

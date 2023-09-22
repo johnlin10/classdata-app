@@ -1,91 +1,41 @@
-.view {
-  z-index: 6000;
+.pageli {
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  padding: 12px;
-  padding-top: 12px;
-  height: max-content;
-  width: 100%;
-  transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-  -webkit-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-  -moz-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-  -ms-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-  -o-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  -ms-border-radius: 0;
-  -o-border-radius: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
-.view:global.PTAni {
-  top: -54px;
-  background: #ffffff00;
-}
-.view:global(.dark) {
-  background: #000000;
-}
-@media (min-width: 823px) {
-  .view {
-    width: calc(100% - 72px - 12px);
-    top: 12px;
-    border-radius: 13px 13px 0 0;
-    -webkit-border-radius: 13px 13px 0 0;
-    -moz-border-radius: 13px 13px 0 0;
-    -ms-border-radius: 13px 13px 0 0;
-    -o-border-radius: 13px 13px 0 0;
-  }
-  .view:global(.dark) {
-    background: var(--theme-dark);
-  }
-}
-@media (min-width: 991px) {
-  .view {
-    width: calc(100% - 124px - 12px);
-  }
-}
-.view_content {
+.pageli > div.block {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 36px;
-  width: 100%;
-}
-.content_title {
-  display: flex;
-  flex-direction: row;
   align-items: center;
   height: 100%;
 }
 
-.title_backBtn {
-  height: 100%;
-  width: 36px;
+.pageli > div.block.title p {
+  min-width: max-content;
+  padding: 0 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.pageli.dark > div.block.title p {
+  color: #ffffffb1;
+}
+
+.pageli > .block > button {
   font-size: 1rem;
-  color: #3e3e3e;
-  background: #00000000;
+  height: 100%;
+  width: 42px;
+  background: var(--main-light);
   border-radius: 13px;
   -webkit-border-radius: 13px;
   -moz-border-radius: 13px;
   -ms-border-radius: 13px;
   -o-border-radius: 13px;
 }
-:global(.dark) .title_backBtn {
-  color: #d1d1d1;
+.pageli.dark > .block > button {
+  background: #ffffff0f;
+  color: #ffffff7f;
 }
-.title_pageTitle {
-  padding: 0 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  /* color: #3e3e3e; */
-}
-:global(.dark) .title_pageTitle {
-  /* color: #d1d1d1; */
-}
-
-@media (min-width: 823px) {
-  .view {
-    background: var(--theme-light);
-  }
+.pageli.dark > .block > button:hover {
+  background: #ffffff1f;
 }

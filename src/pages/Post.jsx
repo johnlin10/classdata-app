@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // CSS
@@ -23,6 +24,8 @@ import {
 import PageTitle from '../widgets/PageTitle'
 import Loader from '../widgets/Loader'
 import PageCtrlModule from '../widgets/PageCtrlModule'
+// firebase
+import { AllowUserAuth } from '../firebase'
 
 // 初始化
 const firebaseConfig = {
@@ -40,9 +43,24 @@ const db = getFirestore(app)
 function Post(props) {
   // console.log(process.env.REACT_APP_ADMIN_ACCOUNT)
 
+  const pubArticleAllowedUsers = [
+    process.env.REACT_APP_19_POST,
+    // process.env.REACT_APP_SCHOOL_USER1,
+    process.env.REACT_APP_SCHOOL_USER2,
+  ]
+  const pubArticleLocalAdres = [
+    process.env.REACT_APP_SCHOOL_EMAIL,
+    process.env.REACT_APP_ADMIN_ADRES,
+  ]
+
   const [user, setUser] = useState(null)
   const [userUID, setUserUID] = useState('')
-  const [pubArticle, setPubArticle] = useState(false) // 訪問權限
+  // 發佈公告權限
+  const pubArticle = AllowUserAuth(
+    pubArticleAllowedUsers,
+    pubArticleLocalAdres,
+    '發布公告權限'
+  )
   const [pubArticleForm, setPubArticleForm] = useState(false)
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -50,25 +68,25 @@ function Post(props) {
     })
     return unsubscribe
   }, [])
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // User is signed in
-        setUserUID(user.uid)
-        if (
-          userUID === process.env.REACT_APP_ADMIN_ACCOUNT ||
-          userUID === process.env.REACT_APP_19_POST
-        ) {
-          setPubArticle(true)
-        } else setPubArticle(false)
-      } else {
-        // User is signed out
-        setUserUID(false)
-        setPubArticle(false)
-      }
-    })
-    return unsubscribe
-  }, [user])
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
+  //     if (user) {
+  //       // User is signed in
+  //       setUserUID(user.uid)
+  //       if (
+  //         userUID === process.env.REACT_APP_ADMIN_ACCOUNT ||
+  //         userUID === process.env.REACT_APP_19_POST
+  //       ) {
+  //         setPubArticle(true)
+  //       } else setPubArticle(false)
+  //     } else {
+  //       // User is signed out
+  //       setUserUID(false)
+  //       setPubArticle(false)
+  //     }
+  //   })
+  //   return unsubscribe
+  // }, [user])
 
   const [articleTitle, setArticleTitle] = useState('')
   const [articleTime, setArticleTime] = useState('')
@@ -224,6 +242,12 @@ function Post(props) {
         className={`${props.theme}${
           props.theme && props.settingPage ? ' ' : ''
         }${props.settingPage ? 'settingOpen' : ''}`}>
+        <Helmet>
+          <title>班級資訊平台｜公告</title>
+          <meta name="description" content="學校、班級的公告事項" />
+          <meta property="og:title" content="班級資訊平台｜公告" />
+          <meta property="og:description" content="學校、班級的公告事項" />
+        </Helmet>
         <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
           <div id="post-view">
             <div id="post-view-content">
