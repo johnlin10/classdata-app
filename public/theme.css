@@ -1,0 +1,63 @@
+:root {
+  --theme-color: rgb(43, 147, 211);
+  --theme-color-L2: rgb(37, 132, 191);
+  --theme-color-L3: rgb(34, 112, 161);
+  --theme-color-L4: rgb(33, 102, 145);
+
+  --main-light-s1: rgb(248, 252, 255);
+  --main-light: rgb(235, 242, 247);
+  --main-light-L2: rgb(214, 229, 238);
+  --main-light-op8: rgb(235, 242, 247, 0.8);
+  --main-dark-s1: rgb(7, 8, 9);
+  --main-dark: rgb(16, 19, 22);
+  --main-dark-L2: rgb(31, 37, 43);
+  --main-dark-op8: rgb(16, 19, 22, 0.8);
+
+  --theme-light-s2: rgb(239, 245, 249);
+  --theme-light: rgb(221, 231, 239);
+  --theme-light-L2: rgb(205, 219, 230);
+  --theme-light-L3: rgb(185, 202, 216);
+  --theme-light-op7: rgba(228, 235, 240, 0.7);
+
+  --theme-dark-s2: rgb(37, 42, 47);
+  --theme-dark: rgb(24, 27, 30);
+  --theme-dark-L2: rgb(26, 30, 35);
+  --theme-dark-L3: rgb(30, 35, 41);
+  --theme-dark-op7: rgb(24, 27, 30, 0.7);
+
+  --font-main-light: rgb(241, 241, 241);
+  --font-main-light-op9: rgb(241, 241, 241, 0.9);
+  --font-main-light-op8: rgb(241, 241, 241, 0.8);
+  --font-main-light-op7: rgb(241, 241, 241, 0.7);
+  --font-main-light-op6: rgb(241, 241, 241, 0.6);
+  --font-main-light-op5: rgb(241, 241, 241, 0.5);
+  --font-main-light-L2: rgb(229, 229, 229);
+  --font-main-light-L3: rgb(201, 201, 201);
+
+  --font-main-dark: rgb(15, 15, 15);
+  --font-main-dark-op9: rgb(15, 15, 15, 0.9);
+  --font-main-dark-op8: rgb(15, 15, 15, 0.8);
+  --font-main-dark-op7: rgb(15, 15, 15, 0.7);
+  --font-main-dark-op6: rgb(15, 15, 15, 0.6);
+  --font-main-dark-op5: rgb(15, 15, 15, 0.5);
+  --font-main-dark-L2: rgb(27, 27, 27);
+  --font-main-dark-L3: rgb(55, 55, 55);
+
+  --font-theme-light-s3: rgb(91, 105, 113);
+  --font-theme-light-s2: rgb(82, 94, 102);
+  --font-theme-light: rgb(70, 80, 87);
+  --font-theme-light-L2: rgb(55, 63, 68);
+  --font-theme-dark-s3: rgb(109, 121, 136);
+  --font-theme-dark-s2: rgb(130, 144, 160);
+  --font-theme-dark: rgb(163, 177, 192);
+  --font-theme-dark-L2: rgb(178, 192, 207);
+
+  --orange-theme-light: rgb(211, 101, 76);
+  --orange-theme-light-op5: rgb(211, 101, 76, 0.5);
+  --orange-theme-dark: rgb(211, 101, 76);
+  --orange-theme-dark-op5: rgb(211, 101, 76, 0.5);
+
+  --red-theme-light-s3: #ed5656;
+  --red-theme-light-s2: #e84848;
+  --red-theme-light: #e53232;
+}

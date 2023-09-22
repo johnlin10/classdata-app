@@ -217,25 +217,27 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: -24px;
-  top: 0;
-  height: 20px;
-  width: 20px;
-  font-size: 10px;
+  right: 3px;
+  bottom: 3px;
+  height: 32px;
+  width: 32px;
+  font-size: 12px;
   opacity: 0;
   color: #335d89;
-  background: #fff;
-  border-radius: 18px;
-  -webkit-border-radius: 18px;
-  -moz-border-radius: 18px;
-  -ms-border-radius: 18px;
-  -o-border-radius: 18px;
+  background: #0000000f;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 #chatGroupView .messageBlock.myMessage .reployToBtn {
   /* display: none; */
-  left: -24px;
-  top: 0;
-  font-size: 10px;
+  /* left: 3px;
+  top: 3px; */
+  background: #ffffff5f;
 }
 .dark #chatGroupView .messageBlock .reployToBtn {
   color: #547fac;
@@ -858,6 +860,7 @@
   right: 0;
   min-height: 60px;
   max-height: 264px;
+  padding: 0 12px;
   height: auto;
   width: 100%;
   max-width: 100%;
@@ -1530,6 +1533,7 @@
   #chatGroupInput {
     width: calc(100% - 24px);
     margin: 0 12px;
+    padding: 0;
   }
   .chatGroupContiniut {
     width: calc(100% - 24px);

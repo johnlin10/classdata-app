@@ -122,10 +122,12 @@
   color: #c2cad5;
 }
 .header_li:not(:first-child, :last-child) > .block:hover {
-  border-bottom: 3px solid #0000003f;
+  border-bottom: 0 solid #0000003f;
 }
 .dark .header_li:not(:first-child, :last-child) > .block:not(.actv):hover {
-  border-bottom: 3px solid #ffffff3f;
+  border-bottom: 0 solid #ffffff3f;
+}
+.header_li:not(:first-child, :last-child) > .block:hover p {
 }
 .header_li:not(:first-child, :last-child) > .block.actv {
   border-bottom: 3px solid var(--theme-color-L3);
@@ -142,6 +144,7 @@
   font-weight: 700;
   color: var(--theme-color-L3);
 }
+
 .header_li > .block.breach {
   width: fit-content;
 }

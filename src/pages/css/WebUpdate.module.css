@@ -201,10 +201,28 @@
 :global(.dark) .lastVersion_block .versions {
   border: 3px solid var(--main-dark-L2);
 }
-.lastVersion_block .versions :is(h3, p) {
+.lastVersion_block .versions span.date {
+  color: var(--font-theme-light-L2);
+  padding-top: 6px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+  border-top: 1px solid var(--main-light-L2);
+}
+:global(.dark) .lastVersion_block .versions span.date {
+  color: var(--font-theme-dark-s3);
+  border-top: 1px solid var(--main-dark-L2);
+}
+.lastVersion_block .versions h3 {
   color: var(--font-theme-light-s3);
 }
-:global(.dark) .lastVersion_block .versions :is(h3, p) {
+:global(.dark) .lastVersion_block .versions h3 {
+  color: var(--font-theme-dark-L2);
+}
+.lastVersion_block .versions p {
+  color: var(--font-theme-light);
+}
+:global(.dark) .lastVersion_block .versions p {
   color: var(--font-theme-dark-s3);
 }
 

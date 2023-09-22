@@ -249,6 +249,26 @@ function Post(props) {
           <meta property="og:description" content="學校、班級的公告事項" />
         </Helmet>
         <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+          {pubArticle && (
+            <PubArticle
+              pubArticleForm={pubArticleForm}
+              setPubArticleForm={setPubArticleForm}
+              closeEditer={closeEditer}
+              articleTitle={articleTitle}
+              setArticleTitle={setArticleTitle}
+              articleTime={articleTime}
+              setArticleTime={setArticleTime}
+              articleContent={articleContent}
+              setArticleContent={setArticleContent}
+              updatePubArticle={updatePubArticle}
+              setExpiryDate={setExpiryDate}
+              expiryDate={expiryDate}
+              theme={props.theme}
+              editActive={editActive}
+              editArticle={editArticle}
+              updateArticle={updateArticle}
+            />
+          )}
           <div id="post-view">
             <div id="post-view-content">
               {getPostData ? (
@@ -369,26 +389,6 @@ function Post(props) {
             </div>
           </div>
         </div>
-        {pubArticle && (
-          <PubArticle
-            pubArticleForm={pubArticleForm}
-            setPubArticleForm={setPubArticleForm}
-            closeEditer={closeEditer}
-            articleTitle={articleTitle}
-            setArticleTitle={setArticleTitle}
-            articleTime={articleTime}
-            setArticleTime={setArticleTime}
-            articleContent={articleContent}
-            setArticleContent={setArticleContent}
-            updatePubArticle={updatePubArticle}
-            setExpiryDate={setExpiryDate}
-            expiryDate={expiryDate}
-            theme={props.theme}
-            editActive={editActive}
-            editArticle={editArticle}
-            updateArticle={updateArticle}
-          />
-        )}
       </main>
     </>
   )

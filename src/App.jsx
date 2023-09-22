@@ -695,19 +695,23 @@ function App() {
                 <span>首頁</span>
               </div>
             </li>
-            {/* <li id="footer-li" className="" onClick={() => [pagelink('post')]}>
+            <li
+              id="footer-li"
+              className=""
+              onClick={() => [navigateClick('/post')]}
+              style={{ background: checkLocation(['/']) ? '#ffffff00' : '' }}>
               <div
-                className={`li-view post ${
-                  pageState.postSelect ? 'active' : ''
+                className={`li-view folder ${
+                  checkLocation(['/post']) ? 'active' : ''
                 }`}>
-                {pageState.postSelect ? (
+                {checkLocation(['/post']) ? (
                   <FontAwesomeIcon icon="fa-solid fa-bell" className="icon" />
                 ) : (
                   <FontAwesomeIcon icon="fa-solid fa-bell" className="icon" />
                 )}
                 <span>公告</span>
               </div>
-            </li> */}
+            </li>
             <li
               id="footer-li"
               className=""
@@ -749,7 +753,7 @@ function App() {
                 <span>訊息</span>
               </div>
             </li>
-            <li
+            {/* <li
               id="footer-li"
               className=""
               onClick={() => [navigateClick('/user')]}
@@ -765,7 +769,7 @@ function App() {
                 )}
                 <span>我的</span>
               </div>
-            </li>
+            </li> */}
             <li
               id="footer-li"
               className="menuicon"

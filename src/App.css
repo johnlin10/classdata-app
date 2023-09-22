@@ -647,70 +647,6 @@ pre {
   }
 }
 
-:root {
-  --theme-color: rgb(43, 147, 211);
-  --theme-color-L2: rgb(37, 132, 191);
-  --theme-color-L3: rgb(34, 112, 161);
-  --theme-color-L4: rgb(33, 102, 145);
-
-  --main-light-s1: rgb(248, 252, 255);
-  --main-light: rgb(235, 242, 247);
-  --main-light-L2: rgb(214, 229, 238);
-  --main-light-op8: rgb(235, 242, 247, 0.8);
-  --main-dark-s1: rgb(7, 8, 9);
-  --main-dark: rgb(16, 19, 22);
-  --main-dark-L2: rgb(31, 37, 43);
-  --main-dark-op8: rgb(16, 19, 22, 0.8);
-
-  --theme-light-s2: rgb(239, 245, 249);
-  --theme-light: rgb(221, 231, 239);
-  --theme-light-L2: rgb(205, 219, 230);
-  --theme-light-L3: rgb(185, 202, 216);
-  --theme-light-op7: rgba(228, 235, 240, 0.7);
-
-  --theme-dark-s2: rgb(37, 42, 47);
-  --theme-dark: rgb(24, 27, 30);
-  --theme-dark-L2: rgb(26, 30, 35);
-  --theme-dark-L3: rgb(30, 35, 41);
-  --theme-dark-op7: rgb(24, 27, 30, 0.7);
-
-  --font-main-light: rgb(241, 241, 241);
-  --font-main-light-op9: rgb(241, 241, 241, 0.9);
-  --font-main-light-op8: rgb(241, 241, 241, 0.8);
-  --font-main-light-op7: rgb(241, 241, 241, 0.7);
-  --font-main-light-op6: rgb(241, 241, 241, 0.6);
-  --font-main-light-op5: rgb(241, 241, 241, 0.5);
-  --font-main-light-L2: rgb(229, 229, 229);
-  --font-main-light-L3: rgb(201, 201, 201);
-
-  --font-main-dark: rgb(15, 15, 15);
-  --font-main-dark-op9: rgb(15, 15, 15, 0.9);
-  --font-main-dark-op8: rgb(15, 15, 15, 0.8);
-  --font-main-dark-op7: rgb(15, 15, 15, 0.7);
-  --font-main-dark-op6: rgb(15, 15, 15, 0.6);
-  --font-main-dark-op5: rgb(15, 15, 15, 0.5);
-  --font-main-dark-L2: rgb(27, 27, 27);
-  --font-main-dark-L3: rgb(55, 55, 55);
-
-  --font-theme-light-s3: rgb(91, 105, 113);
-  --font-theme-light-s2: rgb(82, 94, 102);
-  --font-theme-light: rgb(70, 80, 87);
-  --font-theme-light-L2: rgb(55, 63, 68);
-  --font-theme-dark-s3: rgb(109, 121, 136);
-  --font-theme-dark-s2: rgb(130, 144, 160);
-  --font-theme-dark: rgb(163, 177, 192);
-  --font-theme-dark-L2: rgb(178, 192, 207);
-
-  --orange-theme-light: rgb(211, 101, 76);
-  --orange-theme-light-op5: rgb(211, 101, 76, 0.5);
-  --orange-theme-dark: rgb(211, 101, 76);
-  --orange-theme-dark-op5: rgb(211, 101, 76, 0.5);
-
-  --red-theme-light-s3: #ed5656;
-  --red-theme-light-s2: #e84848;
-  --red-theme-light: #e53232;
-}
-
 .bg-blue-green {
   background: linear-gradient(150deg, #3e71c2, #42b883);
   box-shadow: 0 0 40px 0 inset #9f9f9fa1;
@@ -869,16 +805,16 @@ main.dark > .view {
   background: var(--main-dark);
 }
 main > .view.PTAni {
-  transform: scale(0.95);
-  -webkit-transform: scale(0.95);
-  -moz-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  -o-transform: scale(0.95);
+  transform: scaleY(0.925) scaleX(0.975);
+  -webkit-transform: scaleY(0.925) scaleX(0.975);
+  -moz-transform: scaleY(0.925) scaleX(0.975);
+  -ms-transform: scaleY(0.925) scaleX(0.975);
+  -o-transform: scaleY(0.925) scaleX(0.975);
 }
 
 @media (max-width: 823px) {
   main > .view.tabs {
-    padding: 36px 0 0 0;
+    padding: 42px 0 0 0;
   }
   main {
     padding-top: 54px;
@@ -1528,6 +1464,9 @@ main > .view.PTAni {
 @media (min-width: 1px) {
   menu {
     z-index: 8000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
     height: 0;
     width: 100%;
@@ -1535,7 +1474,7 @@ main > .view.PTAni {
     bottom: 80px;
     left: 0;
     opacity: 1;
-    background: var(--main-light-op8);
+    background: var(--theme-light);
     pointer-events: none;
     transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
     -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
@@ -1548,19 +1487,18 @@ main > .view.PTAni {
     background: var(--main-dark-op8);
   }
   menu.open {
-    height: calc(100vh - 60px - 80px);
+    height: calc(100vh - 54px - 80px);
     opacity: 1;
     pointer-events: all;
     overflow: auto;
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
+    /* -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px); */
   }
   #menu-view {
     display: block;
     position: relative;
     margin-top: -25vh;
     width: 90%;
-    margin-left: 5%;
     transition: 0.7s cubic-bezier(0.5, 0, 0.3, 1);
     -webkit-transition: 0.7s cubic-bezier(0.5, 0, 0.3, 1);
     -moz-transition: 0.7s cubic-bezier(0.5, 0, 0.3, 1);
@@ -1774,7 +1712,6 @@ main > .view.PTAni {
   }
   #menu-view {
     min-width: 540px;
-    margin-left: 5%;
     margin-top: 8vh;
     transition: 0.9s cubic-bezier(0.23, 1, 0.32, 1);
     -webkit-transition: 0.9s cubic-bezier(0.23, 1, 0.32, 1);
@@ -1783,7 +1720,6 @@ main > .view.PTAni {
     -o-transition: 0.9s cubic-bezier(0.23, 1, 0.32, 1);
   }
   menu.open #menu-view {
-    margin-left: calc(5% + 72px);
     width: calc(100% - 10% - 72px);
   }
   .menu-link {
@@ -1802,22 +1738,20 @@ main > .view.PTAni {
 }
 @media (min-width: 991px) {
   menu {
-    width: calc(100% - 124px);
     max-width: 840px;
     left: calc(-840px + 124px);
   }
   menu.open {
     left: 0;
-    width: calc(100% - 124px);
+    width: 100%;
     opacity: 1;
     pointer-events: all;
     overflow: auto;
   }
   #menu-view {
-    margin-left: 5%;
+    margin-left: 0;
   }
   menu.open #menu-view {
-    margin-left: calc(5% + 124px);
     width: calc(100% - 10% - 124px);
   }
   #menu-linkView {
@@ -2636,11 +2570,11 @@ main > .view.PTAni {
   /* 公告過期文章 */
   .post-post.exp {
     background: #0000001f;
-    border: 3px solid #0000005f;
+    /* border: 3px solid #0000005f; */
   }
   .dark .post-post.exp {
     background: #ffffff1f;
-    border: 3px solid #ffffff5f;
+    /* border: 3px solid #ffffff5f; */
   }
   /* 過期公告標題 */
   .post-post.exp h1 {
@@ -2672,8 +2606,8 @@ main > .view.PTAni {
     position: fixed;
     left: 0;
     top: 100vh;
-    height: calc(100% - 80px - 54px);
-    width: 100vw;
+    height: calc(100% - 54px - 80px);
+    width: 100%;
     background: var(--main-light);
     transition: 0.55s cubic-bezier(0.5, 0, 0.3, 1);
     -webkit-transition: 0.55s cubic-bezier(0.5, 0, 0.3, 1);
@@ -2689,12 +2623,12 @@ main > .view.PTAni {
   }
   @media (min-width: 823px) {
     #pubArticle {
-      left: 72px;
-      width: calc(100vw - 72px - 12px);
-      height: calc(100% - 24px - 42px - 12px);
+      left: 12px;
+      width: calc(100% - 24px);
+      height: calc(100% - 60px - 12px);
     }
     #pubArticle.open {
-      top: 12px;
+      top: 60px;
       border-radius: 13px;
       -webkit-border-radius: 13px;
       -moz-border-radius: 13px;
@@ -2702,12 +2636,12 @@ main > .view.PTAni {
       -o-border-radius: 13px;
     }
   }
-  @media (min-width: 991px) {
+  /* @media (min-width: 991px) {
     #pubArticle {
       left: 124px;
       width: calc(100vw - 124px - 12px);
     }
-  }
+  } */
 
   /* 公告發布按鈕 */
   #submitPost {
@@ -2716,9 +2650,9 @@ main > .view.PTAni {
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: -28px;
-    right: 18px;
-    height: 10px;
+    bottom: 0;
+    right: 0;
+    height: 42px;
     padding: 0 1.2rem;
     background: #3e71c2;
     color: #e0e9f6;
@@ -2737,8 +2671,6 @@ main > .view.PTAni {
     pointer-events: none;
   }
   #submitPost.open {
-    bottom: 0;
-    right: 0;
     height: 42px;
     font-size: 1rem;
     opacity: 1;
@@ -2755,10 +2687,10 @@ main > .view.PTAni {
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: -28px;
-    left: 18px;
-    width: 10px;
-    height: 10px;
+    bottom: 0;
+    left: 0;
+    width: 42px;
+    height: 42px;
     background: #da3939;
     color: #ffe3e3;
     opacity: 0;
@@ -2776,10 +2708,6 @@ main > .view.PTAni {
     pointer-events: none;
   }
   #closePubArticle.open {
-    bottom: 0;
-    left: 0;
-    width: 42px;
-    height: 42px;
     font-size: 1.2rem;
     opacity: 1;
     pointer-events: all;
@@ -2880,7 +2808,6 @@ main > .view.PTAni {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position: fixed; */
     right: calc(12px);
     bottom: 92px;
     height: 48px;
@@ -2889,12 +2816,11 @@ main > .view.PTAni {
     font-weight: 500;
     color: #e0e9f6;
     background: #3e71c2;
-    box-shadow: 0 2px 10px #3e71c29f;
-    border-radius: 24px;
-    -webkit-border-radius: 24px;
-    -moz-border-radius: 24px;
-    -ms-border-radius: 24px;
-    -o-border-radius: 24px;
+    border-radius: 13px 0 13px 0;
+    -webkit-border-radius: 13px 0 13px 0;
+    -moz-border-radius: 13px 0 13px 0;
+    -ms-border-radius: 13px 0 13px 0;
+    -o-border-radius: 13px 0 13px 0;
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;

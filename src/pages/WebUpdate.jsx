@@ -75,6 +75,27 @@ export default function WebUpdate(props) {
       )
     }
   }, [webVersionData])
+
+  // 時間格式化
+  const setDate = (timestamp) => {
+    // 將 Firestore 的時間戳轉換為 JavaScript 的日期物件
+    let date = new Date(
+      timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000
+    )
+
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      weekday: 'short',
+    }
+    let formattedDate = date
+      .toLocaleDateString('zh-TW', options)
+      .replaceAll('/', '.')
+    formattedDate = formattedDate.replace('（', ' ').replace('）', '')
+    return formattedDate
+  }
+
   return (
     <>
       <Helmet>
@@ -169,6 +190,7 @@ export default function WebUpdate(props) {
                     .map((item) => (
                       <div key={item.version} className={css.versions}>
                         <h3>{item.version}</h3>
+                        <span className={css.date}>{setDate(item.date)}</span>
                         {formatContent(item.content)}
                       </div>
                     ))}
