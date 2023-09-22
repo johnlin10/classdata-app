@@ -224,24 +224,22 @@
   font-size: 12px;
   opacity: 0;
   color: #335d89;
-  background: #0000000f;
+  background: var(--main-light);
   border-radius: 14px;
   -webkit-border-radius: 14px;
   -moz-border-radius: 14px;
   -ms-border-radius: 14px;
   -o-border-radius: 14px;
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
 }
 #chatGroupView .messageBlock.myMessage .reployToBtn {
   /* display: none; */
   /* left: 3px;
   top: 3px; */
-  background: #ffffff5f;
+  background: var(--main-light);
 }
 .dark #chatGroupView .messageBlock .reployToBtn {
   color: #547fac;
-  background: #2f2f2f;
+  background: var(--main-dark);
 }
 #chatGroupView .messageBlock:hover .message .reployToBtn {
   opacity: 1;
