@@ -1,17 +1,19 @@
-
-// React: 框架的核心包
-// React: 專門做渲染相關的包
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
-
-// 應用的全局樣式文件
+import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import './index.css'
-
-// 引入根組件
 import App from './App'
+import ReactGA from "react-ga"
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
-//渲染根組建
+serviceWorkerRegistration.register()
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <App />
+  <React.StrictMode>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </React.StrictMode>,
 )

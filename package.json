@@ -1,30 +1,72 @@
 {
   "name": "classdata",
-  "version": "0.1.0",
+  "version": "5.0",
   "private": true,
-  "homepage": "https://johnlin10.github.io/classdata-app",
+  "homepage": ".",
   "dependencies": {
+    "@emailjs/browser": "^3.10.0",
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^0.9.373",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.3.4",
+    "babel-plugin-macros": "^3.1.0",
+    "dotenv": "^16.0.3",
+    "emailjs-com": "^3.2.0",
+    "firebase": "^9.19.1",
+    "firebaseui": "^6.0.2",
+    "gh-pages": "^5.0.0",
+    "js-cookie": "^3.0.1",
+    "openai": "^3.2.1",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-ga": "^3.3.1",
+    "react-ga4": "^2.1.0",
+    "react-lite-youtube-embed": "^2.3.52",
+    "react-manifest": "^1.0.5",
+    "react-markdown": "^8.0.7",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "^5.0.1",
+    "react-scroll": "^1.8.9",
+    "react-virtualized": "^9.22.5",
+    "react-window": "^1.8.9",
+    "react-youtube": "^10.1.0",
+    "react-youtube-background": "^1.0.0",
+    "rehype-katex": "^6.0.3",
+    "rehype-raw": "^6.1.1",
+    "rellax": "^1.12.1",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
+    "sw-precache": "^4.1.0",
+    "web-vitals": "^2.1.4",
+    "workbox": "^0.0.0",
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp public/firebase-messaging-sw.js build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "deploy": "gh-pages -b main -d build"
   },
   "browserslist": {
     "production": [
@@ -37,5 +79,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/plugin-syntax-jsx": "^7.18.6",
+    "@babel/preset-env": "^7.20.2",
+    "css-loader": "^6.8.1",
+    "customize-cra": "^1.0.0",
+    "npx": "^10.2.2",
+    "react-app-rewired": "^2.2.1",
+    "style-loader": "^3.3.3"
   }
 }

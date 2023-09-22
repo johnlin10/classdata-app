@@ -1,0 +1,15 @@
+#Beta {
+  z-index: 1000;
+  display: flex;
+  position: fixed;
+  top: 60px;
+  right: 12px;
+  padding: 6px 12px;
+  color: #fff;
+  background: #ff5f5f;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}

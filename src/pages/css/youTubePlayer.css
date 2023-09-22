@@ -1,0 +1,896 @@
+#youTubePlayer {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+@media (max-width: 822px) {
+  #youTubePlayer > .view {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+@media (min-width: 823px) {
+  #youTubePlayer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+#youTubePlayerView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  width: calc(100%);
+  height: 100%;
+  color: #a82525;
+}
+@media (min-width: 823px) {
+  #youTubePlayerView {
+    width: calc(100%);
+  }
+}
+
+#youTubePlayerView > span {
+  font-size: 0.8rem;
+  margin: 0 6px 6px 6px;
+  color: #5f5f5f;
+}
+#youTubePlayerView span.copyAgentUrl {
+  padding: 4px 9px;
+  margin-bottom: 12px;
+  background: #293546;
+  color: #7e91ac;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}
+
+#youTubePlayerView h1 {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0 0 0;
+  height: 36px;
+  font-size: 1.5rem;
+  color: #e5e5e5;
+  opacity: 1;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+#youTubePlayerView h1.playing {
+  margin: -24px 0 24px 0;
+  height: 0;
+  opacity: 0;
+}
+#youTubePlayerView .youTubePlayerTips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 9px 12px;
+  margin: 6px;
+  /* width: 100%; */
+  background: #1a1a1a;
+  border-radius: 13px;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  -ms-border-radius: 13px;
+  -o-border-radius: 13px;
+}
+#youTubePlayerView .youTubePlayerTips p {
+  font-size: 0.9rem;
+  color: #7f7f7f;
+}
+#youTubePlayerView .youTubePlayerTips p span {
+  white-space: nowrap;
+}
+#youTubePlayerView .error {
+  position: absolute;
+  margin-top: 120px;
+  margin-left: 6px;
+  width: max-content;
+  max-width: 720px;
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  color: #e5e5e5;
+  background: #6f6f6fd1;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+#youTubePlayerView .youTubeUrlForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  width: 100%;
+  height: 48px;
+  min-height: 48px;
+  border-radius: 18px 18px 6px 6px;
+  -webkit-border-radius: 18px 18px 6px 6px;
+  -moz-border-radius: 18px 18px 6px 6px;
+  -ms-border-radius: 18px 18px 6px 6px;
+  -o-border-radius: 18px 18px 6px 6px;
+  overflow: hidden;
+}
+#youTubePlayerView .youTubeUrlForm input[type='text'] {
+  height: 100%;
+  width: 100%;
+  margin-right: 6px;
+  padding: 9px 18px;
+  font-size: 1rem;
+  background: #2a2a2a;
+  color: #a1a1a1;
+  border-radius: 24px 9px 9px 24px;
+  -webkit-border-radius: 24px 9px 9px 24px;
+  -moz-border-radius: 24px 9px 9px 24px;
+  -ms-border-radius: 24px 9px 9px 24px;
+  -o-border-radius: 24px 9px 9px 24px;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+}
+#youTubePlayerView .youTubeUrlForm input[type='text']:focus {
+  border: 3px solid #4f4f4f;
+}
+#youTubePlayerView .youTubeUrlForm input[type='text'].playing {
+  margin-left: 6px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+#youTubePlayerView .youTubeUrlForm div.clostVideo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0;
+  min-width: 0;
+  height: 100%;
+  font-size: 8px;
+  background: #492323;
+  color: #d1d1d1;
+  border-radius: 18px 6px 6px 6px;
+  -webkit-border-radius: 18px 6px 6px 6px;
+  -moz-border-radius: 18px 6px 6px 6px;
+  -ms-border-radius: 18px 6px 6px 6px;
+  -o-border-radius: 18px 6px 6px 6px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+#youTubePlayerView .youTubeUrlForm div.clostVideo.playing {
+  font-size: 18px;
+  min-width: 48px;
+  width: 48px;
+}
+#youTubePlayerView .youTubeUrlForm div.clostVideo svg {
+  opacity: 0;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+#youTubePlayerView .youTubeUrlForm div.clostVideo.playing svg {
+  opacity: 1;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6px;
+  width: 0;
+  min-width: 0;
+  height: 100%;
+  font-size: 8px;
+  background: #2a2a2a;
+  color: #d1d1d1;
+  border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  -ms-border-radius: 6px 6px 6px 6px;
+  -o-border-radius: 6px 6px 6px 6px;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.playing {
+  font-size: 18px;
+  min-width: 48px;
+  width: 48px;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.playing:hover {
+  background: #3a3a3a;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn svg {
+  opacity: 0;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.playing svg {
+  opacity: 1;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.playing:hover svg {
+  font-size: 18px;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.playing:active svg {
+  font-size: 16px;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.playing.open:hover {
+  background: #466080;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.playing.open:hover svg {
+  font-size: 28px;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn.open {
+  background: #466080;
+  font-size: 28px;
+  color: #58718d;
+}
+#youTubePlayerView .youTubeUrlForm div.favoriteListBtn .xmark {
+  color: #c6d7eb;
+}
+
+#youTubePlayerView .youTubeUrlForm button[type='submit'] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 48px;
+  width: 48px;
+  height: 100%;
+  font-size: 15px;
+  background: #4575ac;
+  color: #d1d1d1;
+  border-radius: 9px 24px 24px 9px;
+  -webkit-border-radius: 9px 24px 24px 9px;
+  -moz-border-radius: 9px 24px 24px 9px;
+  -ms-border-radius: 9px 24px 24px 9px;
+  -o-border-radius: 9px 24px 24px 9px;
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+#youTubePlayerView .youTubeUrlForm button[type='submit']:hover {
+  font-size: 17px;
+  background: #5185c0;
+  color: #e9e9e9;
+}
+#youTubePlayerView .youTubeUrlForm button[type='submit']:active {
+  font-size: 13px;
+  background: #3b6595;
+  color: #b9b9b9;
+}
+#youTubePlayerView .youTubeUrlForm button[type='submit'].playing {
+  border-radius: 6px 18px 6px 6px;
+  -webkit-border-radius: 6px 18px 6px 6px;
+  -moz-border-radius: 6px 18px 6px 6px;
+  -ms-border-radius: 6px 18px 6px 6px;
+  -o-border-radius: 6px 18px 6px 6px;
+}
+#youTubePlayerView .youTubeUrlForm button[type='submit'] svg {
+  margin-left: -3px;
+}
+#youTubePlayerView .player {
+  display: flex;
+  width: 100%;
+  height: 0%;
+  transition: 0.75s;
+  -webkit-transition: 0.75s;
+  -moz-transition: 0.75s;
+  -ms-transition: 0.75s;
+  -o-transition: 0.75s;
+}
+#youTubePlayerView .player.playing {
+  height: 100%;
+}
+#youTubePlayerView .youTubePlayerView,
+#youTubePlayerView .youTubePlayerView > div {
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  border-radius: 6px 6px 18px 18px;
+  -webkit-border-radius: 6px 6px 18px 18px;
+  -moz-border-radius: 6px 6px 18px 18px;
+  -ms-border-radius: 6px 6px 18px 18px;
+  -o-border-radius: 6px 6px 18px 18px;
+  overflow: hidden;
+}
+#youTubePlayerView .youTubePlayerView.music > div {
+  height: 0;
+}
+#youTubePlayerView .youTubePlayerView .youtubeControls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100% - 24px);
+  width: 100%;
+  background: #1f1f1f;
+}
+#youTubePlayerView .youTubePlayerView.music .youtubeControls {
+  height: calc(100% - 24px);
+}
+
+.youTubePlayerView .youtubeControls .controls {
+  display: flex;
+  align-items: center;
+}
+.youTubePlayerView .youtubeControls .controls .seekTo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 54px;
+  min-height: 54px;
+  width: 54px;
+  min-width: 54px;
+  font-size: 28px;
+  color: #aaaaaa;
+  background: #3f3f3f00;
+  border-radius: 36px;
+  -webkit-border-radius: 36px;
+  -moz-border-radius: 36px;
+  -ms-border-radius: 36px;
+  -o-border-radius: 36px;
+  transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -webkit-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -moz-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -ms-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -o-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+}
+.youTubePlayerView .youtubeControls .controls .seekTo:hover {
+  background: #3f3f3f;
+}
+.youTubePlayerView .youtubeControls .controls .seekTo:active {
+  background: #3f3f3f;
+  height: 50px;
+  min-height: 50px;
+  width: 50px;
+  min-width: 50px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+.youTubePlayerView .youtubeControls .controls .seekTo.forward:active {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+.youTubePlayerView .youtubeControls .controls .seekTo.back:active {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+.youTubePlayerView .youtubeControls .controls .seekTo .num {
+  position: absolute;
+  font-size: 8px;
+}
+
+.youtubeControls h3 {
+  padding: 18px 24px;
+  font-size: 1.2rem;
+  color: #d1d1d1;
+}
+
+.youtubeControls .play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 36px;
+  height: 72px;
+  min-height: 72px;
+  width: 72px;
+  min-width: 72px;
+  font-size: 36px;
+  color: #d1d1d1;
+  background: #3f3f3f;
+  border-radius: 36px;
+  -webkit-border-radius: 36px;
+  -moz-border-radius: 36px;
+  -ms-border-radius: 36px;
+  -o-border-radius: 36px;
+  transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -webkit-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -moz-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -ms-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+  -o-transition: 0.25s cubic-bezier(0.5, 0, 0.3, 1);
+}
+.youtubeControls .play.isPlaying {
+  background: #4575ac;
+}
+.youtubeControls .play:active {
+  height: 68px;
+  min-height: 68px;
+  width: 68px;
+  min-width: 68px;
+}
+.youtubeControls .progress {
+  margin-bottom: 12px;
+  height: 22px;
+  min-height: 22px;
+  width: calc(100% - 24px);
+}
+.youtubeControls .progress progress {
+  width: 100%;
+  height: 18px;
+  overflow: hidden;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+}
+.youtubeControls .progress progress::-webkit-progress-bar {
+  /* 设置内部元素的背景颜色 */
+  background-color: #3f3f3f;
+}
+.youtubeControls .progress progress::-webkit-progress-value {
+  /* 设置内部元素的背景颜色 */
+  background-color: #5b93d4;
+}
+.youtubeControls .progress .timing {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 54px;
+  height: 24px;
+  width: calc(100% - 24px - 24px - 24px);
+  padding: 0 6px;
+  font-size: 0.8rem;
+  color: #7f7f7f;
+}
+
+#youTubePlayerView .youTubePlayer {
+  height: calc(100% - 24px);
+  /* box-shadow: 0 0 32px #ffffff10; */
+  width: 100%;
+  border-radius: 6px 6px 18px 18px;
+  -webkit-border-radius: 6px 6px 18px 18px;
+  -moz-border-radius: 6px 6px 18px 18px;
+  -ms-border-radius: 6px 6px 18px 18px;
+  -o-border-radius: 6px 6px 18px 18px;
+}
+
+.youTubeUrlForm .favoriteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: calc(24px + 48px);
+  height: 36px;
+  width: 36px;
+  font-size: 16px;
+  color: #ffffff9f;
+  background: #2a2a2a;
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+.youTubeUrlForm .favoriteBtn:hover {
+  font-size: 18px;
+}
+.youTubeUrlForm .favoriteBtn:active {
+  color: #fffffff1;
+  font-size: 14px;
+}
+.favoriteBtn.favorited {
+  color: #ffffffff;
+}
+
+.youTubeUrlForm .videoCloseBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: calc(24px + 48px + 36px);
+  height: 36px;
+  width: 36px;
+  font-size: 16px;
+  color: #9f9f9f;
+  background: #2a2a2a;
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+@media (min-width: 823px) {
+  .youTubeUrlForm .videoCloseBtn {
+    right: calc(48px + 48px);
+  }
+}
+.youTubeUrlForm .videoCloseBtn:active {
+  font-size: 14px;
+}
+.youTubeUrlForm .videoCloseBtn .videoCloseLine {
+  margin-right: -3px;
+  font-size: 26px;
+  position: absolute;
+  color: #9f9f9f;
+  transform: rotate(55deg);
+  -webkit-transform: rotate(55deg);
+  -moz-transform: rotate(55deg);
+  -ms-transform: rotate(55deg);
+  -o-transform: rotate(55deg);
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+.youTubeUrlForm .videoCloseBtn:active .videoCloseLine {
+  font-size: 24px;
+}
+.youTubeUrlForm .videoCloseBtn .videoCloseLineShadow {
+  margin-left: -3px;
+  font-size: 26px;
+  position: absolute;
+  color: #2a2a2a;
+  transform: rotate(55deg);
+  -webkit-transform: rotate(55deg);
+  -moz-transform: rotate(55deg);
+  -ms-transform: rotate(55deg);
+  -o-transform: rotate(55deg);
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+.youTubeUrlForm .videoCloseBtn:active .videoCloseLineShadow {
+  font-size: 24px;
+}
+
+@media (min-width: 823px) {
+  #favoriteView {
+    padding: 6px 18px 48px 18px;
+  }
+  .youTubeUrlForm .favoriteBtn {
+    right: calc(24px + 24px + 6px + 6px);
+  }
+}
+#favoriteView {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 6px 18px 104px 18px;
+  width: 100%;
+  max-width: 720px;
+  background: #1a1a1a00;
+  border-radius: 23px;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+  /* overflow-y: scroll; */
+}
+#favoriteView > p {
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5f5f5f;
+}
+#favoriteView ul {
+  width: 100%;
+}
+#favoriteView ul li {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin: 9px 0;
+}
+#favoriteView ul li a {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 12px;
+  width: 100%;
+  height: 42px;
+  max-width: 100%;
+  font-size: 0.9rem;
+  color: #a1a1a1;
+  background-color: #252525;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 21px 6px 6px 21px;
+  -webkit-border-radius: 21px 6px 6px 21px;
+  -moz-border-radius: 21px 6px 6px 21px;
+  -ms-border-radius: 21px 6px 6px 21px;
+  -o-border-radius: 21px 6px 6px 21px;
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+#favoriteView ul li a:hover {
+  color: #aec3da;
+  background-color: #203144;
+  box-shadow: 0 0 15px #203144a1;
+}
+#favoriteView ul li a svg {
+  margin-left: 3px;
+  margin-right: 9px;
+  font-size: 12px;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+}
+#favoriteView ul li a:hover svg {
+  font-size: 18px;
+}
+
+#favoriteView ul li button.toPlayingBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 3px;
+  margin-right: 4px;
+  height: 36px;
+  width: 36px;
+  min-width: 36px;
+  background: #2d4d69;
+  color: #a9c1d6;
+  border-radius: 18px 4px 4px 18px;
+  -webkit-border-radius: 18px 4px 4px 18px;
+  -moz-border-radius: 18px 4px 4px 18px;
+  -ms-border-radius: 18px 4px 4px 18px;
+  -o-border-radius: 18px 4px 4px 18px;
+  transition: 0.1s;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
+}
+#favoriteView ul li button.toPlayingBtn:hover {
+  background: #365a7a;
+  color: #bdd4e8;
+}
+#favoriteView ul li button.toPlayingBtn:active {
+  background: #243f56;
+  color: #94acc1;
+}
+#favoriteView ul li button.deleteFavorites {
+  padding-right: 4px;
+  margin-left: 4px;
+  height: 42px;
+  width: 42px;
+  min-width: 42px;
+  background: #3f1a1a;
+  font-size: 14px;
+  color: #d1d1d1a1;
+  box-shadow: 0 0 0 #4f2222a1;
+  border-radius: 6px 21px 21px 6px;
+  -webkit-border-radius: 6px 21px 21px 6px;
+  -moz-border-radius: 6px 21px 21px 6px;
+  -ms-border-radius: 6px 21px 21px 6px;
+  -o-border-radius: 6px 21px 21px 6px;
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+#favoriteView ul li button.deleteFavorites:hover {
+  font-size: 16px;
+  background: #4f2222;
+  color: #ecececa1;
+  box-shadow: 0 0 15px #4f2222a1;
+}
+#favoriteView ul li button.deleteFavorites:active {
+  font-size: 13px;
+  background: #321414;
+  color: #bfb9b9a1;
+}
+
+button.copyUrl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 46px;
+  height: 42px;
+  width: 42px;
+  color: #e5e5e5;
+  background: #2525259f;
+  font-size: 12px;
+  opacity: 0;
+  border-radius: 0 6px 6px 0;
+  -webkit-border-radius: 0 6px 6px 0;
+  -moz-border-radius: 0 6px 6px 0;
+  -ms-border-radius: 0 6px 6px 0;
+  -o-border-radius: 0 6px 6px 0;
+  transition: 0.15s cubic-bezier(0.5, 0, 0.3, 1);
+  -webkit-transition: 0.15s cubic-bezier(0.5, 0, 0.3, 1);
+  -moz-transition: 0.15s cubic-bezier(0.5, 0, 0.3, 1);
+  -ms-transition: 0.15s cubic-bezier(0.5, 0, 0.3, 1);
+  -o-transition: 0.15s cubic-bezier(0.5, 0, 0.3, 1);
+}
+#favoriteView ul li a:hover ~ button.copyUrl {
+  opacity: 1;
+}
+button.copyUrl:hover {
+  font-size: 14px;
+  opacity: 1;
+  background-color: #3f3f3f;
+}
+button.copyUrl:active {
+  font-size: 11px;
+  color: #afafaf;
+  background: #1a1a1a7f;
+}
+
+#favoriteList .playbackCtrl {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 24px;
+  right: 24px;
+  height: 36px;
+  /* background: #a1a1a1; */
+}
+.playbackCtrl .ctrlBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;
+  margin-left: 6px;
+  height: 36px;
+  width: 36px;
+  color: #a1a1a1;
+  background: #4f4f4f;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+  transition: 0.15s;
+  -webkit-transition: 0.15s;
+  -moz-transition: 0.15s;
+  -ms-transition: 0.15s;
+  -o-transition: 0.15s;
+}
+.playbackCtrl .ctrlBtn.open {
+  background: #4575ac;
+  color: #dce6f1;
+}
+.playbackCtrl .ctrlBtn:active {
+  margin-right: 2px;
+  height: 32px;
+  width: 32px;
+}
+.ctrlBtn .single {
+  position: absolute;
+  font-size: 6px;
+}
+
+@media (min-width: 1px) {
+  #favoriteList {
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 0px;
+    min-height: 0px;
+    max-height: calc(100% - 80px - 12px - 54px - 18px - 48px - 6px);
+    width: calc(100% - 24px);
+    right: 12px;
+    bottom: 98px;
+    background: #353535;
+    overflow: hidden;
+    border: 0px solid #131313;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -moz-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -ms-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -o-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+  }
+  #favoriteList.open {
+    height: 60%;
+    min-height: 120px;
+    /* max-height: calc(100% - 80px - 12px - 54px - 18px - 48px - 6px); */
+    width: calc(100% - 12px);
+    right: 6px;
+    border: 6px solid #131313;
+  }
+  #favoriteList h5 {
+    font-size: 1.25rem;
+    color: #a1a1a1;
+    margin: 24px 0 0 18px;
+    white-space: nowrap;
+  }
+  #favoriteList div#favoriteView {
+    height: 100%;
+    margin-top: 12px;
+    margin-bottom: 0;
+    overflow-y: scroll;
+    min-width: 240px;
+    padding-bottom: 12px;
+    opacity: 1;
+    transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -moz-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -ms-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -o-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+  }
+  #favoriteList div#favoriteView ul {
+    overflow-y: scroll;
+  }
+  #favoriteList.open div#favoriteView {
+    height: 100%;
+    opacity: 1;
+  }
+}
+@media (min-width: 823px) {
+  #favoriteList {
+    min-height: 0;
+    height: calc(100vh - 48px);
+    max-height: none;
+    width: 0;
+    min-width: 0;
+    right: 24px;
+    top: 24px;
+    border-radius: 24px 12px 12px 24px;
+    -webkit-border-radius: 24px 12px 12px 24px;
+    -moz-border-radius: 24px 12px 12px 24px;
+    -ms-border-radius: 24px 12px 12px 24px;
+    -o-border-radius: 24px 12px 12px 24px;
+  }
+
+  #favoriteList.open {
+    min-height: 0;
+    height: calc(100vh - 36px);
+    max-height: none;
+    width: 35%;
+    min-width: 400px;
+    max-width: none;
+    right: 18px;
+    top: 18px;
+    border: 6px solid #131313;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+  }
+
+  #favoriteList div#favoriteView {
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "worldScenery": [
+      {
+        "scenery": "紅木國家公園",
+        "description": "加州紅木是地球上最高的植物之一。",
+        "location": "美國加利福尼亞",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0001.webp",
+            "locationURL": "https://earth.google.com/web/search/Redwood+National+and+State+Parks/@41.43612757,-124.02296403,329.95613053a,139478.47939126d,35y,0h,0t,0r/data=CosBGmESWwolMHg1NGQwNjYzNmY1NDE3ZmE1OjB4MzZjZjMyNjY5NTNiNWY4ZRmrGWNxSZtEQCFiSiTRSwBfwCogUmVkd29vZCBOYXRpb25hbCBhbmQgU3RhdGUgUGFya3MYAiABIiYKJAmuI0QeCl1AQBFqOPpJZVQwwBmGEI9OBf9fQCEAwA_ENJBgwA"
+          }
+        ]
+      },
+      {
+        "scenery": "富士山",
+        "description": "白雪覆頂的知名山峰及火山，為日本最高峰，同時也是世界上第七高的島嶼山岳。",
+        "location": "日本静岡縣富士宮市",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0002.webp",
+            "locationURL": "https://earth.google.com/web/search/富士山/@35.360625,138.7273634,3772.04769706a,4381.21387038d,35y,0h,45t,0r/data=CnQaShJECiUweDYwMTk2MjlhNDJmZGM4OTk6MHhhNmExZmNjOTE2ZjNhNGRmGURN9PkorkFAIdbpm49GV2FAKgnlr4zlo6vlsbEYAiABIiYKJAkjtXzRT-pEQBFPY8FlbIREQBkyr7pnWsZewCFZRlPkkzxfwCgD"
+          }
+        ]
+      },
+      {
+        "scenery": "Poelau Pada 小島",
+        "description": "這座小島以野生動物和遼闊景觀聞名，擁有白色、粉紅色和黑色的沙灘。",
+        "location": "印尼",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0003.webp",
+            "locationURL": "https://earth.google.com/web/search/Pulau+Padar,+Komodo,+西芒加萊縣東努沙登加拉印尼/@-8.66266705,119.56972645,-0.18806667a,11490.90853195d,35y,0h,45t,0r/data=CqcBGn0SdwolMHgyZGI0Zjg0ZmY2Y2QwMWFiOjB4ZjdlNmZkMzNiNjkyYTg5OBmfzQWJSEwhwCGfpdAeVOVdQCo8UHVsYXUgUGFkYXIsIEtvbW9kbywg6KW_6IqS5Yqg6JCK57ij5p2x5Yqq5rKZ55m75Yqg5ouJ5Y2w5bC8GAIgASImCiQJL1bjEfZZIcARUndHrYpeIcAZ-nW_V_XjXUAh1nx8OYDjXUAoAw"
+          }
+        ]
+      },
+      {
+        "scenery": "夢蓮湖",
+        "description": "水源來自冰川的壯麗湖泊，呈現奇特的碧藍色，湖畔設有健行步道和獨木舟碼頭",
+        "location": "加拿大艾伯塔",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0004.webp",
+            "locationURL": "https://earth.google.com/web/search/加拿大艾伯塔+Improvement+District+No%2e+9,+夢蓮湖/@51.32155115,-116.1849418,1912.05941824a,3116.01904145d,35y,0h,45t,0r/data=CqMBGnkScwolMHg1Mzc3NWJjYmY1OGVlNTE3OjB4NDJjOGE3YTJjM2MwNWM5NRmg4SjULqlJQCFUmRiB5wtdwCo45Yqg5ou_5aSn6Im-5Lyv5aGUIEltcHJvdmVtZW50IERpc3RyaWN0IE5vLiA5LCDlpKLok67muZYYAiABIiYKJAmyNbx5ujAhwBG9f1r1NmUhwBnTClqWy-ldQCFqKoE1Id9dQCgD"
+          }
+        ]
+      },
+      {
+        "scenery": "Zion National Park",
+        "description": "這個廣闊的國家公園是錫安峽谷的所在地，有小徑，可登山和露營等活動",
+        "location": "美國猶他州",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0005.webp",
+            "locationURL": "https://earth.google.com/web/search/Zion+National+Park/@37.32209215,-113.04323495,1781.70147853a,59233.5378063d,35y,0h,0t,0r/data=Cn0aUxJNCiUweDgwY2FlYWQwODg0NGY4ZDk6MHg3YzJlM2ExNWFhMzY1NmY1GTFMXH0rpkJAIZTXSuiuQVzAKhJaaW9uIE5hdGlvbmFsIFBhcmsYAiABIiYKJAnAEdrFuq9JQBHIeweDFqlJQBkYdtovjwddwCHT3mj8HBBdwA"
+          }
+        ]
+      },
+      {
+        "scenery": "Thượng Lâm",
+        "description": "越南的一個城鎮",
+        "location": "越南",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0006.webp",
+            "locationURL": "https://earth.google.com/web/search/Thượng+Lâm,+納杭縣宣光越南/@22.4761255,105.339977,583.4697268a,42927.39999869d,35y,0h,0t,0r/data=CpABGmYSYAolMHgzNmNiNzI0MTE5NzJlMGUxOjB4M2VlN2U2MDVlZDdkYjI5ZRkPM-oQ7ng2QCFOe0rOiVVaQColVGjGsOG7o25nIEzDom0sIOe0jeadree4o-Wuo-WFiei2iuWNlxgCIAEiJgokCW5MAsVPv0JAET21fcr9kkJAGTaPcuueKlzAIXGWmc3pWlzA"
+          }
+        ]
+      },
+      {
+        "scenery": "珀尼達島",
+        "description": "可以從高處俯瞰渾然天成的暴龍形狀山崖，周圍潔白的沙灘及湛藍的海水環繞",
+        "location": "印尼",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0007.webp",
+            "locationURL": "https://earth.google.com/web/search/-8%2e7508994,115%2e4740434/@-8.7506976,115.4739046,135.46888272a,1042.78659234d,35y,0h,45t,0r/data=Cm4aRBI-CiUweDJkZDI3MTFhNTViYTdiMjU6MHhhZTg1NjY4NzIxYWU2ZGRkKhVLZWxpbmdraW5nIFZpZXcgcG9pbnQYAiABIiYKJAkFJCvjf5k2QBEnknQ0MVo2QBmq5aU8lGRaQCGLTCIh8EZaQCgD"
+          }
+        ]
+      },
+      {
+        "scenery": "夢蓮湖",
+        "description": "水源來自冰川的壯麗湖泊，呈現奇特的碧藍色，湖畔設有健行步道和獨木舟碼頭",
+        "location": "加拿大艾伯塔",
+        "info": [
+          {
+            "colorTone": "dark",
+            "photoURL": "worldScenery_0008.webp",
+            "locationURL": "https://earth.google.com/web/search/加拿大艾伯塔+Improvement+District+No%2e+9,+夢蓮湖/@51.32155115,-116.1849418,1912.05941824a,3116.01904145d,35y,0h,45t,0r/data=CqMBGnkScwolMHg1Mzc3NWJjYmY1OGVlNTE3OjB4NDJjOGE3YTJjM2MwNWM5NRmg4SjULqlJQCFUmRiB5wtdwCo45Yqg5ou_5aSn6Im-5Lyv5aGUIEltcHJvdmVtZW50IERpc3RyaWN0IE5vLiA5LCDlpKLok67muZYYAiABIiYKJAmyNbx5ujAhwBG9f1r1NmUhwBnTClqWy-ldQCFqKoE1Id9dQCgD"
+          }
+        ]
+      }
+    ]
+  }
+]

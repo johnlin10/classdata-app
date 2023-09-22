@@ -1,0 +1,32 @@
+.view {
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 92px;
+  right: 12px;
+  height: max-content;
+  width: calc(100% - 24px);
+  transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  -moz-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  -ms-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.view > .left > button {
+  margin-right: 6px;
+}
+.view > .right > button {
+  margin-left: 6px;
+}
+@media (min-width: 823px) {
+  .view {
+    bottom: 12px;
+    width: calc(100% - 24px - 72px);
+  }
+}
+@media (min-width: 991px) {
+  .view {
+    width: calc(100% - 12px - 124px);
+  }
+}

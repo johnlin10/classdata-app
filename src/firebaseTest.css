@@ -1,0 +1,40 @@
+.firebaseTest {
+  z-index: 9999;
+  position: fixed;
+  padding: 2rem;
+  bottom: 68px;
+  left: 0;
+  width: 100%;
+  height: 230px;
+  background-color: black;
+  opacity: 1;
+  /* pointer-events: none; */
+  overflow-y: scroll;
+}
+.lastUpdateView {
+  margin: 1rem 0;
+  background-color: #1f1f1f;
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  -webkit-border-radius: 1.2rem;
+  -moz-border-radius: 1.2rem;
+  -ms-border-radius: 1.2rem;
+  -o-border-radius: 1.2rem;
+}
+.firebaseTest div h1 {
+  color: #fff;
+}
+.firebaseTest div p {
+  color: #e5e5e5;
+}
+.firebaseTest button {
+  font-size: 1rem;
+  padding: 0.35rem 0.5rem;
+  margin-top: 12px;
+  margin-bottom: 2rem;
+  border-radius: 0.35rem;
+  -webkit-border-radius: 0.35rem;
+  -moz-border-radius: 0.35rem;
+  -ms-border-radius: 0.35rem;
+  -o-border-radius: 0.35rem;
+}

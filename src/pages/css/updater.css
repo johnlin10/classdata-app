@@ -1,0 +1,147 @@
+#updater {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 54px;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: calc(48px + 1.2rem);
+}
+#updaterView {
+  display: flex;
+  padding: 1.2rem 1.2rem;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 24px);
+  max-width: 720px;
+  background: #e5e5e5;
+  margin: 6px 12px 2rem 12px;
+  border-radius: 23px;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+}
+#updaterFormView {
+  display: flex;
+  width: 100%;
+}
+.versionFormBlock {
+  display: flex;
+  flex-direction: column;
+}
+.versionFormBlock,
+.dateFormBlock {
+  margin: 0.5rem 0 1.5rem 0;
+  width: 100%;
+}
+
+#updaterFormView form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#updaterFormView form h2 {
+  font-weight: 700;
+}
+#updaterFormView form .versionFormBlock input {
+  width: 30%;
+  min-width: 120px;
+  max-width: 240px;
+  height: 48px;
+  margin: 0.5rem 0;
+  padding: 1rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 900;
+  border-radius: 17px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  -ms-border-radius: 17px;
+  -o-border-radius: 17px;
+}
+#updaterFormView form .dateFormBlock input {
+  width: 40%;
+  min-width: 240px;
+  max-width: 360px;
+  height: 48px;
+  margin: 0.5rem 0;
+  padding: 1rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 900;
+  border-radius: 17px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  -ms-border-radius: 17px;
+  -o-border-radius: 17px;
+}
+.contentFormBlock textarea {
+  width: 100%;
+  min-width: 100%;
+  max-width: 240px;
+  height: 10.4rem;
+  min-height: 10.4rem;
+  margin: 0.5rem 0;
+  padding: 1rem 0.9rem;
+  letter-spacing: 1px;
+  line-height: 1.65rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a4a4a;
+  border-radius: 17px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  -ms-border-radius: 17px;
+  -o-border-radius: 17px;
+}
+#updaterFormView .updaterSubmit {
+  width: max-content;
+  font-size: 1rem;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  background: #4dad4d;
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+}
+#courSchForm {
+  position: relative;
+}
+#courSchForm .resetDefault {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  color: #f7d1d1;
+  font-size: 1rem;
+  background-color: #db3030;
+  border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -o-border-radius: 24px;
+}
+
+#courSchText {
+  width: 100%;
+  min-width: 220px;
+  /* max-width: 360px; */
+  height: calc(100vh - 250px);
+  min-height: 10.4rem;
+  margin: 0.5rem 0;
+  padding: 1rem 0.9rem;
+  letter-spacing: 1px;
+  line-height: 1rem;
+  font-size: 11px;
+  font-weight: 500;
+  color: #4a4a4a;
+  border-radius: 17px;
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  -ms-border-radius: 17px;
+  -o-border-radius: 17px;
+}

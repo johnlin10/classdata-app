@@ -1,0 +1,46 @@
+#WorldSceneryView {
+  margin-top: calc(6px + 2rem);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 640px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 17px 17px 9px 9px;
+  height: calc(100vh - 48px - 60px - 106px - 4rem);
+  -webkit-border-radius: 17px 17px 9px 9px;
+  -moz-border-radius: 17px 17px 9px 9px;
+  -ms-border-radius: 17px 17px 9px 9px;
+  -o-border-radius: 17px 17px 9px 9px;
+}
+@media (min-width: 720px) {
+  #WorldSceneryView {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+  }
+}
+#WorldScenery {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+#WorldScenery > .topContent > a {
+  font-weight: 500;
+  color: #ffffffd1;
+  text-shadow: 1px 1px 7px #000;
+}
+#WorldScenery > .topContent > a > svg {
+  color: #ffffff;
+}
+#WorldScenery > .bottomContent > h1 {
+  color: #ffffffe1;
+  text-shadow: 2px 2px 11px #000;
+}
+#WorldScenery > .bottomContent > h5 {
+  color: #ffffffc1;
+  text-shadow: 2px 2px 9px #000;
+}

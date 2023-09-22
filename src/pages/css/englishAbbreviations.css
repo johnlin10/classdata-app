@@ -1,0 +1,130 @@
+/* @supports ((-webkit-backdrop-filter: initial) or (backdrop-filter: initial)) {
+  #engAbbreviationsWarning {
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+} */
+#engAbbreviations {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 5000;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#engAbbreviations > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 5000;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+#engAbbreviations.dark {
+  background: #131313;
+}
+@media (min-width: 574px) {
+  #engAbbreviationsTable {
+    display: flex;
+    justify-content: center;
+  }
+  #engAbbreviationsTable thead tr th {
+    font-size: calc(0.8rem + 0.3vw) !important;
+  }
+  #engAbbreviationsTable tbody tr td {
+    font-size: calc(0.7rem + 0.3vw) !important;
+  }
+}
+#engAbbreviationsWarning {
+  top: 71px;
+  left: 0;
+  padding: 12px 24px;
+  width: 100%;
+  background: #f1f1f1;
+}
+.dark #engAbbreviationsWarning {
+  background: #131313;
+}
+#engAbbreviationsWarning svg {
+  margin-right: 6px;
+}
+#engAbbreviationsWarning span {
+  color: #d03d23;
+  font-weight: 700;
+}
+.dark #engAbbreviationsWarning p {
+  color: #808080;
+}
+#engAbbreviationsTable {
+  display: flex;
+  position: relative;
+  padding: 12px 24px;
+  width: 100%;
+  overflow-x: scroll;
+}
+#engAbbreviationsTable table {
+  background: #dfdfdf;
+  padding: 12px;
+  margin: 12px 0 12px 0;
+  overflow: auto;
+  white-space: nowrap;
+  border-radius: 13px;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  -ms-border-radius: 13px;
+  -o-border-radius: 13px;
+}
+#engAbbreviationsTable thead tr th {
+  font-size: 0.8rem;
+  word-wrap: normal;
+  border-bottom: 1px solid #8e8e8e;
+}
+#engAbbreviationsTable thead tr th:first-child {
+  width: 63px;
+}
+#engAbbreviationsTable tbody tr td {
+  font-size: 0.7rem;
+  word-wrap: normal;
+  padding: 0 6px;
+  border-bottom: 1px solid #efefef;
+  user-select: text;
+}
+#engAbbreviationsTable tbody tr td:first-child {
+  text-align: center;
+}
+
+.topMask {
+  position: absolute;
+  right: 0;
+  top: 70px;
+  height: 1px;
+  width: 100%;
+  box-shadow: 0 0px 13px 13px #f1f1f1;
+  z-index: 10;
+}
+
+.bottomMask {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  box-shadow: 0 0px 13px 13px #f1f1f1;
+  z-index: 10;
+}
+
+.dark .topMask {
+  box-shadow: 0 0px 13px 13px #131313;
+}
+.dark .bottomMask {
+  box-shadow: 0 0px 13px 13px #131313;
+}
+@media (min-width: 823px) {
+  #engAbbreviations {
+    padding-bottom: 12px;
+  }
+}

@@ -1,0 +1,90 @@
+#meContent {
+  padding: 24px 0;
+}
+#User {
+  padding-top: 54px;
+}
+.user .userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+.user .userIMG {
+  min-width: 108px;
+  width: 30vw;
+  max-width: 180px;
+  min-height: 108px;
+  height: 30vw;
+  max-height: 180px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.user .userInfo .userName {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.user .userInfo .userName.not {
+  color: #9f9f9f;
+  font-weight: 500;
+}
+
+.user .userInfo .userEmail {
+  font-size: 0.8rem;
+  color: #9f9f9f;
+}
+
+#SignOutBtn {
+  position: relative;
+  left: 50%;
+  margin-top: 2rem;
+  height: 48px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f9e3e1;
+  background: #da5141;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -o-border-radius: 24px;
+}
+
+#googleSignBtn {
+  position: relative;
+  left: 50%;
+  margin-top: 2rem;
+  height: 54px;
+  padding: 12px 18px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #5f5f5f;
+  background: #fff;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  border-radius: 27px;
+  -webkit-border-radius: 27px;
+  -moz-border-radius: 27px;
+  -ms-border-radius: 27px;
+  -o-border-radius: 27px;
+}
+#googleSignBtn svg {
+  color: #5283ec;
+  font-size: 1.25rem;
+  margin-right: 6px;
+}

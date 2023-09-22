@@ -1,0 +1,179 @@
+import React, { useEffect, useState } from 'react'
+// Icon Library
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// firestore
+import { db } from '../firebase'
+import {
+  collection,
+  addDoc,
+  getDoc,
+  doc,
+  setDoc,
+  onSnapshot,
+  updateDoc,
+} from 'firebase/firestore'
+import { WebVersion } from '../AppData/AppData'
+import css from './css/WebUpdate.module.css'
+// Widget
+import PageTitle from '../widgets/PageTitle'
+
+// CSS
+import '../App.css'
+
+export default function WebUpdate(props) {
+  const [themeColor, setThemeColor] = useState([
+    'var(--main-light)',
+    '#000000f1',
+    'var(--main-dark)',
+    '#fffffff1',
+  ])
+  // 頁面動畫
+  const [pageTitleAni, setPageTitleAni] = useState(true)
+  useEffect(() => {
+    setPageTitleAni(false)
+  }, [])
+
+  // 資料處理 \n 自動換行
+  const formatContent = (content) => {
+    return content.split('\n').map((line, index) => <p key={index}>{line}</p>)
+  }
+
+  // 獲取資料
+  const [webVersionData, setWebVersionData] = useState()
+  useEffect(() => {
+    const webVersionRef = doc(db, 'webVersion', 'webVersion')
+    const unsubscribe = onSnapshot(webVersionRef, async (doc) => {
+      const data = doc.data()
+      // 對版本號進行排序
+      data.versions.sort((a, b) =>
+        b.version.localeCompare(a.version, undefined, { numeric: true })
+      )
+      setWebVersionData(data)
+      console.log(data)
+    })
+    return () => unsubscribe()
+  }, [])
+  const [currentVersionIndex, setCurrentVersionIndex] = useState()
+  useEffect(() => {
+    if (webVersionData) {
+      setCurrentVersionIndex(
+        webVersionData.versions.findIndex(
+          (item) => item.version === WebVersion[0].version
+        )
+      )
+    }
+  }, [webVersionData])
+
+  const [currentVersion, setCurrentVersion] = useState()
+  useEffect(() => {
+    if (webVersionData) {
+      setCurrentVersion(
+        webVersionData.versions.find(
+          (item) => item.version === WebVersion[0].version
+        )
+      )
+    }
+  }, [webVersionData])
+  return (
+    <>
+      <main
+        id="webUpdate"
+        className={`${css.webUpdate} ${props.theme}${
+          props.theme && props.settingPage ? ' ' : ''
+        }${props.settingPage ? 'settingOpen' : ''}`}>
+        <PageTitle
+          theme={props.theme}
+          themeColor={themeColor}
+          title="網站更新(Beta)"
+          backTo={() => props.navigateClick('/')}
+        />
+        <div className={`view ${css.view}${pageTitleAni ? ' PTAni' : ''}`}>
+          <div>
+            <div
+              className={`${css.newVersion_view}${
+                webVersionData &&
+                WebVersion[0].version === webVersionData.versions[0].version
+                  ? ''
+                  : ' newV'
+              }`}>
+              {webVersionData && (
+                <>
+                  {WebVersion[0].version ===
+                  webVersionData.versions[0].version ? (
+                    <p className={css.newVersionCheck}>目前為最新版本</p>
+                  ) : (
+                    <div className={css.newVersion_block}>
+                      <span>
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-circle-up"
+                          style={{ marginRight: '3px' }}
+                        />
+                        新版本
+                      </span>
+                      <h1>{webVersionData.versions[0].version}</h1>
+                      {formatContent(webVersionData.versions[0].content)}
+                      <button
+                        className={props.updateAvailable ? '' : `${css.load}`}
+                        onClick={
+                          props.updateAvailable ? props.handleUpdate : () => {}
+                        }>
+                        {props.updateAvailable ? (
+                          '立即更新'
+                        ) : (
+                          <>
+                            <FontAwesomeIcon
+                              icon="fa-solid fa-spinner"
+                              spinPulse
+                              style={{ marginRight: '6px' }}
+                            />
+                            獲取更新中...
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+            <div
+              className={`${css.currentVersion_view}${
+                webVersionData &&
+                WebVersion[0].version === webVersionData.versions[0].version
+                  ? ''
+                  : ' newV'
+              }`}>
+              <div className={css.currentVersion_block}>
+                <span>
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-check"
+                    style={{ marginRight: '3px' }}
+                  />
+                  當前版本
+                </span>
+                <h1>{WebVersion[0].version}</h1>
+                {currentVersion && <>{formatContent(currentVersion.content)}</>}
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className={css.lastVersion_view}>
+              {webVersionData && (
+                <div className={css.lastVersion_block}>
+                  <h1>歷史版本</h1>
+                  {webVersionData.versions
+                    .slice(currentVersionIndex + 1)
+                    .map((item) => (
+                      <div key={item.version} className={css.versions}>
+                        <h3>{item.version}</h3>
+                        {formatContent(item.content)}
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </main>
+    </>
+  )
+}

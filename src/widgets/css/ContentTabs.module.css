@@ -1,0 +1,51 @@
+.contentTabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px;
+  margin-top: 12px;
+  margin-left: 50%;
+  background: #0000001f;
+  width: 100%;
+  min-width: max-content;
+  max-width: 720px;
+  height: 42px;
+  border-radius: 21px;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
+  -ms-border-radius: 21px;
+  -o-border-radius: 21px;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+.contentTabs:global(.dark) {
+  background: #0000001f;
+}
+
+.contentTabsOptn {
+  padding: 0 9px;
+  width: 100%;
+  min-width: max-content;
+  font-size: 0.9rem;
+  background: #ffffff00;
+  color: #ffffffa1;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.contentTabsOptn:global(.selected) {
+  background: #ffffffdf;
+  color: #000000d1;
+}
+.contentTabs:global(.dark) .contentTabsOptn {
+  background: #0f0f0f00;
+  color: #0000006f;
+}
+.contentTabs:global(.dark) .contentTabsOptn:global(.selected) {
+  background: #0000004f;
+  color: #ffffffd1;
+}

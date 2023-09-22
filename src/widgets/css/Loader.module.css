@@ -1,0 +1,93 @@
+.loader_view {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.loader {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  margin: auto;
+}
+.loader:before {
+  content: '';
+  /* margin-left: 25px; */
+  width: 48px;
+  min-width: 48px;
+  height: 5px;
+  min-height: 5px;
+  background: #6c6c6c;
+  opacity: 0.25;
+  position: relative;
+  top: 60px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow 0.5s linear infinite;
+}
+.loader:after {
+  content: '';
+  margin-left: -49px;
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  min-height: 50px;
+  background: #808080;
+  animation: bxSpin 1s linear infinite;
+  position: relative;
+  border-radius: 13px;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  -ms-border-radius: 13px;
+  -o-border-radius: 13px;
+  -webkit-animation: bxSpin 0.5s linear infinite;
+}
+@keyframes bxSpin {
+  17% {
+    border-bottom-left-radius: 13px;
+  }
+  25% {
+    transform: translateY(9px) rotate(-22.5deg);
+    -webkit-transform: translateY(9px) rotate(-22.5deg);
+    -moz-transform: translateY(9px) rotate(-22.5deg);
+    -ms-transform: translateY(9px) rotate(-22.5deg);
+    -o-transform: translateY(9px) rotate(-22.5deg);
+  }
+  50% {
+    transform: translateY(18px) scale(1, 0.9) rotate(-45deg);
+    border-bottom-left-radius: 37px;
+    -webkit-transform: translateY(18px) scale(1, 0.9) rotate(-45deg);
+    -moz-transform: translateY(18px) scale(1, 0.9) rotate(-45deg);
+    -ms-transform: translateY(18px) scale(1, 0.9) rotate(-45deg);
+    -o-transform: translateY(18px) scale(1, 0.9) rotate(-45deg);
+  }
+  75% {
+    transform: translateY(9px) rotate(-67.5deg);
+    -webkit-transform: translateY(9px) rotate(-67.5deg);
+    -moz-transform: translateY(9px) rotate(-67.5deg);
+    -ms-transform: translateY(9px) rotate(-67.5deg);
+    -o-transform: translateY(9px) rotate(-67.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-90deg);
+    -webkit-transform: translateY(0) rotate(-90deg);
+    -moz-transform: translateY(0) rotate(-90deg);
+    -ms-transform: translateY(0) rotate(-90deg);
+    -o-transform: translateY(0) rotate(-90deg);
+  }
+}
+
+@keyframes shadow {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1);
+  }
+}

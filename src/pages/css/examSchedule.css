@@ -1,0 +1,593 @@
+@media (min-width: 1px) {
+  #exSch {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* padding: calc(54px + 6px) 0 80px 0; */
+    color: #3f3f3f;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+  }
+  #exSch.dark {
+    color: #b4b4b4;
+  }
+
+  #exSch .view {
+    flex-direction: row;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    padding-top: 60px;
+  }
+
+  #exSchView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    min-width: 100%;
+    width: 100%;
+    max-width: 614px;
+    position: relative;
+    padding: 6px 2px 0 2px;
+    left: calc(50%);
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -o-transition: 0.25s;
+    scroll-snap-align: start;
+  }
+  #exSchView > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6px;
+    padding-top: 6px;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  #exSchView > div > h5 {
+    z-index: 10;
+    position: sticky;
+    top: -48px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #0000008f;
+  }
+  .dark #exSchView > div > h5 {
+    color: #ffffffd1;
+  }
+  #exSchView > span {
+    display: flex;
+    position: sticky;
+    top: 0;
+    align-items: center;
+    padding: 6px 12px;
+    height: 36px;
+    color: #ffffffa1;
+    background: #0000009f;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -moz-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -ms-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -o-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+  }
+  .dark #exSchView > span {
+    color: #000000a1;
+    background: #ffffffef;
+  }
+  #exTable {
+    display: flex;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
+    padding-bottom: 60px;
+    left: 0;
+    max-width: 720px;
+  }
+  .exTableRows {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.5rem;
+    width: 32%;
+    height: min-content;
+    min-width: 94px;
+  }
+  .exTableRows.top {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 0.5rem;
+    width: 4%;
+    min-width: 48px;
+    margin-right: 0;
+  }
+  .exTableTopTitle {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    margin-bottom: 6px;
+    top: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    color: #ffffffd1;
+  }
+  .exTableRows:nth-child(n + 2) .exTableTopTitle {
+    margin-left: 50%;
+    padding: 6px 12px;
+    background: #ffffff07;
+    width: max-content;
+    height: max-content;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+  .dark .exTableTopTitle {
+    color: #ffffffa1;
+  }
+  .exTableLeftTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    /* margin-left: 0.75rem; */
+    height: 2.4rem;
+    max-width: 35px;
+    padding: 0.75rem;
+    font-size: 0.75rem;
+    color: #ffffffd1;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -o-transition: 0.25s;
+  }
+  .dark .exTableLeftTitle {
+    color: #ffffffa1;
+  }
+  .exTableData {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    min-height: 2.4rem;
+    height: 2.4rem;
+    font-size: 13.75px;
+    color: #ffffff;
+    padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+    margin-bottom: 5px;
+    border-radius: 1.2rem;
+    background: linear-gradient(165deg, #7ec17e, #6894af);
+    box-shadow: 0 3px 5px #3f3f3f3f, 0 5px 15px #3f3f3f1f;
+    -webkit-border-radius: 1.2rem;
+    -moz-border-radius: 1.2rem;
+    -ms-border-radius: 1.2rem;
+    -o-border-radius: 1.2rem;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -o-transition: 0.25s;
+  }
+  .dark .exTableData {
+    color: #d1d1d1;
+    background: linear-gradient(165deg, #4e814e, #3e5c6f);
+  }
+
+  /* 多行多列塊規則 */
+  .exTableData.Empty {
+    opacity: 0;
+  }
+  .exTableData.V2 {
+    height: calc(4.8rem + 5px);
+  }
+  .exTableData.Double {
+    width: calc(200% + 0.5rem);
+  }
+  .exTableData.V3 {
+    height: calc(7.2rem + 10px);
+  }
+  .exTableData.Triple {
+    width: calc(300% + 1rem);
+  }
+  .exTableData.notEx {
+    color: #5f5f5f;
+    background: #ffffffa1;
+  }
+  .dark .exTableData.notEx {
+    color: #d1d1d1;
+    background: #0000008f;
+  }
+
+  #todtyDate {
+    z-index: 5500;
+    position: fixed;
+    width: 100%;
+    height: 48px;
+    top: 60px;
+    left: 0;
+    padding: 6px 9px;
+    font-size: 1rem;
+    font-weight: 900;
+    background: #ffffff1f;
+    transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -moz-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -ms-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -o-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+  }
+  .dark #todtyDate {
+    background: #0000001f;
+  }
+
+  #todtyDate > span {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 48px;
+    top: 0;
+    left: 0;
+    padding: 0 18px 0 12px;
+    font-size: 1rem;
+    font-weight: 900;
+    background: #e5e5e5;
+    border-radius: 0 23px 23px 0;
+    -webkit-border-radius: 0 23px 23px 0;
+    -moz-border-radius: 0 23px 23px 0;
+    -ms-border-radius: 0 23px 23px 0;
+    -o-border-radius: 0 23px 23px 0;
+    transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -moz-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -ms-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+    -o-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
+  }
+  .dark #todtyDate > span {
+    background: #1c1c1c;
+  }
+
+  .examEditView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .examEditView > div {
+    width: 100%;
+  }
+  .examEditView h3 {
+    margin-top: 24px;
+    margin-bottom: 6px;
+    padding-top: 12px;
+    border-top: 2px solid #0000000f;
+  }
+  .dark .examEditView h3 {
+    color: #d1d1d1;
+  }
+
+  .examEditView .fullDate {
+    width: 54px;
+    max-width: max-content;
+    padding: 6px 11px;
+    background: #00000013;
+    text-align: center;
+    border-radius: 18px 0 0 18px;
+    -webkit-border-radius: 18px 0 0 18px;
+    -moz-border-radius: 18px 0 0 18px;
+    -ms-border-radius: 18px 0 0 18px;
+    -o-border-radius: 18px 0 0 18px;
+  }
+  .dark .examEditView .fullDate {
+    color: #ffffffa1;
+    background: #ffffff35;
+  }
+  .examEditView .week {
+    width: 54px;
+    max-width: max-content;
+    padding: 6px 11px;
+    text-align: center;
+    background: #0000001f;
+    border-radius: 0 18px 18px 0;
+    -webkit-border-radius: 0 18px 18px 0;
+    -moz-border-radius: 0 18px 18px 0;
+    -ms-border-radius: 0 18px 18px 0;
+    -o-border-radius: 0 18px 18px 0;
+  }
+  .dark .examEditView .week {
+    color: #ffffffa1;
+    background: #ffffff2a;
+  }
+
+  .examEditView .ctrlSchBtn {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+  }
+  .ctrlSchBtn .addDay {
+    height: 32px;
+    padding: 0 12px;
+    background: #ffffffa1;
+    border-radius: 0 18px 18px 0;
+    -webkit-border-radius: 0 18px 18px 0;
+    -moz-border-radius: 0 18px 18px 0;
+    -ms-border-radius: 0 18px 18px 0;
+    -o-border-radius: 0 18px 18px 0;
+  }
+  .ctrlSchBtn .deleteDay {
+    height: 32px;
+    padding: 0 12px;
+    background: #da3939a1;
+    color: #ffffffd5;
+    border-radius: 18px 0 0 18px;
+    -webkit-border-radius: 18px 0 0 18px;
+    -moz-border-radius: 18px 0 0 18px;
+    -ms-border-radius: 18px 0 0 18px;
+    -o-border-radius: 18px 0 0 18px;
+  }
+
+  .editExamSchTable {
+    display: flex;
+    margin-top: 6px;
+  }
+  .editExamSchTable .typeBlock {
+    width: 33.333333%;
+  }
+  .editExamSchTable .typeBlock > p {
+    text-align: center;
+  }
+  .dark .editExamSchTable .typeBlock > p {
+    color: #ffffffa1;
+  }
+
+  .editExamSchTable .editBlock {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff7f;
+    margin: 6px;
+    padding: 6px 9px;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+  }
+  .dark .editExamSchTable .editBlock {
+    background: #0000005f;
+    box-shadow: 0 0 20px 0 #ffffff0f;
+  }
+
+  .editExamSchTable .editBlock .exam {
+    margin-bottom: 6px;
+    background: #ffffff00;
+    font-size: 1rem;
+  }
+  .dark .editExamSchTable .editBlock .exam {
+    color: #ffffffa1;
+  }
+  .editExamSchTable .editBlock .mode {
+    padding: 3px 6px 6px 6px;
+    margin-bottom: -6px;
+    margin-left: -9px;
+    width: calc(100% + 18px);
+    background: #00000007;
+    font-size: 0.8rem;
+    border-radius: 0 0 12px 12px;
+    -webkit-border-radius: 0 0 12px 12px;
+    -moz-border-radius: 0 0 12px 12px;
+    -ms-border-radius: 0 0 12px 12px;
+    -o-border-radius: 0 0 12px 12px;
+  }
+  .dark .editExamSchTable .editBlock .mode {
+    color: #ffffff5f;
+    background: #ffffff0f;
+  }
+
+  .examEditTips {
+    display: flex;
+  }
+  .examEditTips p {
+    padding: 6px 9px;
+    margin-right: 6px;
+    font-size: 0.8rem;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+    background: #0000000f;
+  }
+  .dark .examEditTips p {
+    color: #ffffffa1;
+    background: #ffffff15;
+  }
+}
+
+@media (min-width: 536px) {
+  .exTableData {
+    font-size: calc(12px + 0.25vw);
+  }
+}
+@media (min-width: 823px) {
+  #exSch {
+    /* padding: 48px 0 0 72px; */
+    scroll-padding-left: 72px;
+  }
+  #exSch .view {
+    scroll-padding-left: 24px;
+  }
+  #exSchView {
+    padding: 0 2px 0 2px;
+    width: 100%;
+  }
+  #exSchView > div {
+    margin-top: 48px;
+  }
+  #exSchView > h1 {
+    margin-top: 0;
+  }
+  #exSchView > span {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    top: 6px;
+    padding: 6px 12px;
+    margin-bottom: 24px;
+    height: 36px;
+    color: #ffffffa1;
+    background: #000000af;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+  }
+  #todtyDate {
+    width: calc(100% - 72px - 12px);
+    height: 48px;
+    top: 72px;
+    left: 72px;
+    padding: 6px 9px;
+    font-size: 1rem;
+    font-weight: 900;
+    background: #ffffff2f;
+  }
+
+  #todtyDate > span {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 48px;
+    top: 0;
+    left: 0;
+    padding: 0 18px 0 12px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    background: #e5e5e5;
+    border-radius: 0 23px 23px 0;
+    -webkit-border-radius: 0 23px 23px 0;
+    -moz-border-radius: 0 23px 23px 0;
+    -ms-border-radius: 0 23px 23px 0;
+    -o-border-radius: 0 23px 23px 0;
+  }
+}
+@media (min-width: 991px) {
+  #exSch {
+    /* padding: 48px 0 0 124px; */
+    scroll-padding-left: 124px;
+  }
+  #exSchView > span {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    top: 6px;
+    padding: 6px 12px;
+    margin-bottom: 24px;
+    height: 36px;
+    color: #ffffffa1;
+    background: #000000af;
+    border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    -ms-border-radius: 24px;
+    -o-border-radius: 24px;
+  }
+  #todtyDate {
+    width: calc(100% - 124px - 12px);
+    height: 48px;
+    top: 72px;
+    left: 124px;
+    padding: 6px 9px;
+    font-size: 1rem;
+    font-weight: 900;
+    background: #ffffff2f;
+  }
+
+  #todtyDate > span {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    padding: 0 12px 0 9px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    border-radius: 0 23px 23px 0;
+    -webkit-border-radius: 0 23px 23px 0;
+    -moz-border-radius: 0 23px 23px 0;
+    -ms-border-radius: 0 23px 23px 0;
+    -o-border-radius: 0 23px 23px 0;
+  }
+}
+
+.test {
+  background-image: linear-gradient(115deg, #d7827c, #9287d0, #9bd087);
+  background-image: linear-gradient(115deg, #d7827c71, #9287d071, #9bd08771);
+}
+
+#sourceFile {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 12px;
+  bottom: calc(12px + 80px);
+  padding: 16px;
+  height: 42px;
+  font-size: 18px;
+  color: #ffffffaf;
+  border-radius: 21px;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
+  -ms-border-radius: 21px;
+  -o-border-radius: 21px;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -ms-transition: 0.25s;
+  -o-transition: 0.25s;
+}
+#sourceFile:hover {
+  background: #ffffff1f;
+}
+#sourceFile span {
+  font-size: 0.75rem;
+}
+@media (min-width: 823px) {
+  #sourceFile {
+    bottom: 12px;
+    left: calc(12px + 72px);
+  }
+}
+@media (min-width: 991px) {
+  #sourceFile {
+    left: calc(12px + 124px);
+  }
+}
