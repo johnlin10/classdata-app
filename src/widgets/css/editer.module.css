@@ -1,9 +1,9 @@
-@supports ((-webkit-backdrop-filter: initial) or (backdrop-filter: initial)) {
+/* @supports ((-webkit-backdrop-filter: initial) or (backdrop-filter: initial)) {
   .editerView {
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
   }
-}
+} */
 .editerView {
   z-index: 6000;
   display: flex;
@@ -18,11 +18,11 @@
   opacity: 0;
   overflow-x: hidden;
   overflow-y: scroll;
-  border-radius: 29px;
-  -webkit-border-radius: 29px;
-  -moz-border-radius: 29px;
-  -ms-border-radius: 29px;
-  -o-border-radius: 29px;
+  border-radius: 13px;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  -ms-border-radius: 13px;
+  -o-border-radius: 13px;
   transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
   -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
   -moz-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);

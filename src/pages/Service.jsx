@@ -132,12 +132,6 @@ function Service(props) {
                       }`}>
                       <FontAwesomeIcon icon="fa-solid fa-link" />
                     </div>
-                    {/* <div
-                    className="space"
-                    style={{ height: DocsData.divHight }}></div>
-                  <h1>{DocsData.ServiceName}</h1>
-                  <span>{DocsData.content}</span> */}
-
                     <div
                       className="space"
                       style={{

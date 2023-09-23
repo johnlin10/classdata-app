@@ -22,6 +22,7 @@ import PageTitle from '../widgets/PageTitle'
 import Loader from '../widgets/Loader.jsx'
 import EditBtn from '../widgets/editBtn'
 import Editer from '../widgets/editer'
+import PageCtrlModule from '../widgets/PageCtrlModule'
 import ContentTabs from '../widgets/ContentTabs'
 import { Helmet } from 'react-helmet'
 
@@ -1464,7 +1465,7 @@ function CourseSchedule(props) {
         className={`${props.theme}${props.settingPage ? ' settingOpen' : ''}${
           pageTitleAni ? ' PTAni' : ''
         }`}>
-        <div
+        {/* <div
           id="ctrlCourseScheduleInfo"
           className={`${courseScheduleDataInfoActive ? 'open' : ''}`}
           onClick={courseScheduleDataInfo}>
@@ -1481,7 +1482,7 @@ function CourseSchedule(props) {
           )}
 
           <span>詳細資訊</span>
-        </div>
+        </div> */}
         <div className={`view tabs${pageTitleAni ? ' PTAni' : ''}`}>
           {courSchData ? (
             <>
@@ -1570,7 +1571,7 @@ function CourseSchedule(props) {
               </div>
             </div>
           </div>
-          {editPrmsn && (
+          {editPrmsn && false && (
             <EditBtn
               theme={props.theme}
               btnIcon={
@@ -1759,6 +1760,46 @@ function CourseSchedule(props) {
             />
           )}
         </div>
+        <PageCtrlModule
+          LBtn={[
+            {
+              type: 'button',
+              prmsn: true,
+              content: '詳細資訊',
+              icon: [
+                <FontAwesomeIcon
+                  icon="fa-solid fa-circle-xmark"
+                  style={{ marginRight: '6px' }}
+                />,
+                <FontAwesomeIcon
+                  icon="fa-solid fa-circle-info"
+                  style={{ marginRight: '6px' }}
+                />,
+              ],
+              click: courseScheduleDataInfo,
+              actv: courseScheduleDataInfoActive,
+            },
+          ]}
+          RBtn={[
+            {
+              type: 'button',
+              prmsn: editPrmsn,
+              content: '編輯',
+              icon: [
+                <FontAwesomeIcon
+                  icon="fa-solid fa-xmark"
+                  style={{ marginRight: '6px' }}
+                />,
+                <FontAwesomeIcon
+                  icon="fa-solid fa-pen"
+                  style={{ marginRight: '6px' }}
+                />,
+              ],
+              click: () => setEditView(!editView),
+              actv: editView,
+            },
+          ]}
+        />
       </main>
     </>
   )

@@ -1,5 +1,5 @@
 .view {
-  z-index: 100;
+  z-index: 7000;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -52,19 +52,62 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  right: calc(12px);
-  bottom: 92px;
   height: 42px;
-  padding: 0 14px;
+  padding: 0 12px;
   font-size: 1rem;
   font-weight: 500;
   color: #e0e9f6;
   background: #3e71c2;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  -ms-transition: 0.5s;
-  -o-transition: 0.5s;
+  transition: 0.15s ease-in-out;
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -ms-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+}
+.view > div > button svg {
+  font-size: 1.2rem;
+}
+.view > div > button.actv {
+  background: #35a74c;
+}
+.view > div > button.actv:hover {
+  background: #3ebb57;
+}
+.view > div > button:hover {
+  background: #467ed7;
+}
+.view > div > button:active {
+  background: #315a9b;
+  transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  -o-transform: scale(0.95);
+}
+
+.view > div > div.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  padding: 0 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f8fbff;
+  background: #ffffff3f;
+  border-radius: 13px;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  -ms-border-radius: 13px;
+  -o-border-radius: 13px;
+  transition: 0.15s ease-in-out;
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -ms-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+}
+.view > div > div.link:hover {
+  background: #ffffff5f;
 }
 
 @media (min-width: 823px) {
@@ -82,7 +125,7 @@
     -ms-transform: scaleX(0.975);
     -o-transform: scaleX(0.975);
   }
-  .view > div > button {
+  .view > div > :is(button, div.link) {
     border-radius: 9px;
     -webkit-border-radius: 9px;
     -moz-border-radius: 9px;

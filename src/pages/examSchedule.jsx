@@ -23,6 +23,7 @@ import {
 // Widget
 import PageTitle from '../widgets/PageTitle'
 import Loader from '../widgets/Loader'
+import PageCtrlModule from '../widgets/PageCtrlModule'
 import EditBtn from '../widgets/editBtn'
 import Editer from '../widgets/editer'
 
@@ -734,7 +735,7 @@ function exSch(props) {
             <Loader />
           )}
         </div>
-        <div
+        {/* <div
           id="sourceFile"
           onClick={() =>
             window.open(
@@ -747,10 +748,160 @@ function exSch(props) {
             style={{ marginRight: '6px' }}
           />
           <span>資料來源</span>
-        </div>
+        </div> */}
+        {editPrmsn && (
+          <Editer
+            title="考程表"
+            content={
+              <div className="examEditView">
+                <div className="examEditTips">
+                  <p>空：Empty</p>
+                  <p>無考試：notEx</p>
+                  <p>橫向兩格合併：Double</p>
+                  <p>橫向三格合併：Triple</p>
+                </div>
+                {examSchData?.map((day, dayIndex) => (
+                  <div key={dayIndex}>
+                    <h3>{day.date}</h3>
+                    <input
+                      className="fullDate"
+                      type="text"
+                      value={day.fullDate}
+                      onChange={(e) =>
+                        updateValue(
+                          dayIndex,
+                          undefined,
+                          undefined,
+                          'fullDate',
+                          e.target.value
+                        )
+                      }
+                    />
+                    <input
+                      className="week"
+                      type="text"
+                      value={day.week}
+                      onChange={(e) =>
+                        updateValue(
+                          dayIndex,
+                          undefined,
+                          undefined,
+                          'week',
+                          e.target.value
+                        )
+                      }
+                    />
+                    <div className="editExamSchTable">
+                      {day.data.map((type, typeIndex) => (
+                        <React.Fragment key={typeIndex}>
+                          <div className={`typeBlock`}>
+                            <p>{type.type}</p>
+                            {type.data.map((item, dataIndex) => (
+                              <div className={`editBlock`} key={dataIndex}>
+                                <input
+                                  className="exam"
+                                  type="text"
+                                  value={item.exam}
+                                  onChange={(e) =>
+                                    updateValue(
+                                      dayIndex,
+                                      typeIndex,
+                                      dataIndex,
+                                      'exam',
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                                <input
+                                  className="mode"
+                                  type="text"
+                                  value={item.mode}
+                                  onChange={(e) =>
+                                    updateValue(
+                                      dayIndex,
+                                      typeIndex,
+                                      dataIndex,
+                                      'mode',
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                <div className="ctrlSchBtn">
+                  <button className="deleteDay" onClick={() => deleteDay()}>
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-square-minus"
+                      style={{ marginRight: '3px' }}
+                    />
+                    刪除一天
+                  </button>
+                  <button className="addDay" onClick={addDay}>
+                    新增一天
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-square-plus"
+                      style={{ marginLeft: '3px' }}
+                    />
+                  </button>
+                </div>
+              </div>
+            }
+            theme={props.theme}
+            editView={editView}
+            submitFunc={updateExamSch}
+            btnContent="更新"
+            btnColor="#16bb53a1"
+            btnContentColor="#ffffffd5"
+          />
+        )}
+        <PageCtrlModule
+          LBtn={[
+            {
+              type: 'link',
+              prmsn: editPrmsn,
+              content: '資料來源',
+              icon: [
+                <FontAwesomeIcon
+                  icon="fa-solid fa-file-pdf"
+                  style={{ marginRight: '6px' }}
+                />,
+              ],
+              click: () =>
+                window.open(
+                  `${process.env.PUBLIC_URL}/files/三段考程表.pdf`,
+                  '_blank'
+                ),
+            },
+          ]}
+          RBtn={[
+            {
+              type: 'button',
+              prmsn: editPrmsn,
+              content: '編輯',
+              icon: [
+                <FontAwesomeIcon
+                  icon="fa-solid fa-xmark"
+                  style={{ marginRight: '6px' }}
+                />,
+                <FontAwesomeIcon
+                  icon="fa-solid fa-pen"
+                  style={{ marginRight: '6px' }}
+                />,
+              ],
+              click: () => setEditView(!editView),
+              actv: editView,
+            },
+          ]}
+        />
       </main>
 
-      {editPrmsn && (
+      {editPrmsn && false && (
         <EditBtn
           theme={props.theme}
           btnIcon={
@@ -762,117 +913,6 @@ function exSch(props) {
           btnContent="編輯"
           btnClick={() => setEditView(!editView)}
           openActv={editView}
-        />
-      )}
-      {editPrmsn && (
-        <Editer
-          title="考程表"
-          content={
-            <div className="examEditView">
-              <div className="examEditTips">
-                <p>空：Empty</p>
-                <p>無考試：notEx</p>
-                <p>橫向兩格合併：Double</p>
-                <p>橫向三格合併：Triple</p>
-              </div>
-              {examSchData?.map((day, dayIndex) => (
-                <div key={dayIndex}>
-                  <h3>{day.date}</h3>
-                  <input
-                    className="fullDate"
-                    type="text"
-                    value={day.fullDate}
-                    onChange={(e) =>
-                      updateValue(
-                        dayIndex,
-                        undefined,
-                        undefined,
-                        'fullDate',
-                        e.target.value
-                      )
-                    }
-                  />
-                  <input
-                    className="week"
-                    type="text"
-                    value={day.week}
-                    onChange={(e) =>
-                      updateValue(
-                        dayIndex,
-                        undefined,
-                        undefined,
-                        'week',
-                        e.target.value
-                      )
-                    }
-                  />
-                  <div className="editExamSchTable">
-                    {day.data.map((type, typeIndex) => (
-                      <React.Fragment key={typeIndex}>
-                        <div className={`typeBlock`}>
-                          <p>{type.type}</p>
-                          {type.data.map((item, dataIndex) => (
-                            <div className={`editBlock`} key={dataIndex}>
-                              <input
-                                className="exam"
-                                type="text"
-                                value={item.exam}
-                                onChange={(e) =>
-                                  updateValue(
-                                    dayIndex,
-                                    typeIndex,
-                                    dataIndex,
-                                    'exam',
-                                    e.target.value
-                                  )
-                                }
-                              />
-                              <input
-                                className="mode"
-                                type="text"
-                                value={item.mode}
-                                onChange={(e) =>
-                                  updateValue(
-                                    dayIndex,
-                                    typeIndex,
-                                    dataIndex,
-                                    'mode',
-                                    e.target.value
-                                  )
-                                }
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </div>
-              ))}
-              <div className="ctrlSchBtn">
-                <button className="deleteDay" onClick={() => deleteDay()}>
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-square-minus"
-                    style={{ marginRight: '3px' }}
-                  />
-                  刪除一天
-                </button>
-                <button className="addDay" onClick={addDay}>
-                  新增一天
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-square-plus"
-                    style={{ marginLeft: '3px' }}
-                  />
-                </button>
-              </div>
-            </div>
-          }
-          theme={props.theme}
-          editView={editView}
-          submitFunc={updateExamSch}
-          btnContent="更新"
-          btnColor="#16bb53a1"
-          btnContentColor="#ffffffd5"
         />
       )}
     </>

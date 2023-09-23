@@ -393,6 +393,8 @@ function Post(props) {
           LBtns={[]}
           RBtn={[
             {
+              type: 'button',
+              prmsn: pubArticle,
               content: '發佈公告',
               icon: (
                 <FontAwesomeIcon
