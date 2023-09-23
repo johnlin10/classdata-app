@@ -15,6 +15,7 @@
     }
   ],
   "hosting": {
+    "site": "classdata-app-beta",
     "public": "build",
     "ignore": [
       "firebase.json",
