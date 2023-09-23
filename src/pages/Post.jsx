@@ -389,6 +389,21 @@ function Post(props) {
             </div>
           </div>
         </div>
+        <PageCtrlModule
+          LBtns={[]}
+          RBtn={[
+            {
+              content: '發佈公告',
+              icon: (
+                <FontAwesomeIcon
+                  icon="fa-solid fa-pen-to-square"
+                  style={{ marginRight: '6px' }}
+                />
+              ),
+              click: () => setPubArticleForm(true),
+            },
+          ]}
+        />
       </main>
     </>
   )
@@ -454,21 +469,6 @@ function PubArticle(props) {
           </div>
         </div>
       </div>
-      <PageCtrlModule
-        setPubArticleForm={props.setPubArticleForm}
-        LBtns=""
-        RBtns={
-          <button
-            id="pubArticleBtn"
-            onClick={() => props.setPubArticleForm(true)}>
-            <FontAwesomeIcon
-              icon="fa-solid fa-pen-to-square"
-              style={{ marginRight: '6px' }}
-            />
-            <span>發佈公告</span>
-          </button>
-        }
-      />
     </>
   )
 }

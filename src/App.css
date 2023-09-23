@@ -805,11 +805,11 @@ main.dark > .view {
   background: var(--main-dark);
 }
 main > .view.PTAni {
-  transform: scaleY(0.925) scaleX(0.975);
-  -webkit-transform: scaleY(0.925) scaleX(0.975);
-  -moz-transform: scaleY(0.925) scaleX(0.975);
-  -ms-transform: scaleY(0.925) scaleX(0.975);
-  -o-transform: scaleY(0.925) scaleX(0.975);
+  transform: scaleY(0.965) scaleX(0.975);
+  -webkit-transform: scaleY(0.965) scaleX(0.975);
+  -moz-transform: scaleY(0.965) scaleX(0.975);
+  -ms-transform: scaleY(0.965) scaleX(0.975);
+  -o-transform: scaleY(0.965) scaleX(0.975);
 }
 
 @media (max-width: 823px) {
@@ -1772,7 +1772,7 @@ main > .view.PTAni {
     width: 100%;
     min-width: 264px;
     background: #fff;
-    box-shadow: 0 -5px 10px 0px #0000001f;
+    /* box-shadow: 0 -5px 10px 0px #0000001f; */
     transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
     -webkit-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
     -moz-transition: 0.5s cubic-bezier(0.5, 0, 0.3, 1);
@@ -1781,7 +1781,7 @@ main > .view.PTAni {
   }
   footer.dark {
     background: #000;
-    box-shadow: 0 -2px 10px 0px #0000009f;
+    /* box-shadow: 0 -2px 10px 0px #0000009f; */
   }
   #footer {
     position: relative;
