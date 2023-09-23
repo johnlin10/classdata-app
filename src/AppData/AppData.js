@@ -170,6 +170,36 @@ export const HomePostData = [
   //     },
   //   ]
   // },
+  // 班級資訊平台 6.0 
+  {
+    postTitle: "班級資訊平台 6.0 Beta 正式開跑！",
+    content: "將帶來全新的操作介面，以及眾所期待的新功能！",
+    stylebackground: "",
+    classbackground: "home-post",
+    divHight: "50px",
+    postlink: 'platformBtmUpdate',
+    postTime: '2023.9.23',
+    postData: [
+      {
+        postUltraTitle: '班級資訊平台 6.0 Beta 正式開跑！',
+      },
+      {
+        postTime: '2023.9.23',
+      },
+      {
+        postContent: [{
+          content: '　　時隔將近一年，將要迎來新的大版本。本網站開發者花了不少心思在快速迭代，修復大小錯誤、改進介面、添加各種功能，經歷暑假的沈澱，精進更規範的程式架構，距離新的大版本更近了一步，終於可以跟各位宣佈，班級資訊平台 6.0 將在 10 月 30 日正式上線！',
+          type: ''
+        }]
+      },
+      {
+        postContent: [{
+          content: '關於新版本更進一步的消息，將在晚些時候公布，敬請期待！',
+          type: ''
+        }]
+      },
+    ]
+  },
   // 底層改革
   {
     postTitle: "平台底層革新",
