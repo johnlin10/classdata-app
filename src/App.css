@@ -2533,7 +2533,7 @@ main > .view.PTAni {
     justify-content: flex-start;
     padding: 20px;
     margin: 6px 0;
-    background: #ffffff00;
+    background: #ffffff;
     box-shadow: 0 0 40px 0 #0000000f, 0 0 10px 0 #00000013;
     border-radius: 13px;
     -webkit-border-radius: 13px;
@@ -2552,7 +2552,7 @@ main > .view.PTAni {
     margin-bottom: 12px;
   }
   .dark .post-post {
-    background: #00000000;
+    background: #000000;
     box-shadow: 0 0 50px 0 #ffffff0f, 0 0 10px 0 #ffffff0f;
   }
   /* 公告標題 */
