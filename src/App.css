@@ -2489,7 +2489,7 @@ main > .view.PTAni {
     height: max-content;
   }
   #post-view-content {
-    width: 90%;
+    width: calc(100% - 24px);
     max-width: 480px;
     padding-bottom: calc(72px - 2rem);
     transition: 0.5s;
@@ -2501,15 +2501,19 @@ main > .view.PTAni {
   }
 
   #post-view-content > h1 {
-    /* z-index: 10;
+    z-index: 10;
     position: sticky;
-    top: 0; */
-    margin-top: 2rem;
-    color: #b9816b;
+    top: 0;
+    padding-top: 24px;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    color: #000000d1;
     font-weight: 900;
+    background: var(--main-light);
+    box-shadow: 0 0 24px 24px var(--main-light);
   }
   .dark #post-view-content > h1 {
-    color: #573f35;
+    color: #ffffffd1;
   }
   .post-block {
     display: flex;
@@ -2526,40 +2530,55 @@ main > .view.PTAni {
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px;
-    margin: 5px;
-    background: var(--orange-theme-light);
-    border-radius: 23px;
-    -webkit-border-radius: 23px;
-    -moz-border-radius: 23px;
-    -ms-border-radius: 23px;
-    -o-border-radius: 23px;
+    margin: 6px 0;
+    background: #ffffff00;
+    box-shadow: 0 0 40px 0 #0000000f, 0 0 10px 0 #00000013;
+    border-radius: 13px;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    -ms-border-radius: 13px;
+    -o-border-radius: 13px;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -o-transition: 0.25s;
   }
   .post-post > span {
     font-size: 0.8rem;
-    color: #808080;
+    color: var(--font-main-light);
     margin-bottom: 12px;
   }
   .dark .post-post {
-    background: var(--orange-theme-dark);
+    background: #00000000;
+    box-shadow: 0 0 50px 0 #ffffff0f, 0 0 10px 0 #ffffff0f;
   }
   /* 公告標題 */
   .post-post > h1 {
     z-index: 1;
-    color: var(--font-main-light);
+    color: var(--font-main-dark);
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #0000001f;
   }
   .dark .post-post > h1 {
     color: var(--font-main-light-op9);
+    border-bottom: 1px solid #ffffff1f;
   }
   /* 公告發布時間 */
   .post-post > h5 {
     z-index: 1;
-    color: #0000005a;
+    color: #0000003f;
+  }
+  .dark .post-post > h5 {
+    color: #ffffff3f;
   }
   /* 公告內文 */
   .post-post > p {
     z-index: 1;
     margin-top: 0.3rem;
-    color: var(--font-main-light-op8);
+    font-size: 0.9rem;
+    color: var(--font-main-dark-op8);
     line-height: 1.5;
     white-space: pre-wrap;
   }
@@ -2569,26 +2588,29 @@ main > .view.PTAni {
 
   /* 公告過期文章 */
   .post-post.exp {
-    background: #0000001f;
-    /* border: 3px solid #0000005f; */
+    background: #00000000;
+    box-shadow: none;
+    border: 1px solid #0000000f;
   }
   .dark .post-post.exp {
-    background: #ffffff1f;
-    /* border: 3px solid #ffffff5f; */
+    background: #00000000;
+    border: 1px solid #ffffff0f;
   }
   /* 過期公告標題 */
   .post-post.exp h1 {
-    color: var(--font-main-light-op7);
+    color: #0000005f;
+    border-bottom: 1px solid #0000000f;
   }
   .dark .post-post.exp h1 {
-    color: var(--font-main-light-op5);
+    color: #ffffff5f;
+    border-bottom: 1px solid #ffffff0f;
   }
   /* 過期公告內文 */
   .post-post.exp > p {
-    color: var(--font-main-light-op7);
+    color: #0000003f;
   }
   .dark .post-post.exp > p {
-    color: var(--font-main-light-op5);
+    color: #ffffff3f;
   }
 
   /* 公告文章通用 */
@@ -2832,6 +2854,28 @@ main > .view.PTAni {
   }
 
   /* 公告刪除按鈕 */
+  .post-post > button {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #0000005f;
+    background: #0000001f;
+  }
+  .dark .post-post > button {
+    color: #ffffff5f;
+    background: #ffffff1f;
+  }
+  .post-post.exp > button {
+    color: #0000002f;
+    background: #00000000;
+    border: 1px solid #0000001f;
+    white-space: nowrap;
+  }
+  .dark .post-post.exp > button {
+    color: #ffffff2f;
+    background: #ffffff00;
+    border: 1px solid #ffffff1f;
+  }
+
   .post-post .deleteArticleBtn {
     z-index: 1;
     display: flex;
@@ -2843,10 +2887,6 @@ main > .view.PTAni {
     height: 32px;
     padding: 0 12px;
     width: 32px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #e78872;
-    background: #0000003f;
     border-radius: 16px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
@@ -2859,13 +2899,19 @@ main > .view.PTAni {
     -moz-transition: 0.15s ease-in-out;
     -ms-transition: 0.15s ease-in-out;
     -o-transition: 0.15s ease-in-out;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
   }
   .post-post:hover > .deleteArticleBtn {
     opacity: 1;
-  }
-  .post-post.exp .deleteArticleBtn {
-    color: #ffffff7f;
-    background: #0000003f;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
   }
   /* 公告編輯按鈕 */
   .post-post .editArticleBtn {
@@ -2879,10 +2925,6 @@ main > .view.PTAni {
     height: 32px;
     padding: 0 12px;
     width: 72px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #e78872;
-    background: #0000003f;
     border-radius: 16px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
@@ -2895,13 +2937,19 @@ main > .view.PTAni {
     -moz-transition: 0.15s ease-in-out;
     -ms-transition: 0.15s ease-in-out;
     -o-transition: 0.15s ease-in-out;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
   }
   .post-post:hover > .editArticleBtn {
     opacity: 1;
-  }
-  .post-post.exp .editArticleBtn {
-    color: #ffffff7f;
-    background: #0000003f;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
   }
 }
 @media (min-width: 720px) {
@@ -2914,6 +2962,11 @@ main > .view.PTAni {
   }
 }
 @media (min-width: 823px) {
+  #post-view-content > h1 {
+    top: -24px;
+    padding-top: 24px;
+    margin-bottom: 24px;
+  }
   #pubArticleBtn {
     right: 12px;
     bottom: 12px;
@@ -2983,34 +3036,41 @@ main > .view.PTAni {
     padding: 20px;
     margin: 10px 0;
     background: #fff;
-    box-shadow: 0 5px 20px 0 #ffffff0a;
-    border-radius: 23px;
-    -webkit-border-radius: 23px;
-    -moz-border-radius: 23px;
-    -ms-border-radius: 23px;
-    -o-border-radius: 23px;
-    transition: 1s;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    -ms-transition: 1s;
-    -o-transition: 1s;
+    box-shadow: 0 0 40px 0 #00000000, 0 0 10px 0 #00000000;
+    border-radius: 13px;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    -ms-border-radius: 13px;
+    -o-border-radius: 13px;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -o-transition: 0.25s;
     overflow: hidden;
     cursor: pointer;
   }
   .dark .folder-post {
     background: #30373f;
-    box-shadow: 0 5px 20px 0 #ffffff0a;
+    box-shadow: 0 0 40px 0 #ffffff00, 0 0 10px 0 #ffffff00;
   }
+  .folder-post:hover {
+    box-shadow: 0 0 40px 0 #0000000f, 0 0 10px 0 #00000013;
+  }
+  .dark .folder-post:hover {
+    box-shadow: 0 0 40px 0 #ffffff0f, 0 0 10px 0 #ffffff13;
+  }
+
   .folder-post > .space {
     margin: -20px 0 12px -20px;
     width: calc(100% + 40px);
     background-position: top;
     background-size: 100%;
-    border-radius: 23px 23px 0 0;
-    -webkit-border-radius: 23px 23px 0 0;
-    -moz-border-radius: 23px 23px 0 0;
-    -ms-border-radius: 23px 23px 0 0;
-    -o-border-radius: 23px 23px 0 0;
+    border-radius: 13px 13px 0 0;
+    -webkit-border-radius: 13px 13px 0 0;
+    -moz-border-radius: 13px 13px 0 0;
+    -ms-border-radius: 13px 13px 0 0;
+    -o-border-radius: 13px 13px 0 0;
     transition: 0.25s;
     -webkit-transition: 0.25s;
     -moz-transition: 0.25s;
@@ -3029,17 +3089,24 @@ main > .view.PTAni {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 6px -8px -8px 6px;
+    margin: 6px -12px -12px 6px;
     padding: 9px 12px;
     height: 42px;
     width: max-content;
     min-width: max-content;
+    background: #00000019;
     font-size: 1rem;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+  }
+  .serviceBlockTitle button:hover {
+    background: #0000000f;
+  }
+  .serviceBlockTitle button:active {
+    background: #0000002f;
   }
   /* .folder-post > .space::after {
     z-index: 0;
@@ -3110,7 +3177,7 @@ main > .view.PTAni {
 }
 @media (min-width: 991px) {
   #folder-view-content {
-    max-width: 1080px;
+    max-width: 991px;
   }
   .folder-post {
     width: calc(33.333333% - 10px);
@@ -3769,6 +3836,14 @@ main > .view.PTAni {
     -ms-border-radius: 6px 6px 6px 1rem;
     -o-border-radius: 6px 6px 6px 1rem;
   }
+  .Table_Rows:nth-child(2) .Table_Data:nth-child(2):last-child {
+    border-radius: 1rem 6px 6px 1rem;
+    -webkit-border-radius: 1rem 6px 6px 1rem;
+    -moz-border-radius: 1rem 6px 6px 1rem;
+    -ms-border-radius: 1rem 6px 6px 1rem;
+    -o-border-radius: 1rem 6px 6px 1rem;
+  }
+
   .Table_Rows:nth-child(6) .Table_Data:nth-child(2) {
     border-radius: 6px 1rem 6px 6px;
     -webkit-border-radius: 6px 1rem 6px 6px;
@@ -3783,6 +3858,14 @@ main > .view.PTAni {
     -ms-border-radius: 6px 6px 1rem 6px;
     -o-border-radius: 6px 6px 1rem 6px;
   }
+  .Table_Rows:nth-child(6) .Table_Data:nth-child(2):last-child {
+    border-radius: 6px 1rem 1rem 6px;
+    -webkit-border-radius: 6px 1rem 1rem 6px;
+    -moz-border-radius: 6px 1rem 1rem 6px;
+    -ms-border-radius: 6px 1rem 1rem 6px;
+    -o-border-radius: 6px 1rem 1rem 6px;
+  }
+
   .Table_Rows:nth-child(7) .Table_Data:nth-child(2) {
     border-radius: 1rem 1rem 6px 6px;
     -webkit-border-radius: 1rem 1rem 6px 6px;

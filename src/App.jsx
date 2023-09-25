@@ -244,7 +244,7 @@ function App() {
       const dataCount = Object.keys(data.data).length
       setGetPostData(data)
       setPostCount(dataCount)
-      if (postNoti > dataCount) {
+      if (dataCount && postNoti > dataCount) {
         console.log(postNoti)
         setPostNoti(dataCount)
         localStorage.setItem('postNoti', dataCount)
