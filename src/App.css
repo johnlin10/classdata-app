@@ -755,7 +755,7 @@ main {
   right: 0;
   bottom: 48px;
   overflow-y: scroll;
-  background: var(--main-light);
+  background: var(--theme-light);
   padding: 60px 0 12px 0;
   opacity: 1;
   transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
@@ -2504,16 +2504,18 @@ main > .view.PTAni {
     z-index: 10;
     position: sticky;
     top: 0;
-    padding-top: 24px;
+    padding-top: 12px;
     margin-bottom: 24px;
     padding-left: 12px;
     color: #000000d1;
     font-weight: 900;
-    background: var(--main-light);
-    box-shadow: 0 0 24px 24px var(--main-light);
+    background: var(--theme-light);
+    box-shadow: 0 0 24px 24px var(--theme-light);
   }
   .dark #post-view-content > h1 {
     color: #ffffffd1;
+    background: var(--theme-dark);
+    box-shadow: 0 0 24px 24px var(--theme-dark);
   }
   .post-block {
     display: flex;
@@ -2966,7 +2968,14 @@ main > .view.PTAni {
     top: -24px;
     padding-top: 24px;
     margin-bottom: 24px;
+    background: var(--main-light);
+    box-shadow: 0 0 24px 24px var(--main-light);
   }
+  .dark #post-view-content > h1 {
+    background: var(--main-dark);
+    box-shadow: 0 0 24px 24px var(--main-dark);
+  }
+
   #pubArticleBtn {
     right: 12px;
     bottom: 12px;
