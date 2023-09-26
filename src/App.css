@@ -2510,7 +2510,7 @@ main > .view.PTAni {
     color: #000000d1;
     font-weight: 900;
     background: var(--theme-light);
-    box-shadow: 0 0 24px 24px var(--theme-light);
+    box-shadow: 0 0 18px 18px var(--theme-light);
   }
   .dark #post-view-content > h1 {
     color: #ffffffd1;
@@ -2545,6 +2545,11 @@ main > .view.PTAni {
     -moz-transition: 0.25s;
     -ms-transition: 0.25s;
     -o-transition: 0.25s;
+  }
+  .post-post:not(.exp) {
+    z-index: 5;
+    position: sticky;
+    top: 88px;
   }
   .post-post > span {
     font-size: 0.8rem;
@@ -2590,6 +2595,7 @@ main > .view.PTAni {
 
   /* 公告過期文章 */
   .post-post.exp {
+    position: relative;
     background: #00000000;
     box-shadow: none;
     border: 1px solid #0000000f;
@@ -2907,6 +2913,80 @@ main > .view.PTAni {
     -ms-transform: scale(0.8);
     -o-transform: scale(0.8);
   }
+  .deleteArticleBtn:hover svg {
+    animation: deleteArticle 1.1s linear infinite;
+    -webkit-animation: deleteArticle 1.1s linear infinite;
+  }
+  @keyframes deleteArticle {
+    0% {
+      margin: 0;
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+    }
+    10% {
+      margin: 0 0 1px 3px;
+      transform: rotate(9deg);
+      -webkit-transform: rotate(9deg);
+      -moz-transform: rotate(9deg);
+      -ms-transform: rotate(9deg);
+      -o-transform: rotate(9deg);
+    }
+    15% {
+      margin-bottom: 0;
+    }
+    20% {
+      margin: 0 2px 1px 0;
+      transform: rotate(-7deg);
+      -webkit-transform: rotate(-7deg);
+      -moz-transform: rotate(-7deg);
+      -ms-transform: rotate(-7deg);
+      -o-transform: rotate(-7deg);
+    }
+    27% {
+      margin-bottom: 0;
+    }
+    33% {
+      margin: 0 0 0.5px 2px;
+      transform: rotate(5deg);
+      -webkit-transform: rotate(5deg);
+      -moz-transform: rotate(5deg);
+      -ms-transform: rotate(5deg);
+      -o-transform: rotate(5deg);
+    }
+    39% {
+      margin-bottom: 0;
+    }
+    45% {
+      margin: 0 1px 0.5px 0;
+      transform: rotate(-2deg);
+      -webkit-transform: rotate(-2deg);
+      -moz-transform: rotate(-2deg);
+      -ms-transform: rotate(-2deg);
+      -o-transform: rotate(-2deg);
+    }
+    48% {
+      margin-bottom: 0;
+    }
+    50% {
+      margin: 0 0 0 0;
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+    }
+    100% {
+      margin: 0 0 0 0;
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+    }
+  }
   .post-post:hover > .deleteArticleBtn {
     opacity: 1;
     transform: scale(1);
@@ -2964,6 +3044,11 @@ main > .view.PTAni {
   }
 }
 @media (min-width: 823px) {
+  .post-post:not(.exp) {
+    z-index: 5;
+    position: sticky;
+    top: 72px;
+  }
   #post-view-content > h1 {
     top: -24px;
     padding-top: 24px;
