@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // CSS
-import '../App.css'
+import '../App.scss'
 
 // 設定頁面組件
 function Setting(props) {

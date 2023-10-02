@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 // CSS
-import '../App.css'
+import '../App.scss'
 // DataBase
 import { HomePostData, HomeServiceData } from '../AppData/AppData.js'
 import GreetBanner from '../tools/GreetingBanner'

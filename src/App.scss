@@ -6,7 +6,7 @@
   padding: 0;
   border: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-family: 'NotoSansTC-Regular';
+  font-family: "NotoSansTC-Regular";
 }
 body {
   display: flex;
@@ -39,18 +39,18 @@ a {
 h1,
 h2,
 h3 {
-  font-family: 'NotoSansTC-Bold';
+  font-family: "NotoSansTC-Bold";
 }
 h4,
 h5,
 h6 {
-  font-family: 'NotoSansTC-Bold';
+  font-family: "NotoSansTC-Bold";
 }
 pre {
-  font-family: 'MartianMono', monospace;
+  font-family: "MartianMono", monospace;
 }
 .code {
-  font-family: 'MartianMono', monospace;
+  font-family: "MartianMono", monospace;
 }
 
 #root {
@@ -777,11 +777,12 @@ main.PTAni {
 }
 main > .view {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: calc(100%);
   position: relative;
   padding: 0;
-  margin: 0 0x;
+  margin: 0 0;
   background: var(--main-light);
   overflow-y: scroll;
   overflow-x: hidden;
@@ -881,7 +882,7 @@ main > .view.PTAni {
   -o-transform: translate(-50%, -100%);
 }
 .loader:before {
-  content: '';
+  content: "";
   width: 48px;
   height: 5px;
   background: #6c6c6c;
@@ -893,7 +894,7 @@ main > .view.PTAni {
   animation: shadow 0.5s linear infinite;
 }
 .loader:after {
-  content: '';
+  content: "";
   width: 50px;
   height: 50px;
   background: #808080;
@@ -1115,7 +1116,7 @@ main > .view.PTAni {
   }
   #RNavHeader::after {
     z-index: 1;
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 78.5px;
@@ -1312,7 +1313,7 @@ main > .view.PTAni {
     /* padding-bottom: 3px; */
   }
   #RNavBottom::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 174px;
@@ -1866,7 +1867,7 @@ main > .view.PTAni {
     -ms-border-radius: 27px;
     -o-border-radius: 27px;
   }
-  #footer-li div[class*='menuicon'] {
+  #footer-li div[class*="menuicon"] {
     flex-direction: column;
   }
   #footer-li div.active {
@@ -1878,7 +1879,7 @@ main > .view.PTAni {
   #footer-li div span {
     display: none;
   }
-  #footer-li div span[class*='menuicon'] {
+  #footer-li div span[class*="menuicon"] {
     display: block;
   }
   .li-view {
@@ -2051,7 +2052,7 @@ main > .view.PTAni {
     /* max-width: 480px; */
   }
   #home-view .topBg::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -2068,7 +2069,7 @@ main > .view.PTAni {
       width: 130%;
     }
     #home-view .topBg::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -2246,7 +2247,7 @@ main > .view.PTAni {
 
   .home-post > .space::after {
     z-index: 0;
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -2271,7 +2272,7 @@ main > .view.PTAni {
   }
   .dark .home-post > .space::after {
     z-index: 0;
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -3740,7 +3741,7 @@ main > .view.PTAni {
     padding: 12px 18px;
     font-size: 1.5rem;
     font-weight: 700;
-    font-family: 'Inter', 'Prompt', 'Noto Sans TC';
+    font-family: "Inter", "Prompt", "Noto Sans TC";
     color: #3f6c9d;
     background: #f1f1f13f;
     border-radius: 13px;

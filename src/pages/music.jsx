@@ -1,12 +1,20 @@
 // React
 import React, { useEffect, useState, useRef } from 'react'
-import './css/music.css'
+import css from './css/music.module.css'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { db } from '../firebase'
 
 import { musicData } from '../AppData/musicData'
 
 function Music(props) {
+  // 頁面動畫
+  const [pageTitleAni, setPageTitleAni] = useState(true)
+  useEffect(() => {
+    setPageTitleAni(false)
+  }, [])
+
   const audioRef = useRef()
   const [musicPlayActive, setMusicPlayActive] = useState(false)
   const [musicPlayer, setMusicPlayer] = useState(false)
@@ -57,6 +65,7 @@ function Music(props) {
       setImgPath('')
     }
   }, [musicPlaying])
+
   // 播放/暫停
   const musicPlayActiveChange = () => {
     // setMusicPlayActive((prevActive) => !prevActive)
@@ -100,36 +109,38 @@ function Music(props) {
     <>
       <main
         id="music"
-        className={`${props.theme}${
-          props.theme && props.settingPage ? ' ' : ''
-        }${props.settingPage ? 'settingOpen' : ''}`}>
-        <div className="musicView">
-          <div className="musicContentView">
-            {musicData.map((music) => (
-              <div
-                className="musicListBlock"
-                key={music}
-                onClick={() => handlePlay(music.name)}>
-                <div className="listTitle">
-                  <div className="listTitleL">
-                    <img
-                      src={`${process.env.PUBLIC_URL}/music/albumBG/${music.data[0].imgPath}`}
-                      alt="test"
-                    />
-                    <p>{music.name}</p>
+        className={`${props.theme}${props.settingPage ? ' settingOpen' : ''}`}>
+        <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+          <div className={css.musicView}>
+            <div className={css.musicContentView}>
+              {musicData.map((music, index) => (
+                <div
+                  className={css.musicListBlock}
+                  key={index}
+                  onClick={() => handlePlay(music.name)}>
+                  <div className={css.listTitle}>
+                    <div className={css.listTitleL}>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/music/albumBG/${music.data[0].imgPath}`}
+                        alt="test"
+                      />
+                      <p>{music.name}</p>
+                    </div>
+                    <div className={css.listTitleR}>
+                      <span>{music.singer}</span>
+                    </div>
                   </div>
-                  <div className="listTitleR">
-                    <span>{music.singer}</span>
-                  </div>
+                  <div className={css.listInfo}></div>
                 </div>
-                <div className="listInfo"></div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </main>
-      <div id="player" className={musicPlayer ? 'open' : ''}>
-        <div className="musicPlayerContent" onClick={musicPlayerChange}>
+      <div
+        id="player"
+        className={`${css.player}${musicPlayer ? ` ${css.open}` : ''}`}>
+        <div className={css.musicPlayerContent} onClick={musicPlayerChange}>
           <img
             src={`${process.env.PUBLIC_URL}/music/albumBG/${
               imgPath ? imgPath : 'Empty.png'
@@ -139,15 +150,15 @@ function Music(props) {
           <p>{name}</p>
           <span>{singer}</span>
         </div>
-        <div className="musicControl">
+        <div className={css.musicControl}>
           <div
-            className="lastBtn"
+            className={css.lastBtn}
             onClick={audioPath ? playPrevSong : () => {}}
             style={{ color: audioPath ? '' : '#dfdfdf' }}>
             <FontAwesomeIcon icon="fa-solid fa-backward-step" />
           </div>
           <div
-            className="playBtn"
+            className={css.playBtn}
             onClick={musicPlayActiveChange}
             style={{ color: audioPath ? '' : '#dfdfdf' }}>
             {musicPlayActive ? (
@@ -160,7 +171,7 @@ function Music(props) {
             )}
           </div>
           <div
-            className="nextBtn"
+            className={css.nextBtn}
             onClick={audioPath ? playNextSong : () => {}}
             style={{ color: audioPath ? '' : '#dfdfdf' }}>
             <FontAwesomeIcon icon="fa-solid fa-forward-step" />
@@ -174,15 +185,10 @@ function Music(props) {
             onPlay={() => setMusicPlayActive(true)}></audio>
         </div>
       </div>
-      <div id="progView">
-        <progress
-          id="musicProg"
-          className={musicPlayer ? 'open' : ''}
-          value={progress}
-          max={1}
-        />
+      <div className={`${css.progView}${musicPlayer ? ` ${css.open}` : ''}`}>
+        <progress className={`${css.musicProg}`} value={progress} max={1} />
         <input
-          className={musicPlayer ? 'open' : ''}
+          className={`${musicPlayer ? `${css.open}` : ''}`}
           type="range"
           min={0}
           max={1}

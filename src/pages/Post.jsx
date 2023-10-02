@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // CSS
-import '../App.css'
+import '../App.scss'
 // DataBase
 import { PostData } from '../AppData/AppData'
 import { initializeApp } from 'firebase/app'

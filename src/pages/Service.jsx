@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, Navigate, Route, Routes, Outlet } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 // CSS
-import '../App.css'
+import '../App.scss'
 // 自定義函式庫
 import useUrlParams from '../js/UpdateUrlParams'
 // DataBase

@@ -1,7 +1,7 @@
 // React
 import React, { useEffect, useState } from 'react'
 // CSS
-import '../App.css'
+import '../App.scss'
 // DataBase
 import { NewUpdatePost, UpdatePost } from '../AppData/UpdateData.js'
 // Icon Library

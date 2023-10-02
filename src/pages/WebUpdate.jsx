@@ -19,7 +19,7 @@ import css from './css/WebUpdate.module.css'
 import PageTitle from '../widgets/PageTitle'
 
 // CSS
-import '../App.css'
+import '../App.scss'
 
 export default function WebUpdate(props) {
   const [themeColor, setThemeColor] = useState([
