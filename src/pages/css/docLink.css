@@ -16,8 +16,8 @@
   -o-transition: 1s;
 }
 .dark #iframeView .docDisplay {
-  filter: invert(#000000);
-  -webkit-filter: invert(#000000);
+  filter: invert();
+  -webkit-filter: invert();
 }
 
 #markdownDoc {

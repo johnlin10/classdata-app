@@ -1,9 +1,9 @@
 // React
-import React from "react";
+import React from 'react'
 // Icon Library
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import css from "./css/ContentTabs.module.scss";
+import css from './css/ContentTabs.module.css'
 
 export default function ContentTabs({
   isDark,
@@ -15,18 +15,18 @@ export default function ContentTabs({
   return (
     <div
       className={`${css.contentTabs} ${isDark && css.dark}${
-        onTop ? " top" : ""
+        onTop ? ' top' : ''
       }`}>
       {options.map((option) => (
         <button
           key={option}
           onClick={() => onChange(option)}
           className={`${css.contentTabsOptn} ${
-            option === selected ? "selected" : ""
+            option === selected ? 'selected' : ''
           }`}>
           {option}
         </button>
       ))}
     </div>
-  );
+  )
 }

@@ -1,3 +1,5 @@
+// 測試 dev 分之併入已微調的 main 分支
+// main 分支的微調修改測試
 // React
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -5,7 +7,7 @@ import { useNavigate, Navigate, Route, Routes, Outlet } from "react-router-dom";
 
 // CSS
 import "./App.scss";
-import css from "./App.module.scss";
+import css from "./App.module.css";
 
 // 網頁標題/描述控件
 import { Helmet } from "react-helmet";
@@ -252,6 +254,10 @@ export default function App() {
 
     return () => unsubscribe();
   }, []);
+
+  // 設備狀態
+
+  // 特殊狀態
 
   // 頁面跳轉
   const navigate = useNavigate();

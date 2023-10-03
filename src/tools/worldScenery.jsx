@@ -1,46 +1,46 @@
-import React, { useEffect, useState } from "react";
-import "./css/worldScenery.scss";
-import worldScenery from "./data/worldScenery.json";
+import React, { useEffect, useState } from 'react'
+import './css/worldScenery.css'
+import worldScenery from './data/worldScenery.json'
 // Icon Library
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function WorldScenery() {
-  const [randomScenery, setRandomScenery] = useState(null);
+  const [randomScenery, setRandomScenery] = useState(null)
 
   const selectRandomScenery = () => {
-    const lastSelectedDate = localStorage.getItem("lastSelectedDate");
-    const currentDate = new Date().toISOString().substr(0, 10);
+    const lastSelectedDate = localStorage.getItem('lastSelectedDate')
+    const currentDate = new Date().toISOString().substr(0, 10)
 
     if (lastSelectedDate !== currentDate) {
       const randomIndex = Math.floor(
         Math.random() * worldScenery[0].worldScenery.length
-      );
-      const selectedScenery = worldScenery[0].worldScenery[randomIndex]; //
-      setRandomScenery(selectedScenery);
-      localStorage.setItem("lastSelectedDate", currentDate);
+      )
+      const selectedScenery = worldScenery[0].worldScenery[randomIndex] //
+      setRandomScenery(selectedScenery)
+      localStorage.setItem('lastSelectedDate', currentDate)
       localStorage.setItem(
-        "lastSelectedScenery",
+        'lastSelectedScenery',
         JSON.stringify(selectedScenery)
-      );
+      )
     } else {
-      setRandomScenery(JSON.parse(localStorage.getItem("lastSelectedScenery")));
+      setRandomScenery(JSON.parse(localStorage.getItem('lastSelectedScenery')))
     }
-  };
+  }
 
   useEffect(() => {
-    const lastSelectedDate = localStorage.getItem("lastSelectedDate");
-    const currentDate = new Date().toISOString().substr(0, 10);
+    const lastSelectedDate = localStorage.getItem('lastSelectedDate')
+    const currentDate = new Date().toISOString().substr(0, 10)
 
     if (lastSelectedDate === currentDate) {
-      const lastSelectedScenery = localStorage.getItem("lastSelectedScenery");
+      const lastSelectedScenery = localStorage.getItem('lastSelectedScenery')
       if (lastSelectedScenery) {
-        setRandomScenery(JSON.parse(lastSelectedScenery));
-        return;
+        setRandomScenery(JSON.parse(lastSelectedScenery))
+        return
       }
     }
 
-    selectRandomScenery();
-  }, []);
+    selectRandomScenery()
+  }, [])
 
   return (
     <>
@@ -59,7 +59,7 @@ function WorldScenery() {
                 rel="noopener noreferrer">
                 <FontAwesomeIcon
                   icon="fa-solid fa-location-dot"
-                  style={{ marginRight: "6px" }}
+                  style={{ marginRight: '6px' }}
                 />
                 {randomScenery.location}
               </a>
@@ -99,7 +99,7 @@ function WorldScenery() {
         </div>
       ))} */}
     </>
-  );
+  )
 }
 
-export default WorldScenery;
+export default WorldScenery

@@ -1,17 +1,17 @@
 // React
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 // Icon Library
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 // css
-import css from "./css/PageTitle.module.scss";
-import ContentTabs from "./ContentTabs";
+import css from './css/PageTitle.module.css'
+import ContentTabs from './ContentTabs'
 
 export default function PageTitle(props) {
-  const [pageTitleAni, setPageTitleAni] = useState(true);
+  const [pageTitleAni, setPageTitleAni] = useState(true)
   useEffect(() => {
-    setPageTitleAni(false);
-  }, []);
+    setPageTitleAni(false)
+  }, [])
   return (
     <>
       <li className={`${css.pageli}${` ${props.isDark && css.dark}`}`}>
@@ -34,5 +34,5 @@ export default function PageTitle(props) {
         />
       )}
     </>
-  );
+  )
 }
