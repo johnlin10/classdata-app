@@ -87,6 +87,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+if (process.env.NODE_ENV === "production") {
+  console.log = function () {};
+  console.error = function () {};
+} else {
+  console.log(`Mode: ${process.env.NODE_ENV}`);
+}
 // 頁面架構組件
 export default function App() {
   //// 狀態與初始化 ////
