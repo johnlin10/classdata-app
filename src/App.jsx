@@ -253,7 +253,7 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  // 新頁面跳轉邏輯
+  // 頁面跳轉
   const navigate = useNavigate();
   const navigateClick = (page) => {
     navigate(page);
@@ -283,28 +283,33 @@ export default function App() {
   };
 
   // 外觀模式切換
-
   // 監測系統外觀模式變化
   const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+  const htmlRef = document.querySelector("html");
+
   // 變更狀態，並且在檢測到系統狀態變化後執行
   useEffect(() => {
     const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
     if (themeMode === 1) {
       if (prefersDarkMode.matches) {
         setTheme("dark");
+        htmlRef.classList.add("dark");
         setThemeInfo("Dark");
         setModeValue("根據系統");
       } else if (!prefersDarkMode.matches) {
         setTheme("");
+        htmlRef.classList.remove("dark");
         setThemeInfo("Light");
         setModeValue("根據系統");
       }
     } else if (themeMode === 2) {
       setTheme("dark");
+      htmlRef.classList.add("dark");
       setThemeInfo("Dark");
       setModeValue("深色模式");
     } else if (themeMode === 0) {
       setTheme("");
+      htmlRef.classList.remove("dark");
       setModeValue("淺色模式");
     }
     prefersDarkMode.addEventListener("change", systemThemeChange);
@@ -322,9 +327,11 @@ export default function App() {
     if (themeMode === 1) {
       if (prefersDarkMode.matches) {
         setTheme("dark");
+        htmlRef.classList.add("dark");
         setModeValue("根據系統");
       } else if (!prefersDarkMode.matches) {
         setTheme("");
+        htmlRef.classList.remove("dark");
         setModeValue("根據系統");
       }
     }
@@ -336,12 +343,14 @@ export default function App() {
     }
     if (themeMode === 1) {
       setTheme("dark");
+      htmlRef.classList.add("dark");
       setThemeMode(2);
       setSpecialTheme(2);
       setModeValue("深色模式");
       setThemeInfo("Dark Mode");
     } else if (themeMode === 2) {
       setTheme("");
+      htmlRef.classList.remove("dark");
       setThemeMode(0);
       setSpecialTheme(0);
       setModeValue("淺色模式");
@@ -499,17 +508,10 @@ export default function App() {
         <meta property="og:description" content="學校、班級的最新資訊" />
       </Helmet>
       <nav
-        className={`${css.nav}${theme == "dark" ? ` ${css.dark}` : ""}${
-          settingPage ? ` ${css._settingOpen}` : ""
-        }${checkLocation(["/"]) ? ` ${css._atHome}` : ""}${
-          isTop && !menuActive ? ` ${css._scrollTop}` : ""
-        }`}>
-        <div
-          id="header"
-          className={`${menuActive ? "open" : ""}`}
-          style={{
-            boxShadow: menuActive ? "0 1px 1px 0px #f1f1f100" : "",
-          }}>
+        className={`${css.nav}${settingPage ? ` ${css._settingOpen}` : ""}${
+          checkLocation(["/"]) ? ` ${css._atHome}` : ""
+        }${isTop && !menuActive ? ` ${css._scrollTop}` : ""}`}>
+        <div id="header" className={`${menuActive ? "open" : ""}`}>
           <ul className={css.header_ul}>
             {checkLocation([
               "/",

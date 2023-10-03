@@ -31,11 +31,15 @@
     background: var(--theme-light);
   }
 
-  &.dark {
+  :global(.dark) & {
     background: var(--theme-dark);
+  }
 
-    &.settingOpen {
-      top: 100vh;
+  &.settingOpen {
+    top: 100vh;
+    background: var(--theme-light);
+
+    :global(.dark) & {
       background: var(--theme-dark);
     }
   }
@@ -52,7 +56,7 @@
   padding: 18px 18px 0 18px;
   background: #f1f1f100;
 }
-.nav.dark.scrollTop {
+.nav:global(.dark).scrollTop {
   background: var(--theme-dark);
 }
 
@@ -118,13 +122,15 @@
 .header_li > .block :is(svg, span) {
   color: #33363a;
 }
-.dark .header_li > .block :is(svg, span) {
+:global(.dark) .header_li > .block :is(svg, span) {
   color: #c2cad5;
 }
 .header_li:not(:first-child, :last-child) > .block:hover {
   border-bottom: 0 solid #0000003f;
 }
-.dark .header_li:not(:first-child, :last-child) > .block:not(.actv):hover {
+:global(.dark)
+  .header_li:not(:first-child, :last-child)
+  > .block:not(.actv):hover {
   border-bottom: 0 solid #ffffff3f;
 }
 .header_li:not(:first-child, :last-child) > .block:hover p {
@@ -136,7 +142,7 @@
   font-size: 0.9rem;
   color: #000000a1;
 }
-.dark .header_li > .block > p {
+:global(.dark) .header_li > .block > p {
   color: #ffffffa1;
 }
 .header_li > .block.actv > p {
@@ -173,7 +179,7 @@
   -ms-transition: 0.15s ease-in-out;
   -o-transition: 0.15s ease-in-out;
 }
-.dark .header_li > .block > .user {
+:global(.dark) .header_li > .block > .user {
   border: 1px solid #ffffff1f;
   /* color: #ffffff7f; */
 }

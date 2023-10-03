@@ -1,38 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 // CSS
-import '../App.scss'
+import "../App.scss";
 // DataBase
-import { HomePostData, HomeServiceData } from '../AppData/AppData.js'
-import GreetBanner from '../tools/GreetingBanner'
-import WorldScenery from '../tools/worldScenery'
+import { HomePostData, HomeServiceData } from "../AppData/AppData.js";
+import GreetBanner from "../tools/GreetingBanner";
+import WorldScenery from "../tools/worldScenery";
 // Icon Library
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Spline from '@splinetool/react-spline'
+import Spline from "@splinetool/react-spline";
 // import forestPath from '../images/Illustrations/ForestPath.png'
 
 // 滾動視差
-import Rellax from 'rellax'
+import Rellax from "rellax";
 
 function Home(props) {
   useEffect(() => {
-    const HomeTitleRellax = new Rellax('.homeTopTitle', { wrapper: '#home' })
-    const bgScr = new Rellax('.bgScr', { wrapper: '#home' })
-    const moreBtn = new Rellax('.moreBtn', { wrapper: '#home' })
+    const HomeTitleRellax = new Rellax(".homeTopTitle", { wrapper: "#home" });
+    const bgScr = new Rellax(".bgScr", { wrapper: "#home" });
+    const moreBtn = new Rellax(".moreBtn", { wrapper: "#home" });
     return () => {
-      HomeTitleRellax.destroy()
-      bgScr.destroy()
-      moreBtn.destroy()
-    }
-  }, [])
+      HomeTitleRellax.destroy();
+      bgScr.destroy();
+      moreBtn.destroy();
+    };
+  }, []);
 
   return (
     <main
       id="home"
-      className={`${props.theme}${props.theme && props.settingPage ? ' ' : ''}${
-        props.settingPage ? 'settingOpen' : ''
-      }`}
+      className={`${props.theme}${props.settingPage ? " settingOpen" : ""}`}
       // style={{
       //   backgroundImage: `url(${
       //     process.env.PUBLIC_URL
@@ -53,7 +51,7 @@ function Home(props) {
             <FontAwesomeIcon
               icon="fa-solid fa-school"
               alt="班級資訊平台 icon"
-              style={{ marginRight: '12px', marginBottom: '2px' }}
+              style={{ marginRight: "12px", marginBottom: "2px" }}
             />
             班級資訊平台
           </h1>
@@ -64,16 +62,16 @@ function Home(props) {
             className="moreBtn"
             data-rellax-speed="-2"
             onClick={() =>
-              document.querySelector('#home-view-content').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-                marginTop: '54px',
+              document.querySelector("#home-view-content").scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                marginTop: "54px",
               })
             }>
             <p>
               <FontAwesomeIcon
                 icon="fa-solid fa-chevron-down"
-                style={{ marginRight: '6px' }}
+                style={{ marginRight: "6px" }}
               />
               更多
             </p>
@@ -83,7 +81,7 @@ function Home(props) {
             src={`${
               process.env.PUBLIC_URL
             }/images/homePage/homePageBackground/screenShot/exSch${
-              props.theme === 'dark' ? '.' : ''
+              props.theme === "dark" ? "." : ""
             }${props.theme}.png`}
             alt="服務/考程表"
             title="服務/考程表"
@@ -94,7 +92,7 @@ function Home(props) {
             src={`${
               process.env.PUBLIC_URL
             }/images/homePage/homePageBackground/screenShot/courSch${
-              props.theme === 'dark' ? '.' : ''
+              props.theme === "dark" ? "." : ""
             }${props.theme}.png`}
             alt="服務/課程表"
             title="服務/課程表"
@@ -105,7 +103,7 @@ function Home(props) {
             src={`${
               process.env.PUBLIC_URL
             }/images/homePage/homePageBackground/screenShot/chatGroup${
-              props.theme === 'dark' ? '.' : ''
+              props.theme === "dark" ? "." : ""
             }${props.theme}.png`}
             alt="討論"
             title="討論"
@@ -150,7 +148,7 @@ function Home(props) {
                 {HomePostData.stylebackground && (
                   <img
                     src={`${
-                      HomePostData.stylebackground.includes('https://')
+                      HomePostData.stylebackground.includes("https://")
                         ? HomePostData.stylebackground
                         : `${process.env.PUBLIC_URL}/images/homePage/${HomePostData.stylebackground}`
                     }`}
@@ -176,7 +174,7 @@ function Home(props) {
         </div>
       </div>
     </main>
-  )
+  );
 }
 
-export default Home
+export default Home;
