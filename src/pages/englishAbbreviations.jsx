@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import './css/englishAbbreviations.css'
+import React, { useEffect, useState } from "react";
+import "./css/englishAbbreviations.scss";
 // Icon Library
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function EnglishAbbreviations(props) {
   // 頁面動畫
-  const [pageTitleAni, setPageTitleAni] = useState(true)
+  const [pageTitleAni, setPageTitleAni] = useState(true);
   useEffect(() => {
-    setPageTitleAni(false)
-  }, [])
+    setPageTitleAni(false);
+  }, []);
   return (
     <main
       id="engAbbreviations"
-      className={`${props.theme}${props.theme && props.settingPage ? ' ' : ''}${
-        props.settingPage ? 'settingOpen' : ''
+      className={`${props.theme}${props.theme && props.settingPage ? " " : ""}${
+        props.settingPage ? "settingOpen" : ""
       }`}>
-      <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+      <div className={`view${pageTitleAni ? " PTAni" : ""}`}>
         <div id="engAbbreviationsWarning">
           <span>
             <FontAwesomeIcon
               icon="fa-solid fa-triangle-exclamation"
               bounce
-              style={{ color: '#d03d23' }}
+              style={{ color: "#d03d23" }}
             />
             此內容由 AI 生成，可能存在錯誤。
           </span>
@@ -295,5 +295,5 @@ export default function EnglishAbbreviations(props) {
         </div>
       </div>
     </main>
-  )
+  );
 }

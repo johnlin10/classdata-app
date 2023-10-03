@@ -1,41 +1,41 @@
 // react
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from "react";
 
-import Button from './button'
+import Button from "./button";
 
 // Icon Library
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import css from './css/editer.module.css'
+import css from "./css/editer.module.scss";
 
 export default function Editer(props) {
-  const scrollTop = useRef(null)
+  const scrollTop = useRef(null);
 
-  const [topTitleActv, setTopTitleActv] = useState(false)
+  const [topTitleActv, setTopTitleActv] = useState(false);
   useEffect(() => {
-    const currentScrollTop = scrollTop.current
+    const currentScrollTop = scrollTop.current;
     const handleScroll = () => {
       if (currentScrollTop.scrollTop > 0) {
-        setTopTitleActv(true)
+        setTopTitleActv(true);
       } else {
-        setTopTitleActv(false)
+        setTopTitleActv(false);
       }
-    }
+    };
     if (currentScrollTop) {
-      currentScrollTop.addEventListener('scroll', handleScroll)
+      currentScrollTop.addEventListener("scroll", handleScroll);
       return () => {
-        currentScrollTop.removeEventListener('scroll', handleScroll)
-      }
+        currentScrollTop.removeEventListener("scroll", handleScroll);
+      };
     }
-  }, [])
+  }, []);
 
   return (
     <div
       ref={scrollTop}
-      className={`${props.theme}${props.theme ? ' ' : ''}${css.editerView}${
-        props.editView ? ' open' : ''
+      className={`${props.theme}${props.theme ? " " : ""}${css.editerView}${
+        props.editView ? " open" : ""
       }`}>
-      <div className={`${css.topTitleView}${topTitleActv ? ' actv' : ''}`}>
+      <div className={`${css.topTitleView}${topTitleActv ? " actv" : ""}`}>
         <div>
           <h5>{props.title} 編輯器</h5>
         </div>
@@ -55,5 +55,5 @@ export default function Editer(props) {
         btnContentColor={props.btnContentColor}
       />
     </div>
-  )
+  );
 }
