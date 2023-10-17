@@ -1,5 +1,4 @@
-// 測試 dev 分之併入已微調的 main 分支
-// main 分支的微調修改測試
+/* eslint-disable no-unused-vars */
 // React
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -916,7 +915,8 @@ export default function App() {
                   ? user.photoURL
                   : `${process.env.PUBLIC_URL}/images/icons/user.png`
               }
-              title={user ? user.displayName : "未登入"}></img>
+              title={user ? user.displayName : "未登入"}
+              alt={user ? user.displayName : "未登入"}></img>
           </div>
           <div
             id="RNav-li"

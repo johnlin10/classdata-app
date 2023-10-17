@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 // CSS
 import "../App.scss";
 // DataBase
-import { HomePostData, HomeServiceData } from "../AppData/AppData.js";
+import { HomePostData } from "../AppData/AppData.js";
 import GreetBanner from "../tools/GreetingBanner";
 import WorldScenery from "../tools/worldScenery";
 // Icon Library

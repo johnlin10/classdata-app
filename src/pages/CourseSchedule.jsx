@@ -1,14 +1,14 @@
 // React
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from "react";
 // Icon Library
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Database
-import { CourseScheduleData, LeftTitle } from '../AppData/AppData.js'
+import { LeftTitle } from "../AppData/AppData.js";
 // Firebase
-import { initializeApp } from 'firebase/app'
-import { getAnalytics } from 'firebase/analytics'
-import { getFirestore } from 'firebase/firestore'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -16,781 +16,781 @@ import {
   doc,
   setDoc,
   onSnapshot,
-} from 'firebase/firestore'
+} from "firebase/firestore";
 // Widget
-import PageTitle from '../widgets/PageTitle'
-import Loader from '../widgets/Loader.jsx'
-import EditBtn from '../widgets/editBtn'
-import Editer from '../widgets/editer'
-import PageCtrlModule from '../widgets/PageCtrlModule'
-import ContentTabs from '../widgets/ContentTabs'
-import { Helmet } from 'react-helmet'
+import PageTitle from "../widgets/PageTitle";
+import Loader from "../widgets/Loader.jsx";
+import EditBtn from "../widgets/editBtn";
+import Editer from "../widgets/editer";
+import PageCtrlModule from "../widgets/PageCtrlModule";
+import ContentTabs from "../widgets/ContentTabs";
+import { Helmet } from "react-helmet";
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 // 雲端資料庫
 // 初始化
 const firebaseConfig = {
-  apiKey: 'AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg',
-  authDomain: 'classdata-app.firebaseapp.com',
-  projectId: 'classdata-app',
-  storageBucket: 'classdata-app.appspot.com',
-  messagingSenderId: '219989250207',
-  appId: '1:219989250207:web:5cef212dc7e1496c6952aa',
-}
-const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
-const auth = getAuth()
+  apiKey: "AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg",
+  authDomain: "classdata-app.firebaseapp.com",
+  projectId: "classdata-app",
+  storageBucket: "classdata-app.appspot.com",
+  messagingSenderId: "219989250207",
+  appId: "1:219989250207:web:5cef212dc7e1496c6952aa",
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth();
 
 function CourseSchedule(props) {
   const [themeColor, setThemeColor] = useState([
-    '#5074eb',
-    '#fffffff1',
-    '#5074eb',
-    '#fffffff1',
-  ])
-  const [user, setUser] = useState()
-  const [editPrmsn, setEditPrmsn] = useState(false)
+    "#5074eb",
+    "#fffffff1",
+    "#5074eb",
+    "#fffffff1",
+  ]);
+  const [user, setUser] = useState();
+  const [editPrmsn, setEditPrmsn] = useState(false);
   // 編輯
-  const [editView, setEditView] = useState(false)
+  const [editView, setEditView] = useState(false);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user)
-    })
-    return unsubscribe
-  }, [])
+      setUser(user);
+    });
+    return unsubscribe;
+  }, []);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User is signed in
         if (user.uid === process.env.REACT_APP_ADMIN_ACCOUNT) {
-          setEditPrmsn(true)
-        } else setEditPrmsn(false)
+          setEditPrmsn(true);
+        } else setEditPrmsn(false);
       } else {
         // User is signed out
-        setEditPrmsn(false)
+        setEditPrmsn(false);
       }
-    })
-    return unsubscribe
-  }, [user])
+    });
+    return unsubscribe;
+  }, [user]);
 
   // 樣式規則
   function courseScheduleMerger(number) {
-    if (typeof number !== 'string' || !number) {
-      return ''
+    if (typeof number !== "string" || !number) {
+      return "";
     }
 
-    if (number.includes('classchange')) {
-      if (number.includes('2')) {
-        return 'Double classchange'
-      } else if (number.includes('3')) {
-        return 'Triple classchange'
-      } else if (number.includes('AllDay')) {
-        return 'AllDay classchange'
+    if (number.includes("classchange")) {
+      if (number.includes("2")) {
+        return "Double classchange";
+      } else if (number.includes("3")) {
+        return "Triple classchange";
+      } else if (number.includes("AllDay")) {
+        return "AllDay classchange";
       } else {
-        return 'classchange'
+        return "classchange";
       }
-    } else if (number.includes('AllDay') && !number.includes('classchange')) {
-      if (number.includes('Vacances')) {
-        return 'AllDay Vacances'
+    } else if (number.includes("AllDay") && !number.includes("classchange")) {
+      if (number.includes("Vacances")) {
+        return "AllDay Vacances";
       } else {
-        return 'AllDay'
+        return "AllDay";
       }
     } else {
-      if (number.includes('2')) {
-        return 'Double'
-      } else if (number.includes('3')) {
-        return 'Triple'
-      } else if (number.includes('AllDay')) {
-        return 'AllDay'
+      if (number.includes("2")) {
+        return "Double";
+      } else if (number.includes("3")) {
+        return "Triple";
+      } else if (number.includes("AllDay")) {
+        return "AllDay";
       }
     }
 
-    return ''
+    return "";
   }
 
   // 課程表狀態
-  const [_, forceUpdate] = useState(0)
+  const [_, forceUpdate] = useState(0);
   const [courseScheduleDataInfoActive, setcourseScheduleDataInfoActive] =
-    useState(false)
+    useState(false);
   const courseScheduleDataInfo = () => {
-    setcourseScheduleDataInfoActive((prevActive) => !prevActive)
-  }
+    setcourseScheduleDataInfoActive((prevActive) => !prevActive);
+  };
 
-  const [courSchData, setCourSchData] = useState()
-  const [courSchDataBackup, setCourSchDataBackup] = useState()
+  const [courSchData, setCourSchData] = useState();
+  const [courSchDataBackup, setCourSchDataBackup] = useState();
 
   const resetCourSchData = [
     {
-      type: '資訊科',
+      type: "資訊科",
       data: [
         {
           Course: [
             {
-              info_classroom: '501',
-              continuity: '',
-              class: '化學',
-              info_teacher: '陳永富',
+              info_classroom: "501",
+              continuity: "",
+              class: "化學",
+              info_teacher: "陳永富",
             },
             {
-              continuity: '2',
-              info_teacher: '黃芳瑩',
-              class: '微處理機',
-              info_classroom: '531',
+              continuity: "2",
+              info_teacher: "黃芳瑩",
+              class: "微處理機",
+              info_classroom: "531",
             },
             {
-              class: '數位音樂',
-              info_teacher: '林郁珊',
-              continuity: '',
-              info_classroom: '353',
+              class: "數位音樂",
+              info_teacher: "林郁珊",
+              continuity: "",
+              info_classroom: "353",
             },
             {
-              info_classroom: '501',
-              class: '數學',
-              info_teacher: '成志樵',
-              continuity: '',
+              info_classroom: "501",
+              class: "數學",
+              info_teacher: "成志樵",
+              continuity: "",
             },
             {
-              info_classroom: '501',
-              class: '英語文',
-              info_teacher: '徐玉雪',
-              continuity: '2',
+              info_classroom: "501",
+              class: "英語文",
+              info_teacher: "徐玉雪",
+              continuity: "2",
             },
             {
-              info_classroom: '501',
-              continuity: '',
-              info_teacher: '鄭雅華',
-              class: '共學共好',
-            },
-          ],
-          Date: '星期一',
-        },
-        {
-          Date: '星期二',
-          Course: [
-            {
-              info_classroom: '583',
-              info_teacher: '周嘉慧',
-              class: '地理',
-              continuity: '',
-              active: 'classroom',
-            },
-            {
-              continuity: '3',
-              class: '單晶片微處理機實習',
-              info_classroom: '587',
-              info_teacher: '葉憲民',
-            },
-            {
-              info_teacher: '黃釧泉',
-              info_classroom: '482',
-              continuity: '3',
-              class: '電腦硬體裝修實習',
-            },
-            {
-              continuity: '',
-              class: '共學共好',
-              info_teacher: '鄭雅華',
-              info_classroom: '501',
+              info_classroom: "501",
+              continuity: "",
+              info_teacher: "鄭雅華",
+              class: "共學共好",
             },
           ],
+          Date: "星期一",
         },
         {
-          Date: '星期三',
+          Date: "星期二",
           Course: [
             {
-              continuity: '',
-              info_classroom: '586',
-              class: '多元選修',
-              info_teacher: '林怡欣',
-              active: 'classroom',
+              info_classroom: "583",
+              info_teacher: "周嘉慧",
+              class: "地理",
+              continuity: "",
+              active: "classroom",
             },
             {
-              info_teacher: '成志樵',
-              class: '數學',
-              info_classroom: '386',
-              continuity: '2',
-              active: 'classroom',
+              continuity: "3",
+              class: "單晶片微處理機實習",
+              info_classroom: "587",
+              info_teacher: "葉憲民",
             },
             {
-              info_classroom: '485',
-              class: '微處理機',
-              continuity: '',
-              info_teacher: '黃芳瑩',
-              active: 'classroom',
+              info_teacher: "黃釧泉",
+              info_classroom: "482",
+              continuity: "3",
+              class: "電腦硬體裝修實習",
             },
             {
-              class: '體育',
-              info_teacher: '林泱妗',
-              continuity: '',
-              info_classroom: '',
-            },
-            {
-              class: '電路學',
-              info_classroom: '485',
-              continuity: '2',
-              info_teacher: '黃芳瑩',
-              active: 'classroom',
-            },
-            {
-              info_classroom: '501',
-              class: '共學共好',
-              continuity: '',
-              info_teacher: '鄭雅華',
+              continuity: "",
+              class: "共學共好",
+              info_teacher: "鄭雅華",
+              info_classroom: "501",
             },
           ],
         },
         {
+          Date: "星期三",
           Course: [
             {
-              info_teacher: '成志樵',
-              info_classroom: '581',
-              continuity: '3',
-              class: '電子學實習',
+              continuity: "",
+              info_classroom: "586",
+              class: "多元選修",
+              info_teacher: "林怡欣",
+              active: "classroom",
             },
             {
-              class: '體育',
-              continuity: '',
-              info_classroom: '',
-              info_teacher: '林泱妗',
+              info_teacher: "成志樵",
+              class: "數學",
+              info_classroom: "386",
+              continuity: "2",
+              active: "classroom",
             },
             {
-              info_teacher: '葉憲民',
-              class: '電子學',
-              continuity: '',
-              info_classroom: '501',
+              info_classroom: "485",
+              class: "微處理機",
+              continuity: "",
+              info_teacher: "黃芳瑩",
+              active: "classroom",
             },
             {
-              class: '國語文',
-              continuity: '2',
-              info_teacher: '鄭雅華',
-              info_classroom: '501',
+              class: "體育",
+              info_teacher: "林泱妗",
+              continuity: "",
+              info_classroom: "",
             },
             {
-              continuity: '',
-              info_classroom: '501',
-              class: '共學共好',
-              info_teacher: '鄭雅華',
+              class: "電路學",
+              info_classroom: "485",
+              continuity: "2",
+              info_teacher: "黃芳瑩",
+              active: "classroom",
+            },
+            {
+              info_classroom: "501",
+              class: "共學共好",
+              continuity: "",
+              info_teacher: "鄭雅華",
             },
           ],
-          Date: '星期四',
         },
         {
-          Date: '星期五',
           Course: [
             {
-              continuity: '',
-              info_teacher: '',
-              info_classroom: '',
-              class: '班/週會',
+              info_teacher: "成志樵",
+              info_classroom: "581",
+              continuity: "3",
+              class: "電子學實習",
             },
             {
-              info_teacher: '',
-              class: '聯課活動',
-              info_classroom: '',
-              continuity: '2',
+              class: "體育",
+              continuity: "",
+              info_classroom: "",
+              info_teacher: "林泱妗",
             },
             {
-              class: '彈性課程',
-              info_classroom: '501',
-              info_teacher: '鄭雅華',
-              continuity: '1',
+              info_teacher: "葉憲民",
+              class: "電子學",
+              continuity: "",
+              info_classroom: "501",
             },
             {
-              class: '國語文',
-              info_classroom: '501',
-              continuity: '',
-              info_teacher: '鄭雅華',
+              class: "國語文",
+              continuity: "2",
+              info_teacher: "鄭雅華",
+              info_classroom: "501",
             },
             {
-              info_classroom: '501',
-              class: '電子學',
-              continuity: '2',
-              info_teacher: '葉憲民',
+              continuity: "",
+              info_classroom: "501",
+              class: "共學共好",
+              info_teacher: "鄭雅華",
+            },
+          ],
+          Date: "星期四",
+        },
+        {
+          Date: "星期五",
+          Course: [
+            {
+              continuity: "",
+              info_teacher: "",
+              info_classroom: "",
+              class: "班/週會",
             },
             {
-              info_classroom: '501',
-              info_teacher: '鄭雅華',
-              continuity: '',
-              class: '共學共好',
+              info_teacher: "",
+              class: "聯課活動",
+              info_classroom: "",
+              continuity: "2",
+            },
+            {
+              class: "彈性課程",
+              info_classroom: "501",
+              info_teacher: "鄭雅華",
+              continuity: "1",
+            },
+            {
+              class: "國語文",
+              info_classroom: "501",
+              continuity: "",
+              info_teacher: "鄭雅華",
+            },
+            {
+              info_classroom: "501",
+              class: "電子學",
+              continuity: "2",
+              info_teacher: "葉憲民",
+            },
+            {
+              info_classroom: "501",
+              info_teacher: "鄭雅華",
+              continuity: "",
+              class: "共學共好",
             },
           ],
         },
       ],
     },
     {
-      type: '電子科',
+      type: "電子科",
       data: [
         {
           Course: [
             {
-              class: '化學',
-              info_teacher: '陳永富',
-              info_classroom: '501',
+              class: "化學",
+              info_teacher: "陳永富",
+              info_classroom: "501",
             },
             {
-              info_teacher: '黃芳瑩',
-              class: '微處理機',
-              continuity: '2',
-              info_classroom: '531',
+              info_teacher: "黃芳瑩",
+              class: "微處理機",
+              continuity: "2",
+              info_classroom: "531",
             },
             {
-              class: '數位音樂',
-              info_teacher: '林郁珊',
-              info_classroom: '353',
+              class: "數位音樂",
+              info_teacher: "林郁珊",
+              info_classroom: "353",
             },
             {
-              class: '數學',
-              info_teacher: '成志樵',
-              info_classroom: '501',
+              class: "數學",
+              info_teacher: "成志樵",
+              info_classroom: "501",
             },
             {
-              info_classroom: '501',
-              info_teacher: '徐玉雪',
-              continuity: '2',
-              class: '英語文',
+              info_classroom: "501",
+              info_teacher: "徐玉雪",
+              continuity: "2",
+              class: "英語文",
             },
             {
-              class: '共學共好',
-              info_classroom: '501',
-              info_teacher: '鄭雅華',
-            },
-          ],
-          Date: '星期一',
-        },
-        {
-          Date: '星期二',
-          Course: [
-            {
-              info_classroom: '583',
-              info_teacher: '周嘉慧',
-              class: '地理',
-              active: 'classroom',
-            },
-            {
-              continuity: '3',
-              class: '單晶片微處理機實習',
-              info_classroom: '587',
-              info_teacher: '葉憲民',
-            },
-            {
-              info_classroom: '482',
-              info_teacher: '黃釧泉',
-              continuity: '3',
-              class: '感測器實習',
-            },
-            {
-              info_teacher: '鄭雅華',
-              class: '共學共好',
-              info_classroom: '501',
+              class: "共學共好",
+              info_classroom: "501",
+              info_teacher: "鄭雅華",
             },
           ],
+          Date: "星期一",
         },
         {
+          Date: "星期二",
           Course: [
             {
-              class: '多元選修',
-              info_classroom: '486/488',
-              info_teacher: '林怡欣/徐玉雪',
-              active: 'classroom',
+              info_classroom: "583",
+              info_teacher: "周嘉慧",
+              class: "地理",
+              active: "classroom",
             },
             {
-              class: '數學',
-              info_classroom: '386',
-              continuity: '2',
-              info_teacher: '成志樵',
-              active: 'classroom',
+              continuity: "3",
+              class: "單晶片微處理機實習",
+              info_classroom: "587",
+              info_teacher: "葉憲民",
             },
             {
-              info_classroom: '485',
-              info_teacher: '黃芳瑩',
-              class: '微處理機',
-              active: 'classroom',
+              info_classroom: "482",
+              info_teacher: "黃釧泉",
+              continuity: "3",
+              class: "感測器實習",
             },
             {
-              continuity: '',
-              info_teacher: '林泱妗',
-              class: '體育',
-              info_classroom: '',
-            },
-            {
-              info_classroom: '485',
-              continuity: '2',
-              class: '電路學',
-              info_teacher: '黃芳瑩',
-              active: 'classroom',
-            },
-            {
-              class: '共學共好',
-              info_classroom: '501',
-              info_teacher: '鄭雅華',
-            },
-          ],
-          Date: '星期三',
-        },
-        {
-          Date: '星期四',
-          Course: [
-            {
-              info_teacher: '成志樵',
-              class: '電子學實習',
-              continuity: '3',
-              info_classroom: '581',
-            },
-            {
-              continuity: '',
-              info_classroom: '',
-              class: '體育',
-              info_teacher: '林泱妗',
-            },
-            {
-              info_teacher: '葉憲民',
-              class: '電子學',
-              info_classroom: '501',
-              continuity: '',
-            },
-            {
-              info_teacher: '鄭雅華',
-              class: '國語文',
-              continuity: '2',
-              info_classroom: '501',
-            },
-            {
-              info_teacher: '鄭雅華',
-              class: '共學共好',
-              info_classroom: '501',
-              continuity: '',
+              info_teacher: "鄭雅華",
+              class: "共學共好",
+              info_classroom: "501",
             },
           ],
         },
         {
           Course: [
             {
-              info_classroom: '',
-              continuity: '',
-              class: '班/週會',
-              info_teacher: '',
+              class: "多元選修",
+              info_classroom: "486/488",
+              info_teacher: "林怡欣/徐玉雪",
+              active: "classroom",
             },
             {
-              info_classroom: '',
-              class: '聯課活動',
-              continuity: '2',
-              info_teacher: '',
+              class: "數學",
+              info_classroom: "386",
+              continuity: "2",
+              info_teacher: "成志樵",
+              active: "classroom",
             },
             {
-              info_teacher: '鄭雅華',
-              continuity: '1',
-              info_classroom: '501',
-              class: '彈性課程',
+              info_classroom: "485",
+              info_teacher: "黃芳瑩",
+              class: "微處理機",
+              active: "classroom",
             },
             {
-              continuity: '',
-              info_classroom: '501',
-              class: '國語文',
-              info_teacher: '鄭雅華',
+              continuity: "",
+              info_teacher: "林泱妗",
+              class: "體育",
+              info_classroom: "",
             },
             {
-              info_teacher: '葉憲民',
-              continuity: '2',
-              info_classroom: '501',
-              class: '電子學',
+              info_classroom: "485",
+              continuity: "2",
+              class: "電路學",
+              info_teacher: "黃芳瑩",
+              active: "classroom",
             },
             {
-              continuity: '',
-              info_classroom: '501',
-              class: '共學共好',
-              info_teacher: '鄭雅華',
+              class: "共學共好",
+              info_classroom: "501",
+              info_teacher: "鄭雅華",
             },
           ],
-          Date: '星期五',
+          Date: "星期三",
+        },
+        {
+          Date: "星期四",
+          Course: [
+            {
+              info_teacher: "成志樵",
+              class: "電子學實習",
+              continuity: "3",
+              info_classroom: "581",
+            },
+            {
+              continuity: "",
+              info_classroom: "",
+              class: "體育",
+              info_teacher: "林泱妗",
+            },
+            {
+              info_teacher: "葉憲民",
+              class: "電子學",
+              info_classroom: "501",
+              continuity: "",
+            },
+            {
+              info_teacher: "鄭雅華",
+              class: "國語文",
+              continuity: "2",
+              info_classroom: "501",
+            },
+            {
+              info_teacher: "鄭雅華",
+              class: "共學共好",
+              info_classroom: "501",
+              continuity: "",
+            },
+          ],
+        },
+        {
+          Course: [
+            {
+              info_classroom: "",
+              continuity: "",
+              class: "班/週會",
+              info_teacher: "",
+            },
+            {
+              info_classroom: "",
+              class: "聯課活動",
+              continuity: "2",
+              info_teacher: "",
+            },
+            {
+              info_teacher: "鄭雅華",
+              continuity: "1",
+              info_classroom: "501",
+              class: "彈性課程",
+            },
+            {
+              continuity: "",
+              info_classroom: "501",
+              class: "國語文",
+              info_teacher: "鄭雅華",
+            },
+            {
+              info_teacher: "葉憲民",
+              continuity: "2",
+              info_classroom: "501",
+              class: "電子學",
+            },
+            {
+              continuity: "",
+              info_classroom: "501",
+              class: "共學共好",
+              info_teacher: "鄭雅華",
+            },
+          ],
+          Date: "星期五",
         },
       ],
     },
     {
-      type: '電機科',
+      type: "電機科",
       data: [
         {
           Course: [
             {
-              class: '化學',
-              info_teacher: '陳永富',
-              info_classroom: '501',
+              class: "化學",
+              info_teacher: "陳永富",
+              info_classroom: "501",
             },
             {
-              info_classroom: '501',
-              class: '電工機械',
-              continuity: '2',
-              info_teacher: '江明德',
+              info_classroom: "501",
+              class: "電工機械",
+              continuity: "2",
+              info_teacher: "江明德",
             },
             {
-              info_classroom: '353',
-              info_teacher: '林郁珊',
-              class: '數位音樂',
+              info_classroom: "353",
+              info_teacher: "林郁珊",
+              class: "數位音樂",
             },
             {
-              class: '數學',
-              info_teacher: '成志樵',
-              info_classroom: '501',
+              class: "數學",
+              info_teacher: "成志樵",
+              info_classroom: "501",
             },
             {
-              info_classroom: '501',
-              continuity: '2',
-              info_teacher: '徐玉雪',
-              class: '英語文',
+              info_classroom: "501",
+              continuity: "2",
+              info_teacher: "徐玉雪",
+              class: "英語文",
             },
             {
-              info_teacher: '鄭雅華',
-              info_classroom: '501',
-              class: '共學共好',
-            },
-          ],
-          Date: '星期一',
-        },
-        {
-          Date: '星期二',
-          Course: [
-            {
-              info_classroom: '583',
-              class: '地理',
-              info_teacher: '周嘉慧',
-              active: 'classroom',
-            },
-            {
-              continuity: '3',
-              class: '機電整合實習',
-              info_classroom: '583',
-              info_teacher: '施茗鈜',
-            },
-            {
-              info_classroom: '484',
-              info_teacher: '施茗鈜',
-              continuity: '3',
-              class: '智慧居家監控實習',
-            },
-            {
-              info_classroom: '501',
-              info_teacher: '鄭雅華',
-              class: '共學共好',
+              info_teacher: "鄭雅華",
+              info_classroom: "501",
+              class: "共學共好",
             },
           ],
+          Date: "星期一",
         },
         {
-          Date: '星期三',
+          Date: "星期二",
           Course: [
             {
-              info_classroom: '486/488',
-              info_teacher: '林怡欣/徐玉雪',
-              class: '多元選修',
-              active: 'classroom',
+              info_classroom: "583",
+              class: "地理",
+              info_teacher: "周嘉慧",
+              active: "classroom",
             },
             {
-              info_teacher: '成志樵',
-              info_classroom: '386',
-              continuity: '2',
-              class: '數學',
-              active: 'classroom',
+              continuity: "3",
+              class: "機電整合實習",
+              info_classroom: "583",
+              info_teacher: "施茗鈜",
             },
             {
-              info_classroom: '383',
-              class: '電工機械',
-              info_teacher: '江明德',
-              active: 'classroom',
+              info_classroom: "484",
+              info_teacher: "施茗鈜",
+              continuity: "3",
+              class: "智慧居家監控實習",
             },
             {
-              continuity: '',
-              class: '體育',
-              info_teacher: '林泱妗',
-              info_classroom: '',
-            },
-            {
-              info_teacher: '江明德',
-              info_classroom: '383',
-              class: '工業配線',
-              continuity: '2',
-            },
-            {
-              class: '共學共好',
-              info_classroom: '501',
-              info_teacher: '鄭雅華',
+              info_classroom: "501",
+              info_teacher: "鄭雅華",
+              class: "共學共好",
             },
           ],
         },
         {
+          Date: "星期三",
           Course: [
             {
-              info_classroom: '581',
-              class: '電子學實習',
-              continuity: '3',
-              info_teacher: '成志樵',
+              info_classroom: "486/488",
+              info_teacher: "林怡欣/徐玉雪",
+              class: "多元選修",
+              active: "classroom",
             },
             {
-              info_classroom: '',
-              class: '體育',
-              info_teacher: '林泱妗',
-              continuity: '',
+              info_teacher: "成志樵",
+              info_classroom: "386",
+              continuity: "2",
+              class: "數學",
+              active: "classroom",
             },
             {
-              info_classroom: '501',
-              continuity: '',
-              info_teacher: '葉憲民',
-              class: '電子學',
+              info_classroom: "383",
+              class: "電工機械",
+              info_teacher: "江明德",
+              active: "classroom",
             },
             {
-              info_teacher: '鄭雅華',
-              info_classroom: '501',
-              class: '國語文',
-              continuity: '2',
+              continuity: "",
+              class: "體育",
+              info_teacher: "林泱妗",
+              info_classroom: "",
             },
             {
-              continuity: '',
-              class: '共學共好',
-              info_teacher: '鄭雅華',
-              info_classroom: '501',
+              info_teacher: "江明德",
+              info_classroom: "383",
+              class: "工業配線",
+              continuity: "2",
+            },
+            {
+              class: "共學共好",
+              info_classroom: "501",
+              info_teacher: "鄭雅華",
             },
           ],
-          Date: '星期四',
         },
         {
           Course: [
             {
-              info_teacher: '',
-              info_classroom: '',
-              continuity: '',
-              class: '班/週會',
+              info_classroom: "581",
+              class: "電子學實習",
+              continuity: "3",
+              info_teacher: "成志樵",
             },
             {
-              info_classroom: '',
-              continuity: '2',
-              info_teacher: '',
-              class: '聯課活動',
+              info_classroom: "",
+              class: "體育",
+              info_teacher: "林泱妗",
+              continuity: "",
             },
             {
-              info_teacher: '鄭雅華',
-              continuity: '1',
-              info_classroom: '501',
-              class: '彈性課程',
+              info_classroom: "501",
+              continuity: "",
+              info_teacher: "葉憲民",
+              class: "電子學",
             },
             {
-              class: '國語文',
-              info_classroom: '501',
-              info_teacher: '鄭雅華',
-              continuity: '',
+              info_teacher: "鄭雅華",
+              info_classroom: "501",
+              class: "國語文",
+              continuity: "2",
             },
             {
-              class: '電子學',
-              info_classroom: '501',
-              continuity: '2',
-              info_teacher: '葉憲民',
-            },
-            {
-              info_teacher: '鄭雅華',
-              class: '共學共好',
-              info_classroom: '501',
-              continuity: '',
+              continuity: "",
+              class: "共學共好",
+              info_teacher: "鄭雅華",
+              info_classroom: "501",
             },
           ],
-          Date: '星期五',
+          Date: "星期四",
+        },
+        {
+          Course: [
+            {
+              info_teacher: "",
+              info_classroom: "",
+              continuity: "",
+              class: "班/週會",
+            },
+            {
+              info_classroom: "",
+              continuity: "2",
+              info_teacher: "",
+              class: "聯課活動",
+            },
+            {
+              info_teacher: "鄭雅華",
+              continuity: "1",
+              info_classroom: "501",
+              class: "彈性課程",
+            },
+            {
+              class: "國語文",
+              info_classroom: "501",
+              info_teacher: "鄭雅華",
+              continuity: "",
+            },
+            {
+              class: "電子學",
+              info_classroom: "501",
+              continuity: "2",
+              info_teacher: "葉憲民",
+            },
+            {
+              info_teacher: "鄭雅華",
+              class: "共學共好",
+              info_classroom: "501",
+              continuity: "",
+            },
+          ],
+          Date: "星期五",
         },
       ],
     },
-  ]
+  ];
 
   // 取得考程表內容，填充到輸入框
-  const [getCourseSch, setGetCourseSch] = useState(false)
-  const [editedActv, setEditedActv] = useState(false)
+  const [getCourseSch, setGetCourseSch] = useState(false);
+  const [editedActv, setEditedActv] = useState(false);
   useEffect(() => {
     if (!getCourseSch) {
-      const courSchDocRef = doc(db, 'courseSchedule', 'courseSchedule')
+      const courSchDocRef = doc(db, "courseSchedule", "courseSchedule");
       onSnapshot(courSchDocRef, (doc) => {
-        const data = doc.data()
-        setCourSchData(data.courSchData)
-        setCourSchDataBackup(data.courSchData)
-        console.log(data.courSchData)
-      })
-      setGetCourseSch(true)
+        const data = doc.data();
+        setCourSchData(data.courSchData);
+        setCourSchDataBackup(data.courSchData);
+        console.log(data.courSchData);
+      });
+      setGetCourseSch(true);
     }
-  }, [getCourseSch])
+  }, [getCourseSch]);
   useEffect(() => {
     if (courSchData && courSchDataBackup) {
       if (courSchData === courSchDataBackup) {
-        setEditedActv(false)
+        setEditedActv(false);
       } else {
-        setEditedActv(true)
-        console.log(courSchData === courSchDataBackup)
+        setEditedActv(true);
+        console.log(courSchData === courSchDataBackup);
         // console.log(courSchDataBackup)
       }
-      console.log(courSchData[0].type)
+      console.log(courSchData[0].type);
     }
-  }, [courSchData, courSchDataBackup, getCourseSch])
+  }, [courSchData, courSchDataBackup, getCourseSch]);
 
   // 更新課程表
   const updateCourSch = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     // 資訊科
-    const courseSchDocRef = doc(db, 'courseSchedule', 'courseSchedule')
-    const courSchDataObject = { courSchData: courSchData }
-    await setDoc(courseSchDocRef, courSchDataObject, { merge: true })
+    const courseSchDocRef = doc(db, "courseSchedule", "courseSchedule");
+    const courSchDataObject = { courSchData: courSchData };
+    await setDoc(courseSchDocRef, courSchDataObject, { merge: true });
     // setGetCourSchCount(false)
-  }
+  };
 
   const updateValue = (subjectIndex, dayIndex, courseIndex, field, value) => {
     setCourSchData((prevData) => {
-      const newData = JSON.parse(JSON.stringify(prevData))
+      const newData = JSON.parse(JSON.stringify(prevData));
       const courseData =
-        newData[subjectIndex].data[dayIndex].Course[courseIndex]
-      courseData[field] = value
-      return newData
-    })
-  }
+        newData[subjectIndex].data[dayIndex].Course[courseIndex];
+      courseData[field] = value;
+      return newData;
+    });
+  };
 
   const resetCourSch = () => {
-    setCourSchData(resetCourSchData)
-  }
+    setCourSchData(resetCourSchData);
+  };
 
   const moveUp = (subjectIndex, dayIndex, courseIndex) => {
     setCourSchData((prevData) => {
-      const newData = JSON.parse(JSON.stringify(prevData))
-      const dayData = newData[subjectIndex].data[dayIndex]
-      if (courseIndex === 0) return prevData // 如果課程已經在頂部，則不執行任何操作
-      const courseData = dayData.Course.splice(courseIndex, 1)[0]
-      dayData.Course.splice(courseIndex - 1, 0, courseData)
-      return newData
-    })
-  }
+      const newData = JSON.parse(JSON.stringify(prevData));
+      const dayData = newData[subjectIndex].data[dayIndex];
+      if (courseIndex === 0) return prevData; // 如果課程已經在頂部，則不執行任何操作
+      const courseData = dayData.Course.splice(courseIndex, 1)[0];
+      dayData.Course.splice(courseIndex - 1, 0, courseData);
+      return newData;
+    });
+  };
 
   const moveDown = (subjectIndex, dayIndex, courseIndex) => {
     setCourSchData((prevData) => {
-      const newData = JSON.parse(JSON.stringify(prevData))
-      const dayData = newData[subjectIndex].data[dayIndex]
-      if (courseIndex === dayData.Course.length - 1) return prevData // 如果課程已經在底部，則不執行任何操作
-      const courseData = dayData.Course.splice(courseIndex, 1)[0]
-      dayData.Course.splice(courseIndex + 1, 0, courseData)
-      return newData
-    })
-  }
+      const newData = JSON.parse(JSON.stringify(prevData));
+      const dayData = newData[subjectIndex].data[dayIndex];
+      if (courseIndex === dayData.Course.length - 1) return prevData; // 如果課程已經在底部，則不執行任何操作
+      const courseData = dayData.Course.splice(courseIndex, 1)[0];
+      dayData.Course.splice(courseIndex + 1, 0, courseData);
+      return newData;
+    });
+  };
   const addCourse = (subjectIndex, dayIndex) => {
     setCourSchData((prevData) => {
-      const newData = JSON.parse(JSON.stringify(prevData))
-      const dayData = newData[subjectIndex].data[dayIndex]
+      const newData = JSON.parse(JSON.stringify(prevData));
+      const dayData = newData[subjectIndex].data[dayIndex];
       dayData.Course.push({
         // 在這裡添加新課程的初始值
-        class: '',
-        info_classroom: '',
-        info_teacher: '',
-        continuity: '',
-      })
-      return newData
-    })
-  }
+        class: "",
+        info_classroom: "",
+        info_teacher: "",
+        continuity: "",
+      });
+      return newData;
+    });
+  };
   const deleteCourse = (subjectIndex, dayIndex, courseIndex) => {
     setCourSchData((prevData) => {
-      const newData = JSON.parse(JSON.stringify(prevData))
-      const dayData = newData[subjectIndex].data[dayIndex]
-      dayData.Course.splice(courseIndex, 1)
-      return newData
-    })
-  }
+      const newData = JSON.parse(JSON.stringify(prevData));
+      const dayData = newData[subjectIndex].data[dayIndex];
+      dayData.Course.splice(courseIndex, 1);
+      return newData;
+    });
+  };
 
   // 資訊科
   // const courseSchDocRef1 = doc(db, 'courseSchedule', 'courseSchedule1')
@@ -1370,9 +1370,9 @@ function CourseSchedule(props) {
   //     },
   //   ],
   // }
-  const [courSchData1, setCourSchData1] = useState('')
-  const [courSchData2, setCourSchData2] = useState('')
-  const [courSchData3, setCourSchData3] = useState('')
+  const [courSchData1, setCourSchData1] = useState("");
+  const [courSchData2, setCourSchData2] = useState("");
+  const [courSchData3, setCourSchData3] = useState("");
 
   // useEffect(() => {
   //   // 資訊科
@@ -1404,54 +1404,54 @@ function CourseSchedule(props) {
 
   // const [courSchDisplay, setCourSchDisplay] = useState()
   const courSchTypeChange = (type) => {
-    props.setCourSchType(type)
-    localStorage.setItem('courSchType', type)
-  }
+    props.setCourSchType(type);
+    localStorage.setItem("courSchType", type);
+  };
   useEffect(() => {
-    const storedValue = localStorage.getItem('courSchType')
+    const storedValue = localStorage.getItem("courSchType");
     if (storedValue) {
-      props.setCourSchType(storedValue)
+      props.setCourSchType(storedValue);
     } else {
-      localStorage.setItem('courSchType', '資訊科')
+      localStorage.setItem("courSchType", "資訊科");
     }
-  }, [props.courSchType, courSchData])
+  }, [props.courSchType, courSchData]);
 
-  const [expDays, setExpDays] = useState(false)
+  const [expDays, setExpDays] = useState(false);
   useEffect(() => {
     if (courSchData1 && courSchData2 && courSchData3) {
       setTimeout(() => {
-        let daysCount = document.querySelector('#TableDiv').childElementCount
+        let daysCount = document.querySelector("#TableDiv").childElementCount;
         if (daysCount > 6) {
-          setExpDays(true)
-        } else setExpDays(false)
-        console.log('test')
-      }, 250)
+          setExpDays(true);
+        } else setExpDays(false);
+        console.log("test");
+      }, 250);
     }
-  }, [props.courSchType, courSchData])
+  }, [props.courSchType, courSchData]);
 
-  const tableDivRef = useRef()
-  const [csViewWidth, setCsViewWidth] = useState('600')
+  const tableDivRef = useRef();
+  const [csViewWidth, setCsViewWidth] = useState("600");
   useEffect(() => {
     setTimeout(() => {
       if (tableDivRef.current) {
-        const width = tableDivRef.current.scrollWidth
-        setCsViewWidth(width + 24)
+        const width = tableDivRef.current.scrollWidth;
+        setCsViewWidth(width + 24);
       }
-    }, 150)
-  }, [courSchData, props.courSchType, courseScheduleDataInfoActive])
+    }, 150);
+  }, [courSchData, props.courSchType, courseScheduleDataInfoActive]);
 
   // 頁面動畫
-  const [pageTitleAni, setPageTitleAni] = useState(true)
+  const [pageTitleAni, setPageTitleAni] = useState(true);
   useEffect(() => {
-    setPageTitleAni(false)
-  }, [])
+    setPageTitleAni(false);
+  }, []);
 
   const closePage = () => {
-    setPageTitleAni(true)
+    setPageTitleAni(true);
     setTimeout(() => {
-      props.navigateClick('/service')
-    }, 500)
-  }
+      props.navigateClick("/service");
+    }, 500);
+  };
   return (
     <>
       <Helmet>
@@ -1462,8 +1462,8 @@ function CourseSchedule(props) {
       </Helmet>
       <main
         id="courseSchedule"
-        className={`${props.theme}${props.settingPage ? ' settingOpen' : ''}${
-          pageTitleAni ? ' PTAni' : ''
+        className={`${props.theme}${props.settingPage ? " settingOpen" : ""}${
+          pageTitleAni ? " PTAni" : ""
         }`}>
         {/* <div
           id="ctrlCourseScheduleInfo"
@@ -1483,7 +1483,7 @@ function CourseSchedule(props) {
 
           <span>詳細資訊</span>
         </div> */}
-        <div className={`view tabs${pageTitleAni ? ' PTAni' : ''}`}>
+        <div className={`view tabs${pageTitleAni ? " PTAni" : ""}`}>
           {courSchData ? (
             <>
               {/* 合併 */}
@@ -1500,7 +1500,7 @@ function CourseSchedule(props) {
                     {LeftTitle.map((LeftTitle, k) => (
                       <div
                         className={`Table_LeftTitle ${
-                          courseScheduleDataInfoActive ? 'open' : ''
+                          courseScheduleDataInfoActive ? "open" : ""
                         }`}
                         key={k}>
                         {LeftTitle.LeftTitle}
@@ -1513,21 +1513,21 @@ function CourseSchedule(props) {
                       subject.data.map((item) => (
                         <div
                           className={`Table_Rows ${
-                            courseScheduleDataInfoActive ? 'open' : ''
+                            courseScheduleDataInfoActive ? "open" : ""
                           }`}
                           key={item.Date}>
                           <div className="Table_TopTitle">{item.Date}</div>
                           {item.Course.map((course, courseIndex) => (
                             <div
                               className={`Table_Data${
-                                courseScheduleDataInfoActive ? ' open' : ''
+                                courseScheduleDataInfoActive ? " open" : ""
                               }${` ctnty${course.continuity}`}`}
                               key={`${course.class}${courseIndex}`}
                               onClick={
-                                course.class.includes('段考')
+                                course.class.includes("段考")
                                   ? () => [
                                       props.navigateClick(
-                                        '/service/examSchedule'
+                                        "/service/examSchedule"
                                       ),
                                     ]
                                   : () => {}
@@ -1535,13 +1535,13 @@ function CourseSchedule(props) {
                               {course.class}
                               <span
                                 className={`${
-                                  courseScheduleDataInfoActive ? 'open' : ''
+                                  courseScheduleDataInfoActive ? "open" : ""
                                 }`}>
                                 {course.info_classroom}
                               </span>
                               <span
                                 className={`${
-                                  courseScheduleDataInfoActive ? 'open' : ''
+                                  courseScheduleDataInfoActive ? "open" : ""
                                 }`}>
                                 {course.info_teacher}
                               </span>
@@ -1560,7 +1560,7 @@ function CourseSchedule(props) {
           )}
           <div
             id="Tips"
-            style={{ display: props.TipsActive ? 'flex' : 'none' }}>
+            style={{ display: props.TipsActive ? "flex" : "none" }}>
             <div>
               <span>課程表現已升級為雲端即時資訊！</span>
             </div>
@@ -1577,7 +1577,7 @@ function CourseSchedule(props) {
               btnIcon={
                 <FontAwesomeIcon
                   icon="fa-solid fa-pen"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />
               }
               btnContent="編輯"
@@ -1671,7 +1671,7 @@ function CourseSchedule(props) {
                                             subjectIndex,
                                             dayIndex,
                                             courseIndex,
-                                            'class',
+                                            "class",
                                             e.target.value
                                           )
                                         }
@@ -1685,7 +1685,7 @@ function CourseSchedule(props) {
                                             subjectIndex,
                                             dayIndex,
                                             courseIndex,
-                                            'info_classroom',
+                                            "info_classroom",
                                             e.target.value
                                           )
                                         }
@@ -1699,7 +1699,7 @@ function CourseSchedule(props) {
                                             subjectIndex,
                                             dayIndex,
                                             courseIndex,
-                                            'info_teacher',
+                                            "info_teacher",
                                             e.target.value
                                           )
                                         }
@@ -1713,7 +1713,7 @@ function CourseSchedule(props) {
                                             subjectIndex,
                                             dayIndex,
                                             courseIndex,
-                                            'continuity',
+                                            "continuity",
                                             e.target.value
                                           )
                                         }
@@ -1763,17 +1763,17 @@ function CourseSchedule(props) {
         <PageCtrlModule
           LBtn={[
             {
-              type: 'button',
+              type: "button",
               prmsn: true,
-              content: '詳細資訊',
+              content: "詳細資訊",
               icon: [
                 <FontAwesomeIcon
                   icon="fa-solid fa-circle-xmark"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />,
                 <FontAwesomeIcon
                   icon="fa-solid fa-circle-info"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />,
               ],
               click: courseScheduleDataInfo,
@@ -1782,17 +1782,17 @@ function CourseSchedule(props) {
           ]}
           RBtn={[
             {
-              type: 'button',
+              type: "button",
               prmsn: editPrmsn,
-              content: '編輯',
+              content: "編輯",
               icon: [
                 <FontAwesomeIcon
                   icon="fa-solid fa-xmark"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />,
                 <FontAwesomeIcon
                   icon="fa-solid fa-pen"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />,
               ],
               click: () => setEditView(!editView),
@@ -1802,7 +1802,7 @@ function CourseSchedule(props) {
         />
       </main>
     </>
-  )
+  );
 }
 
-export default CourseSchedule
+export default CourseSchedule;

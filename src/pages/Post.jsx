@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 // Icon Library
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // CSS
-import '../App.scss'
+import "../App.scss";
 // DataBase
-import { PostData } from '../AppData/AppData'
-import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -19,26 +18,26 @@ import {
   arrayUnion,
   arrayRemove,
   onSnapshot,
-} from 'firebase/firestore'
+} from "firebase/firestore";
 // Widget
-import PageTitle from '../widgets/PageTitle'
-import Loader from '../widgets/Loader'
-import PageCtrlModule from '../widgets/PageCtrlModule'
+import PageTitle from "../widgets/PageTitle";
+import Loader from "../widgets/Loader";
+import PageCtrlModule from "../widgets/PageCtrlModule";
 // firebase
-import { AllowUserAuth } from '../firebase'
+import { AllowUserAuth } from "../firebase";
 
 // 初始化
 const firebaseConfig = {
-  apiKey: 'AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg',
-  authDomain: 'classdata-app.firebaseapp.com',
-  projectId: 'classdata-app',
-  storageBucket: 'classdata-app.appspot.com',
-  messagingSenderId: '219989250207',
-  appId: '1:219989250207:web:5cef212dc7e1496c6952aa',
-}
-const app = initializeApp(firebaseConfig)
-const auth = getAuth()
-const db = getFirestore(app)
+  apiKey: "AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg",
+  authDomain: "classdata-app.firebaseapp.com",
+  projectId: "classdata-app",
+  storageBucket: "classdata-app.appspot.com",
+  messagingSenderId: "219989250207",
+  appId: "1:219989250207:web:5cef212dc7e1496c6952aa",
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore(app);
 
 function Post(props) {
   // console.log(process.env.REACT_APP_ADMIN_ACCOUNT)
@@ -47,27 +46,27 @@ function Post(props) {
     process.env.REACT_APP_19_POST,
     // process.env.REACT_APP_SCHOOL_USER1,
     process.env.REACT_APP_SCHOOL_USER2,
-  ]
+  ];
   const pubArticleLocalAdres = [
     process.env.REACT_APP_SCHOOL_EMAIL,
     process.env.REACT_APP_ADMIN_ADRES,
-  ]
+  ];
 
-  const [user, setUser] = useState(null)
-  const [userUID, setUserUID] = useState('')
+  const [user, setUser] = useState(null);
+  const [userUID, setUserUID] = useState("");
   // 發佈公告權限
   const pubArticle = AllowUserAuth(
     pubArticleAllowedUsers,
     pubArticleLocalAdres,
-    '發布公告權限'
-  )
-  const [pubArticleForm, setPubArticleForm] = useState(false)
+    "發布公告權限"
+  );
+  const [pubArticleForm, setPubArticleForm] = useState(false);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user)
-    })
-    return unsubscribe
-  }, [])
+      setUser(user);
+    });
+    return unsubscribe;
+  }, []);
   // useEffect(() => {
   //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
   //     if (user) {
@@ -88,54 +87,54 @@ function Post(props) {
   //   return unsubscribe
   // }, [user])
 
-  const [articleTitle, setArticleTitle] = useState('')
-  const [articleTime, setArticleTime] = useState('')
-  const [articleContent, setArticleContent] = useState('')
-  const [expiryDate, setExpiryDate] = useState('')
+  const [articleTitle, setArticleTitle] = useState("");
+  const [articleTime, setArticleTime] = useState("");
+  const [articleContent, setArticleContent] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
 
   // 發布公告
   const updatePubArticle = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!expiryDate || !articleTitle || !articleContent) {
-      alert('請將內容填寫完整')
-      return
+      alert("請將內容填寫完整");
+      return;
     }
     // 發布時間設定
-    const date = new Date()
+    const date = new Date();
     // 統整發布內容
     const postData = {
       title: articleTitle,
       content: articleContent,
       time: date,
       expiryDate: expiryDate,
-    }
-    const postDatabaseRef = doc(db, 'post', 'postData')
+    };
+    const postDatabaseRef = doc(db, "post", "postData");
     await updateDoc(postDatabaseRef, {
       data: arrayUnion(postData),
-    })
+    });
 
-    setArticleTitle('')
-    setArticleTime('')
-    setArticleContent('')
-    setExpiryDate('')
-    setPubArticleForm(false)
-  }
+    setArticleTitle("");
+    setArticleTime("");
+    setArticleContent("");
+    setExpiryDate("");
+    setPubArticleForm(false);
+  };
 
   // 刪除公告
   const deleteArticle = async (title) => {
     if (window.confirm(`確定要刪除 "${title}" 公告嗎？\n此操作無法復原！`)) {
-      const postDatabaseRef = doc(db, 'post', 'postData')
-      const postData = await getDoc(postDatabaseRef)
+      const postDatabaseRef = doc(db, "post", "postData");
+      const postData = await getDoc(postDatabaseRef);
       const postToDelete = postData
         .data()
-        .data.find((post) => post.title === title)
+        .data.find((post) => post.title === title);
       await updateDoc(postDatabaseRef, {
         data: arrayRemove(postToDelete),
-      })
-      console.log(`確認刪除 “${title}” 公告`)
+      });
+      console.log(`確認刪除 “${title}” 公告`);
     }
-  }
+  };
 
   // 公告刪除示例
   const testDeleteArticle = async (title) => {
@@ -144,32 +143,32 @@ function Post(props) {
         `[這是一個示例]\n按下確定後就會立即刪除該公告！\n且此操作無法復原！`
       )
     ) {
-      console.log(`模擬確認刪除 “該公告標題” 公告`)
+      console.log(`模擬確認刪除 “該公告標題” 公告`);
     }
-  }
+  };
 
   // 編輯公告內容
-  const [editActive, setEditActive] = useState(false)
-  const [postToEdit, setPostToEdit] = useState()
+  const [editActive, setEditActive] = useState(false);
+  const [postToEdit, setPostToEdit] = useState();
   const editArticle = async (title) => {
-    const postDatabaseRef = doc(db, 'post', 'postData')
-    const postData = await getDoc(postDatabaseRef)
-    const post = postData.data().data.find((post) => post.title === title)
-    setPostToEdit(post)
+    const postDatabaseRef = doc(db, "post", "postData");
+    const postData = await getDoc(postDatabaseRef);
+    const post = postData.data().data.find((post) => post.title === title);
+    setPostToEdit(post);
 
     // 將文章內容顯示在輸入框中
-    setArticleTitle(post.title)
-    setArticleContent(post.content)
-    setExpiryDate(post.expiryDate)
-    setArticleTime(post.time)
-    setEditActive(true)
-    setPubArticleForm(true)
-  }
+    setArticleTitle(post.title);
+    setArticleContent(post.content);
+    setExpiryDate(post.expiryDate);
+    setArticleTime(post.time);
+    setEditActive(true);
+    setPubArticleForm(true);
+  };
 
   // 更新文章
   const updateArticle = async () => {
-    const postRef = doc(db, 'post', 'postData')
-    const postData = await getDoc(postRef)
+    const postRef = doc(db, "post", "postData");
+    const postData = await getDoc(postRef);
     const updatedPosts = postData.data().data.map((post) => {
       if (post.title === postToEdit.title) {
         return {
@@ -178,77 +177,77 @@ function Post(props) {
           content: articleContent,
           expiryDate: expiryDate,
           time: articleTime,
-        }
+        };
       }
-      return post
-    })
-    await updateDoc(postRef, { data: updatedPosts })
-    setArticleTitle('')
-    setArticleTime('')
-    setArticleContent('')
-    setExpiryDate('')
-    setPubArticleForm(false)
-    setEditActive(false)
-  }
+      return post;
+    });
+    await updateDoc(postRef, { data: updatedPosts });
+    setArticleTitle("");
+    setArticleTime("");
+    setArticleContent("");
+    setExpiryDate("");
+    setPubArticleForm(false);
+    setEditActive(false);
+  };
 
   // 關閉編輯器
   const closeEditer = () => {
-    setArticleTitle('')
-    setArticleTime('')
-    setArticleContent('')
-    setExpiryDate('')
-    setPubArticleForm(false)
-  }
+    setArticleTitle("");
+    setArticleTime("");
+    setArticleContent("");
+    setExpiryDate("");
+    setPubArticleForm(false);
+  };
 
   // 內容獲取
-  const [getPostData, setGetPostData] = useState(null)
+  const [getPostData, setGetPostData] = useState(null);
   useEffect(() => {
     // 獲取資料
-    const postDatabaseRef = doc(db, 'post', 'postData')
+    const postDatabaseRef = doc(db, "post", "postData");
     const unsubscribe = onSnapshot(postDatabaseRef, (doc) => {
-      const data = doc.data()
-      setGetPostData(data)
-      props.setPostNoti(Object.keys(data.data).length)
-      localStorage.setItem('postNoti', Object.keys(data.data).length)
-    })
+      const data = doc.data();
+      setGetPostData(data);
+      props.setPostNoti(Object.keys(data.data).length);
+      localStorage.setItem("postNoti", Object.keys(data.data).length);
+    });
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
   // 時間格式化
   const setDate = (date) => {
     const options = {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      weekday: 'short',
-    }
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      weekday: "short",
+    };
     let formattedDate = date
-      .toLocaleDateString('zh-TW', options)
-      .replaceAll('/', '.')
-    formattedDate = formattedDate.replace('（', ' ').replace('）', '')
-    return formattedDate
-  }
+      .toLocaleDateString("zh-TW", options)
+      .replaceAll("/", ".");
+    formattedDate = formattedDate.replace("（", " ").replace("）", "");
+    return formattedDate;
+  };
 
   // 頁面動畫
-  const [pageTitleAni, setPageTitleAni] = useState(true)
+  const [pageTitleAni, setPageTitleAni] = useState(true);
   useEffect(() => {
-    setPageTitleAni(false)
-  }, [])
+    setPageTitleAni(false);
+  }, []);
   return (
     <>
       <main
         id="post"
         className={`${props.theme}${
-          props.theme && props.settingPage ? ' ' : ''
-        }${props.settingPage ? 'settingOpen' : ''}`}>
+          props.theme && props.settingPage ? " " : ""
+        }${props.settingPage ? "settingOpen" : ""}`}>
         <Helmet>
           <title>班級資訊平台｜公告</title>
           <meta name="description" content="學校、班級的公告事項" />
           <meta property="og:title" content="班級資訊平台｜公告" />
           <meta property="og:description" content="學校、班級的公告事項" />
         </Helmet>
-        <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+        <div className={`view${pageTitleAni ? " PTAni" : ""}`}>
           {pubArticle && (
             <PubArticle
               pubArticleForm={pubArticleForm}
@@ -279,16 +278,16 @@ function Post(props) {
                       [...getPostData.data].reverse().map((item, index) => {
                         const isExpired =
                           new Date(item.expiryDate) <=
-                          new Date(new Date().setHours(0, 0, 0, 0))
+                          new Date(new Date().setHours(0, 0, 0, 0));
                         return (
                           <div
                             key={index}
-                            className={`post-post ${isExpired ? 'exp' : ''}`}>
+                            className={`post-post ${isExpired ? "exp" : ""}`}>
                             <h5>
                               {setDate(new Date(item.time.seconds * 1000))}
                             </h5>
                             <h1>{item.title}</h1>
-                            {item.content.split('\n').map((line, index) => (
+                            {item.content.split("\n").map((line, index) => (
                               <p key={index}>{line}</p>
                             ))}
                             {pubArticle ? (
@@ -306,18 +305,18 @@ function Post(props) {
                                   <FontAwesomeIcon
                                     icon="fa-solid fa-pen"
                                     style={{
-                                      marginLeft: '-3px',
-                                      marginRight: '6px',
+                                      marginLeft: "-3px",
+                                      marginRight: "6px",
                                     }}
                                   />
                                   編輯
                                 </button>
                               </>
                             ) : (
-                              ''
+                              ""
                             )}
                           </div>
-                        )
+                        );
                       })}
                   </section>
                 </>
@@ -331,14 +330,14 @@ function Post(props) {
                       <span>
                         <FontAwesomeIcon
                           icon="fa-solid fa-eye"
-                          style={{ marginRight: '3px' }}
+                          style={{ marginRight: "3px" }}
                         />
                         此訊息僅已授權使用者可以看到
                       </span>
                       <h1>
                         <FontAwesomeIcon
                           icon="fa-solid fa-hashtag"
-                          style={{ marginRight: '6px' }}
+                          style={{ marginRight: "6px" }}
                         />
                         發布公告使用說明
                       </h1>
@@ -348,7 +347,7 @@ function Post(props) {
                       <p>以下是示例：</p>
                       <div
                         className="post-post"
-                        style={{ margin: '12px 0 0 0', width: '100%' }}>
+                        style={{ margin: "12px 0 0 0", width: "100%" }}>
                         <h5>2023.04.25 (公告發布日期)</h5>
                         <h1>未過期公告</h1>
                         <p>這是一個還未到期的公告。</p>
@@ -359,13 +358,13 @@ function Post(props) {
                         <button
                           className="deleteArticleBtn"
                           onClick={() => testDeleteArticle()}
-                          style={{ right: '12px' }}>
+                          style={{ right: "12px" }}>
                           <FontAwesomeIcon icon="fa-solid fa-trash" />
                         </button>
                       </div>
                       <div
                         className="post-post exp"
-                        style={{ margin: '12px 0 0 0', width: '100%' }}>
+                        style={{ margin: "12px 0 0 0", width: "100%" }}>
                         <h5>2023.04.25 (公告發布日期)</h5>
                         <h1>已過期公告</h1>
                         <p>這是一個還已到期的公告。</p>
@@ -376,14 +375,14 @@ function Post(props) {
                         <button
                           className="deleteArticleBtn"
                           onClick={() => testDeleteArticle()}
-                          style={{ right: '12px' }}>
+                          style={{ right: "12px" }}>
                           <FontAwesomeIcon icon="fa-solid fa-trash" />
                         </button>
                       </div>
                     </div>
                   </>
                 ) : (
-                  ''
+                  ""
                 )}
               </section>
             </div>
@@ -393,13 +392,13 @@ function Post(props) {
           LBtns={[]}
           RBtn={[
             {
-              type: 'button',
+              type: "button",
               prmsn: pubArticle,
-              content: '發佈公告',
+              content: "發佈公告",
               icon: (
                 <FontAwesomeIcon
                   icon="fa-solid fa-pen-to-square"
-                  style={{ marginRight: '6px' }}
+                  style={{ marginRight: "6px" }}
                 />
               ),
               click: () => setPubArticleForm(true),
@@ -408,7 +407,7 @@ function Post(props) {
         />
       </main>
     </>
-  )
+  );
 }
 
 function PubArticle(props) {
@@ -416,31 +415,31 @@ function PubArticle(props) {
     <>
       <div
         id="pubArticle"
-        className={`${props.theme} ${props.pubArticleForm ? 'open' : ''}`}>
+        className={`${props.theme} ${props.pubArticleForm ? "open" : ""}`}>
         <div
           id="closePubArticle"
-          className={`${props.pubArticleForm ? 'open' : ''}`}
+          className={`${props.pubArticleForm ? "open" : ""}`}
           onClick={props.closeEditer}>
           <FontAwesomeIcon icon="fa-solid fa-xmark" />
         </div>
         <div
           id="submitPost"
-          className={`${props.pubArticleForm ? 'open' : ''}`}
+          className={`${props.pubArticleForm ? "open" : ""}`}
           onClick={
             props.editActive ? props.updateArticle : props.updatePubArticle
           }>
           {props.editActive ? (
             <FontAwesomeIcon
               icon="fa-solid fa-pen"
-              style={{ marginRight: '9px' }}
+              style={{ marginRight: "9px" }}
             />
           ) : (
             <FontAwesomeIcon
               icon="fa-solid fa-paper-plane"
-              style={{ marginRight: '9px' }}
+              style={{ marginRight: "9px" }}
             />
           )}
-          <span>{props.editActive ? '修改' : '發布'}</span>
+          <span>{props.editActive ? "修改" : "發布"}</span>
         </div>
         <div className="pubArticleView">
           <div className="title">
@@ -472,7 +471,7 @@ function PubArticle(props) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Post
+export default Post;
