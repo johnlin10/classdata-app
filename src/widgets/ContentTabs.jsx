@@ -3,7 +3,7 @@ import React from 'react'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import css from './css/ContentTabs.module.css'
+import css from './css/ContentTabs.module.scss'
 
 export default function ContentTabs({
   isDark,

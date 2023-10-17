@@ -6,7 +6,7 @@ import Button from './button'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import css from './css/editer.module.css'
+import css from './css/editer.module.scss'
 
 export default function Editer(props) {
   const scrollTop = useRef(null)

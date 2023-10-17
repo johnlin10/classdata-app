@@ -32,9 +32,42 @@
   font-size: 1.2rem;
   font-weight: 700;
 }
+.dark .user .userInfo .userName {
+  color: #ffffffe5;
+}
 .user .userInfo .userName.not {
   color: #9f9f9f;
   font-weight: 500;
+}
+
+.user .userInfo p.uid {
+  margin: 6px 0 12px 0;
+  padding: 6px 9px 6px 6px;
+  background: #0000000f;
+  font-size: 0.8rem;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+.dark .user .userInfo p.uid {
+  color: #ffffffa1;
+  background: #ffffff0f;
+}
+.user .userInfo p.uid > span {
+  padding: 0 3px;
+  margin-right: 6px;
+  border-radius: 6px;
+  background: var(--main-light);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+.dark .user .userInfo p.uid > span {
+  color: #ffffff7f;
+  background: var(--main-dark);
 }
 
 .user .userInfo .userEmail {

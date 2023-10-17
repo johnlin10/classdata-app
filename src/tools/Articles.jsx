@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { HomePostData } from '../AppData/AppData'
-import './css/Articles.css'
+import './css/Articles.scss'
 import { Helmet } from 'react-helmet'
 
 // Icon Library

@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import './css/ooxx.css'
+import React, { useEffect, useState } from "react";
+import "./css/ooxx.scss";
 // Icon Library
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 
-library.add(fas)
+library.add(fas);
 
 function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
       {value}
     </button>
-  )
+  );
 }
 
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
-      return
+      return;
     }
-    const nextSquares = squares.slice()
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      nextSquares[i] = 'X'
+      nextSquares[i] = "X";
     } else {
-      nextSquares[i] = 'O'
+      nextSquares[i] = "O";
     }
-    onPlay(nextSquares)
+    onPlay(nextSquares);
   }
 
-  const winner = calculateWinner(squares)
-  let status
+  const winner = calculateWinner(squares);
+  let status;
   if (winner) {
-    status = 'Winner ' + winner
+    status = "Winner " + winner;
   } else {
-    status = '下一位 ' + (xIsNext ? 'X' : 'O')
+    status = "下一位 " + (xIsNext ? "X" : "O");
   }
 
   return (
@@ -58,51 +58,51 @@ function Board({ xIsNext, squares, onPlay }) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default function OOXXGame(props) {
   // 頁面動畫
-  const [pageTitleAni, setPageTitleAni] = useState(true)
+  const [pageTitleAni, setPageTitleAni] = useState(true);
   useEffect(() => {
-    setPageTitleAni(false)
-  }, [])
+    setPageTitleAni(false);
+  }, []);
 
-  const [history, setHistory] = useState([Array(9).fill(null)])
-  const [currentMove, setCurrentMove] = useState(0)
-  const xIsNext = currentMove % 2 === 0
-  const currentSquares = history[currentMove]
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
 
   function handlePlay(nextSquares) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares]
-    setHistory(nextHistory)
-    setCurrentMove(nextHistory.length - 1)
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
   }
 
   function jumpTo(nextMove) {
     if (nextMove == 0) {
       // 刪除所有的歷史步驟
-      setHistory([Array(9).fill(null)])
+      setHistory([Array(9).fill(null)]);
     }
-    setCurrentMove(nextMove)
+    setCurrentMove(nextMove);
   }
 
   const moves = history.map((squares, move) => {
-    let description
+    let description;
     if (move > 0) {
-      description = '第 ' + move + ' 步'
+      description = "第 " + move + " 步";
     } else {
-      description = '重新開始'
+      description = "重新開始";
     }
-    return <div onClick={() => jumpTo(move)}>{description}</div>
-  })
+    return <div onClick={() => jumpTo(move)}>{description}</div>;
+  });
 
   return (
     <main
       className={`game ${props.theme}${
-        props.theme && props.settingPage ? ' ' : ''
-      }${props.settingPage ? 'settingOpen' : ''}`}>
-      <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+        props.theme && props.settingPage ? " " : ""
+      }${props.settingPage ? "settingOpen" : ""}`}>
+      <div className={`view${pageTitleAni ? " PTAni" : ""}`}>
         <div className="game-board">
           <Board
             xIsNext={xIsNext}
@@ -110,10 +110,10 @@ export default function OOXXGame(props) {
             onPlay={handlePlay}
           />
         </div>
-        <div className="game-info">{moves.length == 1 ? '' : moves}</div>
+        <div className="game-info">{moves.length == 1 ? "" : moves}</div>
       </div>
     </main>
-  )
+  );
 }
 
 function calculateWinner(squares) {
@@ -126,12 +126,12 @@ function calculateWinner(squares) {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-  ]
+  ];
   for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i]
+    const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a]
+      return squares[a];
     }
   }
-  return null
+  return null;
 }

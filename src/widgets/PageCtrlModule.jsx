@@ -1,68 +1,55 @@
-import { useEffect, useState } from 'react'
-import css from './css/PageCtrlModule.module.css'
+import { useEffect, useState } from "react"
+import css from "./css/PageCtrlModule.module.scss"
+// Icon Library
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSquareUpRight } from "@fortawesome/free-solid-svg-icons"
 
 export default function PageCtrlModule(props) {
-  const RBtn = props.RBtn
-  const LBtn = props.LBtn
+  const Btns = props.Btns
+  const isSingle = Btns?.length === 1
+
   // 組件動畫
   const [widgetTitleAni, setWidgetTitleAni] = useState(true)
   useEffect(() => {
     setWidgetTitleAni(false)
   }, [])
+
+  useEffect(() => {
+    console.log(isSingle)
+  }, [isSingle])
+
   return (
-    <div className={`${css.view}${widgetTitleAni ? ` ${css.animation}` : ''}`}>
-      {LBtn && (
-        <div className={css.left}>
-          {LBtn?.map((item, index) => {
+    <div
+      className={`${css.view}${widgetTitleAni ? ` ${css.animation}` : ""}${
+        isSingle ? ` ${css.single}` : ""
+      }`}>
+      {Btns && (
+        <div className={`${css.btnGroup}`}>
+          {Btns?.map((item, index) => {
             return (
               <>
-                {item.prmsn && item.type === 'button' && (
+                {item.prmsn && (
                   <button
-                    className={item.actv ? css.actv : ''}
+                    className={`${css[item.type]}${
+                      item.actv ? ` ${css.actv}` : ""
+                    }`}
                     onClick={item.click}
                     key={index}>
                     {item.icon[1]
                       ? item.actv
                         ? item.icon[0]
                         : item.icon[1]
-                      : ''}
+                      : item.icon[0]}
                     <span>{item.content}</span>
+                    {item.type === "link" && (
+                      <FontAwesomeIcon
+                        className={css.link}
+                        icon={faSquareUpRight}
+                      />
+                    )}
                   </button>
-                )}{' '}
-                {item.prmsn && item.type === 'link' && (
-                  <div className={css.link} onClick={item.click} key={index}>
-                    {item.icon[1]
-                      ? item.actv
-                        ? item.icon[0]
-                        : item.icon[1]
-                      : ''}
-                    <span>{item.content}</span>
-                  </div>
                 )}
               </>
-            )
-          })}
-        </div>
-      )}
-      <div></div>
-      {RBtn && (
-        <div className={css.right}>
-          {RBtn?.map((item, index) => {
-            return (
-              item.prmsn &&
-              item.type === 'button' && (
-                <button
-                  className={item.actv ? css.actv : ''}
-                  onClick={item.click}
-                  key={index}>
-                  {item.icon[1]
-                    ? item.actv
-                      ? item.icon[0]
-                      : item.icon[1]
-                    : ''}
-                  <span>{item.content}</span>
-                </button>
-              )
             )
           })}
         </div>

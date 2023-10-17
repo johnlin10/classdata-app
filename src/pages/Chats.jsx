@@ -1,18 +1,18 @@
 // React
-import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate, Navigate, Route, Routes, Outlet } from 'react-router-dom'
-import { Helmet } from 'react-helmet'
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate, Navigate, Route, Routes, Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet";
 // CSS
-import '../App.scss'
-import css from './css/Chats.module.css'
+import "../App.scss";
+import css from "./css/Chats.module.scss";
 
 // Widget
-import PageTitle from '../widgets/PageTitle'
+import PageTitle from "../widgets/PageTitle";
 
 // Firebase
-import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -23,66 +23,59 @@ import {
   arrayUnion,
   arrayRemove,
   onSnapshot,
-} from 'firebase/firestore'
-import { db, auth } from '../firebase'
+} from "firebase/firestore";
+import { db, auth } from "../firebase";
 
 export default function Chats(props) {
-  const [themeColor, setThemeColor] = useState([
-    '#50c477',
-    '#fffffff1',
-    '#50c477',
-    '#fffffff1',
-  ])
-
   // 頁面動畫
-  const [pageTitleAni, setPageTitleAni] = useState(true)
+  const [pageTitleAni, setPageTitleAni] = useState(true);
   useEffect(() => {
-    setPageTitleAni(false)
-  }, [])
+    setPageTitleAni(false);
+  }, []);
 
   const schoolUsers = [
     process.env.REACT_APP_SCHOOL_USER1,
     process.env.REACT_APP_SCHOOL_USER2,
     process.env.REACT_APP_SCHOOL_USER3,
-  ]
-  const adminUsers = [process.env.REACT_APP_ADMIN, process.env.REACT_APP_SYSEM]
-  const otherUsers = [process.env.REACT_APP_CHAT_01]
+  ];
+  const adminUsers = [process.env.REACT_APP_ADMIN, process.env.REACT_APP_SYSEM];
+  const otherUsers = [process.env.REACT_APP_CHAT_01];
   // 用戶登入資訊
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user)
-    })
-    return unsubscribe
-  }, [])
+      setUser(user);
+    });
+    return unsubscribe;
+  }, []);
 
-  const [isSchoolUser, setIsSchoolUser] = useState(false)
+  const [isSchoolUser, setIsSchoolUser] = useState(false);
   useEffect(() => {
-    setIsSchoolUser()
-  }, [user])
+    setIsSchoolUser();
+  }, [user]);
 
   //
-  const [schoolUserList, setSchoolUserList] = useState([])
+  const [schoolUserList, setSchoolUserList] = useState([]);
   useEffect(() => {
     // 获取数据
-    const chatGroupDataRef = collection(db, 'user')
+    const chatGroupDataRef = collection(db, "user");
     const unsubscribe = onSnapshot(chatGroupDataRef, (querySnapshot) => {
-      const users = []
+      const users = [];
       querySnapshot.forEach((doc) => {
-        const data = doc.data()
+        const data = doc.data();
         if (
           (schoolUsers.some((user) => data.email.startsWith(user)) &&
             data.email.endsWith(process.env.REACT_APP_SCHOOL_EMAIL)) ||
           adminUsers.some((user) => data.email.startsWith(user))
         ) {
-          users.push(data)
+          users.push(data);
         }
-      })
-      setSchoolUserList(users)
-    })
+      });
+      setSchoolUserList(users);
+    });
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
@@ -94,14 +87,14 @@ export default function Chats(props) {
       </Helmet>
       <main
         className={`${css.main}${` ${props.theme}`}${
-          props.theme && props.settingPage ? ' ' : ''
-        }${props.settingPage ? 'settingOpen' : ''}`}>
-        <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+          props.theme && props.settingPage ? " " : ""
+        }${props.settingPage ? "settingOpen" : ""}`}>
+        <div className={`view${pageTitleAni ? " PTAni" : ""}`}>
           <h3>群組</h3>
           <section>
             <div className={css.chatlist_block}>
               <div>
-                <p onClick={() => props.navigateClick('/chats/chat-group')}>
+                <p onClick={() => props.navigateClick("/chats/chat-group")}>
                   公共討論區
                 </p>
               </div>
@@ -149,5 +142,5 @@ export default function Chats(props) {
       </main>
       <Outlet />
     </>
-  )
+  );
 }

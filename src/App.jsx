@@ -6,7 +6,7 @@ import { useNavigate, Navigate, Route, Routes, Outlet } from "react-router-dom";
 
 // CSS
 import "./App.scss";
-import css from "./App.module.css";
+import css from "./App.module.scss";
 
 // 網頁標題/描述控件
 import { Helmet } from "react-helmet";
@@ -33,10 +33,11 @@ import Updater from "./pages/Updeter";
 import Music from "./pages/music";
 import ChatGroup from "./pages/ChatGroup";
 import YouTubePlayer from "./pages/YouTubePlayer";
-import DocLink from "./pages/docLink";
+import DocLink from "./pages/DocLink";
 import WebUpdate from "./pages/WebUpdate";
 import Chats from "./pages/Chats";
-import Me from "./pages/Me";
+import User from "./pages/User";
+import ClassRealTimeStatus from "./pages/ClassRealTimeStatus";
 
 // Tools
 import Articles from "./tools/Articles";
@@ -124,6 +125,7 @@ export default function App() {
     { path: "/service/examSchedule", pageName: "考程表" },
     { path: "/service/youtube-player", pageName: "YouTube 播放器" },
     { path: "/secretPage/music", pageName: "音樂" },
+    { path: "/secretPage/classroomStatus", pageName: "班級即時狀態" },
   ];
   const [pageTabs, setPageTabs] = useState();
   const [updateAvailable, setUpdateAvailable] = useState(false);
@@ -149,7 +151,7 @@ export default function App() {
         selected: courSchType,
       });
     } else setPageTabs();
-  }, [location, courSchType]);
+  }, [location, courSchType, theme]);
 
   /**
    * 將 location path 尋找資料庫對應的頁面名稱
@@ -1078,7 +1080,7 @@ export default function App() {
         {/* user */}
         <Route
           path="/user"
-          element={<Me theme={theme} settingPage={settingPage} />}></Route>
+          element={<User theme={theme} settingPage={settingPage} />}></Route>
 
         <Route
           path="/webUpdate"
@@ -1095,6 +1097,18 @@ export default function App() {
           <Route
             path="updater"
             element={<Updater theme={theme} settingPage={settingPage} />}
+          />
+          <Route
+            path="classroomStatus"
+            element={
+              <ClassRealTimeStatus theme={theme} settingPage={settingPage} />
+            }
+          />
+          <Route
+            path="classRealtimeStatus"
+            element={
+              <ClassRealTimeStatus theme={theme} settingPage={settingPage} />
+            }
           />
           <Route
             path="ox"

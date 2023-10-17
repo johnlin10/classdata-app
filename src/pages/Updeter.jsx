@@ -16,7 +16,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import "./css/updater.css";
+import "./css/updater.scss";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAevwFPxRd5Fi-UbeTHko_Uradt-hAeBSg",

@@ -7,7 +7,7 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 // Icon Library
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./css/chatGroup.css";
+import "./css/chatGroup.scss";
 
 import { List, AutoSizer } from "react-virtualized";
 

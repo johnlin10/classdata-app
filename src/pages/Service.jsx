@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, Navigate, Route, Routes, Outlet } from 'react-router-dom'
-import { Helmet } from 'react-helmet'
+import React, { useEffect, useState } from "react";
+import { useNavigate, Navigate, Route, Routes, Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet";
 // CSS
-import '../App.scss'
+import "../App.scss";
 // 自定義函式庫
-import useUrlParams from '../js/UpdateUrlParams'
+import useUrlParams from "../js/UpdateUrlParams";
 // DataBase
-import { ServiceData, ToolsData, DocsData } from '../AppData/AppData.js'
+import { ServiceData, ToolsData, DocsData } from "../AppData/AppData.js";
 // Icon Library
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Service(props) {
   // 頁面動畫
-  const [pageTitleAni, setPageTitleAni] = useState(true)
+  const [pageTitleAni, setPageTitleAni] = useState(true);
   useEffect(() => {
-    setPageTitleAni(false)
-  }, [])
-  const { urlParams, removeUrlParam, addUrlParams } = useUrlParams()
+    setPageTitleAni(false);
+  }, []);
+  const { urlParams, removeUrlParam, addUrlParams } = useUrlParams();
   return (
     <>
       <main
         id="folder"
         className={`${props.theme}${
-          props.theme && props.settingPage ? ' ' : ''
-        }${props.settingPage ? 'settingOpen' : ''}`}>
+          props.theme && props.settingPage ? " " : ""
+        }${props.settingPage ? "settingOpen" : ""}`}>
         <Helmet>
           <title>班級資訊平台｜服務</title>
           <meta name="description" content="學校、班級的最新資訊" />
           <meta property="og:title" content="班級資訊平台" />
           <meta property="og:description" content="學校、班級的最新資訊" />
         </Helmet>
-        <div className={`view${pageTitleAni ? ' PTAni' : ''}`}>
+        <div className={`view${pageTitleAni ? " PTAni" : ""}`}>
           <div id="folder-view">
             <div id="folder-view-content">
               <h1 className="services">服務</h1>
@@ -49,8 +49,8 @@ function Service(props) {
                       style={{
                         height: ServiceData.divHight,
                         backgroundImage: ServiceData.stylebackground
-                          ? `url(${process.env.PUBLIC_URL}${ServiceData.stylebackground})`
-                          : '',
+                          ? `url(${ServiceData.stylebackground})`
+                          : "",
                       }}></div>
                     <div className="serviceBlockTitle">
                       <div>
@@ -81,7 +81,7 @@ function Service(props) {
                     onClick={() => props.navigateClick(ToolsData.link)}>
                     <div
                       className={`target ${
-                        ToolsData.class.includes('target') ? 'active' : ''
+                        ToolsData.class.includes("target") ? "active" : ""
                       }`}>
                       <FontAwesomeIcon icon="fa-solid fa-link" />
                     </div>
@@ -97,7 +97,7 @@ function Service(props) {
                         height: ToolsData.divHight,
                         backgroundImage: ToolsData.stylebackground
                           ? `url(${process.env.PUBLIC_URL}${ToolsData.stylebackground})`
-                          : '',
+                          : "",
                       }}></div>
                     <div className="serviceBlockTitle">
                       <div>
@@ -128,7 +128,7 @@ function Service(props) {
                     onClick={() => [props.openDoc(DocsData.url)]}>
                     <div
                       className={`target ${
-                        DocsData.class.includes('target') ? 'active' : ''
+                        DocsData.class.includes("target") ? "active" : ""
                       }`}>
                       <FontAwesomeIcon icon="fa-solid fa-link" />
                     </div>
@@ -138,7 +138,7 @@ function Service(props) {
                         height: DocsData.divHight,
                         backgroundImage: DocsData.stylebackground
                           ? `url(${process.env.PUBLIC_URL}${DocsData.stylebackground})`
-                          : '',
+                          : "",
                       }}></div>
                     <div className="serviceBlockTitle">
                       <div>
@@ -165,7 +165,7 @@ function Service(props) {
       </main>
       <Outlet />
     </>
-  )
+  );
 }
 
-export default Service
+export default Service;

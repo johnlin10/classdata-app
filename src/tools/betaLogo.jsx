@@ -1,4 +1,4 @@
-import './css/betaLogo.css'
+import './css/betaLogo.scss'
 
 export default function betaLogo(props) {
   return (

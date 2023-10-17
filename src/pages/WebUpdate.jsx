@@ -14,7 +14,7 @@ import {
   updateDoc,
 } from 'firebase/firestore'
 import { WebVersion } from '../AppData/AppData'
-import css from './css/WebUpdate.module.css'
+import css from './css/WebUpdate.module.scss'
 // Widget
 import PageTitle from '../widgets/PageTitle'
 

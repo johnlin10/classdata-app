@@ -1,4 +1,4 @@
-import css from './css/Loader.module.css'
+import css from './css/Loader.module.scss'
 export default function Loader() {
   return (
     <div className={css.loader_view}>

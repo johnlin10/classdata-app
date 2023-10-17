@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 // Icon Library
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import css from './css/editBtn.module.css'
+import css from './css/editBtn.module.scss'
 
 {
   /* 

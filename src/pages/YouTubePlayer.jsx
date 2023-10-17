@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   useEffect,
   useState,
@@ -8,7 +10,7 @@ import React, {
 import YouTube from "react-youtube";
 import YoutubeBackground from "react-youtube-background";
 
-import "./css/youTubePlayer.css";
+import "./css/youTubePlayer.scss";
 // Icon Library
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { event } from "react-ga";
@@ -246,7 +248,6 @@ function VideoForm(props) {
         setUrltarget(true);
       }, 500);
     }
-    console.log(props.youtubeUrl);
   }, [props.youtubeUrl]);
   useEffect(() => {
     if (urltarget || loop > 0) {
@@ -332,7 +333,7 @@ function VideoForm(props) {
     return () => {
       input.removeEventListener("focus", handleFocus);
     };
-  }, []);
+  }, [props]);
 
   // Esc 退出影片
   useEffect(() => {
@@ -576,104 +577,93 @@ function VideoForm(props) {
         className={`${props.theme}${props.settingPage ? " settingOpen" : ""}${
           videoId ? " playing" : ""
         }${pageTitleAni ? " PTAni" : ""}`}>
+        <form
+          className="youTubeUrlForm"
+          onSubmit={handleSubmit}
+          autocomplete="off">
+          <label htmlFor="videoUrl"></label>
+          <div
+            title="關閉影片 (Esc)"
+            className={`clostVideo${videoId ? " playing" : ""}`}
+            onClick={() => closeVideo()}>
+            <FontAwesomeIcon icon="fa-solid fa-xmark" />
+          </div>
+          <div
+            className={`favoriteListBtn${videoId ? " playing" : ""}${
+              favoriteListActive ? " open" : ""
+            }`}
+            onClick={() => [favoriteList()]}>
+            <FontAwesomeIcon icon="fa-solid fa-list-ul" rotation={180} />
+            <FontAwesomeIcon
+              className="xmark"
+              icon="fa-solid fa-xmark"
+              style={{
+                position: "absolute",
+                fontSize: "20px",
+                opacity: favoriteListActive ? "1" : "0",
+              }}
+            />
+          </div>
+          <input
+            type="text"
+            id="videoUrl"
+            title="YouTube 影片連結輸入框"
+            className={videoId ? "playing" : ""}
+            name="videoUrl"
+            value={videoUrl}
+            placeholder="請輸入 YouTube 影片連結"
+            onChange={(event) => [
+              setVideoUrl(event.target.value),
+              checkFavorite(event),
+              searchVideoData(),
+            ]}
+          />
+          <div
+            title={favorited ? "已收藏" : "未收藏"}
+            className={`favoriteBtn${favorited ? " favorited" : ""}`}
+            onClick={() => saveFavorite(videoUrl)}>
+            <FontAwesomeIcon
+              icon={`fa-${favorited ? "solid" : "regular"} fa-star`}
+            />
+          </div>
+          <div
+            title={musicMode ? "點擊開啟影片" : "點擊隱藏影片"}
+            className={`videoCloseBtn${favorited ? " close" : ""}`}
+            onClick={() => changeMusicMode()}>
+            <FontAwesomeIcon icon="fa-brands fa-youtube" />
+            {musicMode ? (
+              <>
+                <FontAwesomeIcon
+                  className="videoCloseLine"
+                  icon="fa-solid fa-minus"
+                />
+                <FontAwesomeIcon
+                  className="videoCloseLineShadow"
+                  icon="fa-solid fa-minus"
+                />
+              </>
+            ) : (
+              ""
+            )}
+          </div>
+          <button
+            type="submit"
+            title="搜尋影片"
+            className={videoId ? "playing" : ""}>
+            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+          </button>
+          {error && (
+            <div className="error">
+              <p>{error}</p>
+            </div>
+          )}
+        </form>
         <div className={`view${pageTitleAni ? " PTAni" : ""}`}>
           <div id="youTubePlayerView">
             {/* <h1 className={videoId ? 'playing' : ''}>YouTube 影片播放器</h1> */}
             {/* 表單用於收集使用者輸入 */}
 
-            <form
-              className="youTubeUrlForm"
-              onSubmit={handleSubmit}
-              autocomplete="off">
-              <label htmlFor="videoUrl"></label>
-              <div
-                title="關閉影片 (Esc)"
-                className={`clostVideo${videoId ? " playing" : ""}`}
-                onClick={() => closeVideo()}>
-                <FontAwesomeIcon icon="fa-solid fa-xmark" />
-              </div>
-              <div
-                className={`favoriteListBtn${videoId ? " playing" : ""}${
-                  favoriteListActive ? " open" : ""
-                }`}
-                onClick={() => [favoriteList()]}>
-                <FontAwesomeIcon icon="fa-solid fa-list-ul" rotation={180} />
-                <FontAwesomeIcon
-                  className="xmark"
-                  icon="fa-solid fa-xmark"
-                  style={{
-                    position: "absolute",
-                    fontSize: "20px",
-                    opacity: favoriteListActive ? "1" : "0",
-                  }}
-                />
-              </div>
-              <input
-                type="text"
-                id="videoUrl"
-                title="YouTube 影片連結輸入框"
-                className={videoId ? "playing" : ""}
-                name="videoUrl"
-                value={videoUrl}
-                placeholder="請輸入 YouTube 影片連結"
-                onChange={(event) => [
-                  setVideoUrl(event.target.value),
-                  checkFavorite(event),
-                  searchVideoData(),
-                ]}
-              />
-              <div
-                title={favorited ? "已收藏" : "未收藏"}
-                className={`favoriteBtn${favorited ? " favorited" : ""}`}
-                onClick={() => saveFavorite(videoUrl)}>
-                <FontAwesomeIcon
-                  icon={`fa-${favorited ? "solid" : "regular"} fa-star`}
-                />
-              </div>
-              <div
-                title={musicMode ? "點擊開啟影片" : "點擊隱藏影片"}
-                className={`videoCloseBtn${favorited ? " close" : ""}`}
-                onClick={() => changeMusicMode()}>
-                <FontAwesomeIcon icon="fa-brands fa-youtube" />
-                {musicMode ? (
-                  <>
-                    <FontAwesomeIcon
-                      className="videoCloseLine"
-                      icon="fa-solid fa-minus"
-                    />
-                    <FontAwesomeIcon
-                      className="videoCloseLineShadow"
-                      icon="fa-solid fa-minus"
-                    />
-                  </>
-                ) : (
-                  ""
-                )}
-              </div>
-              <button
-                type="submit"
-                title="搜尋影片"
-                className={videoId ? "playing" : ""}>
-                <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
-              </button>
-              {error && (
-                <div className="error">
-                  <p>{error}</p>
-                </div>
-              )}
-            </form>
             {!videoId && <span>{videoTitlePreview}</span>}
-            {/* {!videoId && (
-            <span
-              className="copyAgentUrl"
-              title="複製YouTube影片網址後，點擊替換為代理播放網址"
-              style={{
-                fontSize: '10px',
-              }}
-              onClick={() => copyAgentUrl()}>
-              複製代理播放網址
-            </span>
-          )} */}
             {!videoId && (
               <div style={{ display: "flex" }}>
                 <div className="youTubePlayerTips">
@@ -704,12 +694,12 @@ function VideoForm(props) {
                       onClick={() => playFavoriteLink(favorite.url)}>
                       <FontAwesomeIcon icon="fa-solid fa-play" />
                     </button> */}
-                      <a
+                      <p
                         title={`${favorite.title}`}
                         onClick={() => playFavoriteLink(favorite.url)}>
                         <FontAwesomeIcon icon="fa-solid fa-play" />
                         {favorite.title}
-                      </a>
+                      </p>
                       <button
                         className="copyUrl"
                         title="複製此收藏影片網址"
@@ -765,7 +755,7 @@ function VideoForm(props) {
                 <ul>
                   {[...favorites].reverse().map((favorite) => (
                     <li key={favorite.url}>
-                      <a
+                      <p
                         title={`${favorite.title}`}
                         onClick={() => [
                           playFavoriteLink(favorite.url),
@@ -773,7 +763,7 @@ function VideoForm(props) {
                         ]}>
                         <FontAwesomeIcon icon="fa-solid fa-play" />
                         {favorite.title}
-                      </a>
+                      </p>
                       <button
                         className="copyUrl"
                         title="複製此收藏影片網址"
