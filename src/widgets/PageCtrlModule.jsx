@@ -11,7 +11,9 @@ export default function PageCtrlModule(props) {
   // 組件動畫
   const [widgetTitleAni, setWidgetTitleAni] = useState(true)
   useEffect(() => {
-    setWidgetTitleAni(false)
+    setTimeout(() => {
+      setWidgetTitleAni(false)
+    }, 100)
   }, [])
 
   useEffect(() => {

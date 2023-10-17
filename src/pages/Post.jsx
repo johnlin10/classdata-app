@@ -152,6 +152,7 @@ function Post(props) {
   const [editActive, setEditActive] = useState(false)
   const [postToEdit, setPostToEdit] = useState()
   const editArticle = async (title) => {
+    setPubArticleForm(true)
     const postDatabaseRef = doc(db, "post", "postData")
     const postData = await getDoc(postDatabaseRef)
     const post = postData.data().data.find((post) => post.title === title)
@@ -163,7 +164,6 @@ function Post(props) {
     setExpiryDate(post.expiryDate)
     setArticleTime(post.time)
     setEditActive(true)
-    setPubArticleForm(true)
   }
 
   // 更新文章
