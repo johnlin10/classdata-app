@@ -15,8 +15,8 @@ New URL (Continuously updated):
 
 <hr>
 
-相較於 [4.0 版本](https://github.com/johnlin10/classdata)，改進了網頁架構，降低了開發成本，且提高擴展性。  
-Compared to [Version 4.0](https://github.com/johnlin10/classdata/), we have improved the website structure, reduced development costs, and enhanced scalability.
+相較於 4.0 版本，改進了網頁架構，降低了開發成本，且提高擴展性。  
+Compared to Version 4.0, we have improved the website structure, reduced development costs, and enhanced scalability.
 
 <hr>  
 
